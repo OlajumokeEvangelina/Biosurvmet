@@ -1,11 +1,35 @@
 Package: Biosurvmet
 Type: Package
-Title: What the Package Does (Title Case)
+Title: A Biomarker Validation approach for predicting Survival using Metabolomics Signatures 
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Authors@R: c(
+       person("Olajumoke","Owokotomo",email="olajumoke.owokotomo@uhasselt.be",role=c("aut","cre")),
+       person("Ziv","Shkedy",email="ziv.shkedy@uhasselt.be",role="aut"))
+Maintainer: Olajumoke Owokotomo <olajumoke.owokotomo@uhasselt.be>
+Description: Predicting patients Survival using Metabolomics Signatures. The package use the metabolomics signature and other prognostic factors
+   as classifier for dividing the patients into low and high risk groups. The classifier is a linear combination of the signature and the prognostic factor and/or treatment effect.    It implements several
+    advanced classifier techniques and validation procedures. It also implements reduction of the metabolomics data with various reduction method and cross validation approach to investigate the mostly selected metabolic signature.
+URL: https://www.uhasselt.be/fiche?email=olajumoke.owokotomo#fiche
+License: GPL-3 
 Encoding: UTF-8
 LazyData: true
+Depends: R (>= 3.1.0),
+         methods
+Imports:
+    superpc,
+    glmnet,
+    ggplot2,
+    matrixStats,
+    readxl,
+    survminer,
+    survival,
+    rms,
+    plyr,
+    tidyr,
+    Rdpack
+RdMacros: Rdpack
+RoxygenNote: 6.0.1
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
