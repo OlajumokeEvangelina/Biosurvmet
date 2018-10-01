@@ -1,7 +1,7 @@
 Package: Biosurvmet
 Type: Package
-Title: A Biomarker Validation approach for predicting Survival using Metabolomics Signatures 
-Version: 0.1.0
+Title: A Biomarker Validation Method for Predicting Survival using Metabolite Signature 
+Version: 1.0.0
 Authors@R: c(
        person("Olajumoke","Owokotomo",email="olajumoke.owokotomo@uhasselt.be",role=c("aut","cre")),
        person("Ziv","Shkedy",email="ziv.shkedy@uhasselt.be",role="aut"))
@@ -26,9 +26,10 @@ Imports:
     rms,
     plyr,
     tidyr,
+    pls,
     Rdpack
 RdMacros: Rdpack
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
 Suggests: 
     knitr,
     rmarkdown

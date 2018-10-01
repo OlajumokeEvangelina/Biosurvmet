@@ -1,0 +1,2 @@
+load("/Users/Olajumoke/Documents/PHD/MYPACKAGE/MetabolomicsSignature/data/Dat.rda")
+ls()
