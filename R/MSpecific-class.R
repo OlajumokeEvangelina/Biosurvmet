@@ -18,7 +18,7 @@
 #' @param ...	The usual extra arguments to generic functions — see \code{\link[graphics]{plot}}, \code{\link[graphics]{plot.default}}
 #' @slot Result A list of dataframes of each output object of coxph for the metabolites.
 #' @slot HRRG A dataframe with estimated metabolite-specific HR for low risk group and 95 percent CI.
-#' @slot Group A list of vectors of the classification group a subject belongs to for each of the metabolite analysis.
+#' @slot Group A matrix of the classification group a subject belongs to for each of the metabolite analysis. The metabolites are on the rows and the subjects are the columns
 #' @slot Metnames The names of the metabolites for the analysis
 #'
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
@@ -30,7 +30,7 @@
 #'
 #' ## DO THE METABOLITE BY METABOLITE ANALYSIS
 #' Eg = MSpecificCoxPh(Survival=Data$Survival, Mdata=t(Data$Mdata),
-#' Censor=Data$Censor, Reduce = FALSE, TopK = 15,
+#' Censor=Data$Censor, Reduce = FALSE, Select = 15,
 #' Prognostic=Data$Prognostic, Quantile = 0.5)
 #'
 #' ## GET THE CLASS OF THE OBJECT
@@ -41,8 +41,8 @@
 #' summary(Eg)
 #' plot(Eg)
 
-setClass("MSpecific",slots = list(Result="list",HRRG="matrix",Group="list",Metnames="vector"),
-         prototype=list(Result=list(1),HRRG=matrix(0,0,0),Group=list(1), Metnames = vector()))
+setClass("MSpecific",slots = list(Result="list",HRRG="matrix",Group="matrix",Metnames="vector"),
+         prototype=list(Result=list(1),HRRG=matrix(0,0,0),Group=matrix(0,0,0), Metnames = vector()))
 
 
 #' Method dhow.
@@ -117,21 +117,24 @@ setMethod(f="plot", signature = "MSpecific",
             colnames(res.topkMetabolites)<-c("Metnames","HR","LCI","UCI","FDRLCI","FDRUCI")
 
             x= 1:length(object@Metnames)
-            par(mfrow=c(2,1))
+            par(mfrow=c(3,1))
             plot(x=x, y = res.topkMetabolites[,2],
                  ylim= c(0,max(res.topkMetabolites[,4])),
                  pch=19, xlab="Metabolites", ylab="Hazard ratio",
-                 main="Hazard ratio plot with unadjusted confidence interval"
-            )
+                 main="Hazard ratio plot with unadjusted confidence interval")
             arrows(x, res.topkMetabolites[,3], x, res.topkMetabolites[,4], length=0.05, angle=90, code=3)
             abline(h=1,col="red2",lwd=2.0)
 
             plot(x=x, y = res.topkMetabolites[,2],
                  ylim= c(0,max(res.topkMetabolites[,6])),
                  pch=19, xlab="Metabolites", ylab="Hazard ratio",
-                 main="Hazard ratio plot with adjusted confidence interval"
-            )
+                 main="Hazard ratio plot with adjusted confidence interval")
             arrows(x, res.topkMetabolites[,5], x, res.topkMetabolites[,6], length=0.05, angle=90, code=3)
             abline(h=1,col="red2",lwd=2.0)
+
+            Group2 = object@Group
+            prop = sapply(1:ncol(Group2),function(k) sum(Group2[,k]=="Low risk")/nrow(Group2))
+            barplot(prop, col=rainbow(length(Group2[1,])), xlab = "Patient index", ylab = "Proportion",main = "Proportion of being classified as low risk group",ylim = c(0,max(prop)))
+            return(invisible())
           })
 

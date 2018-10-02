@@ -3,6 +3,7 @@
 export(EstimateHR)
 export(MSData)
 export(MSpecificCoxPh)
+export(SIMet)
 export(SurvPcaClass)
 export(SurvPlsClass)
 exportMethods(plot)

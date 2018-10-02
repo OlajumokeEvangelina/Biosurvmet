@@ -4,7 +4,7 @@
 \alias{MSpecificCoxPh}
 \title{Metabolite by metabolite Cox proportional analysis}
 \usage{
-MSpecificCoxPh(Survival, Mdata, Censor, Reduce = FALSE, TopK = 15,
+MSpecificCoxPh(Survival, Mdata, Censor, Reduce = FALSE, Select = 15,
   Prognostic = NULL, Quantile = 0.5)
 }
 \arguments{
@@ -16,7 +16,7 @@ MSpecificCoxPh(Survival, Mdata, Censor, Reduce = FALSE, TopK = 15,
 
 \item{Reduce}{A boolean parameter indicating if the metabolic profile matrix should be reduced, default is TRUE and larger metabolic profile matrix is reduced by supervised pca approach and first pca is extracted from the reduced matrix to be used in the classifier.}
 
-\item{TopK}{Number of top K metabolites (default is 15) to be selected from supervised PCA. This is valid only if th argument Reduce=TRUE}
+\item{Select}{Number of metabolites (default is 15) to be selected from supervised PCA. This is valid only if th argument Reduce=TRUE}
 
 \item{Prognostic}{A dataframe containing possible prognostic(s) factor and/or treatment effect to be used in the model.}
 
@@ -42,7 +42,7 @@ Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)
 ## USING THE FUNCTION
 Example1 = MSpecificCoxPh(Survival = Data$Survival,
 Mdata = t(Data$Mdata), Censor = Data$Censor, Reduce = FALSE,
-TopK = 15,Prognostic = Data$Prognostic, Quantile = 0.5)
+Select = 15,Prognostic = Data$Prognostic, Quantile = 0.5)
 
 ## KNOWLING THE CLASS OF THE OUTPUT
 class(Example1)

@@ -4,7 +4,7 @@
 \alias{SurvPcaClass}
 \title{Survival PCA and Classification for metabolic data}
 \usage{
-SurvPcaClass(Survival, Mdata, Censor, Reduce = TRUE, TopK = 150,
+SurvPcaClass(Survival, Mdata, Censor, Reduce = TRUE, Select = 150,
   Prognostic = NULL, Plots = FALSE, Quantile = 0.5)
 }
 \arguments{
@@ -16,7 +16,7 @@ SurvPcaClass(Survival, Mdata, Censor, Reduce = TRUE, TopK = 150,
 
 \item{Reduce}{A boolean parameter indicating if the metabolic profile matrix should be reduced, default is TRUE and larger metabolic profile matrix is reduced by supervised pca approach and first pca is extracted from the reduced matrix to be used in the classifier.}
 
-\item{TopK}{Number of top K metabolites (default is 15) to be selected from supervised PCA. This is valid only if th argument Reduce=TRUE}
+\item{Select}{Number of metabolites (default is 15) to be selected from supervised PCA. This is valid only if th argument Reduce=TRUE}
 
 \item{Prognostic}{A dataframe containing possible prognostic(s) factor and/or treatment effect to be used in the model.}
 
@@ -46,7 +46,7 @@ Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)
 
 ## USING THE FUNCTION
 Result = SurvPcaClass(Survival=Data$Survival, Mdata=t(Data$Mdata),
-Censor=Data$Censor, Reduce = FALSE, TopK = 150,
+Censor=Data$Censor, Reduce = FALSE, Select = 150,
 Prognostic = Data$Prognostic, Plots = FALSE, Quantile = 0.5)
 
 ## GETTING THE SURVIVAL REGRESSION OUTPUT

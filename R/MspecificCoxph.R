@@ -7,7 +7,7 @@
 #' @param Mdata A large or small metabolic profile matrix. A matrix with metabolic profiles where the number of rows should be equal to the number of metabolites and number of columns should be equal to number of patients.
 #' @param Censor A vector of censoring indicator
 #' @param Reduce A boolean parameter indicating if the metabolic profile matrix should be reduced, default is TRUE and larger metabolic profile matrix is reduced by supervised pca approach and first pca is extracted from the reduced matrix to be used in the classifier.
-#' @param TopK Number of top K metabolites (default is 15) to be selected from supervised PCA. This is valid only if th argument Reduce=TRUE
+#' @param Select Number of metabolites (default is 15) to be selected from supervised PCA. This is valid only if th argument Reduce=TRUE
 #' @param Prognostic A dataframe containing possible prognostic(s) factor and/or treatment effect to be used in the model.
 #' @param Quantile The cut off value for the classifier, default is the median cutoff
 #' @return A object of class \code{\link[Biosurvmet]{MSpecific}} is returned with the following values
@@ -26,7 +26,7 @@
 #' ## USING THE FUNCTION
 #'Example1 = MSpecificCoxPh(Survival = Data$Survival,
 #'Mdata = t(Data$Mdata), Censor = Data$Censor, Reduce = FALSE,
-#'TopK = 15,Prognostic = Data$Prognostic, Quantile = 0.5)
+#'Select = 15,Prognostic = Data$Prognostic, Quantile = 0.5)
 #'
 #' ## KNOWLING THE CLASS OF THE OUTPUT
 #'class(Example1)
@@ -46,7 +46,7 @@ MSpecificCoxPh<-function(Survival,
                          Mdata,
                          Censor,
                          Reduce=FALSE,
-                         TopK=15,
+                         Select=15,
                          Prognostic=NULL,
                          Quantile = 0.5){
 
@@ -56,7 +56,7 @@ MSpecificCoxPh<-function(Survival,
 
   if (Reduce) {
     DataForReduction<-list(x=Mdata,y=Survival, censoring.status=Censor, metabolitenames=rownames(Mdata))
-    TentativeList<-names(sort(abs(superpc.train(DataForReduction, type="survival")$feature.scores),decreasing =TRUE))[1:TopK]
+    TentativeList<-names(sort(abs(superpc.train(DataForReduction, type="survival")$feature.scores),decreasing =TRUE))[1:Select]
     TentativeList
 
     ReduMdata<-Mdata[TentativeList,]
@@ -70,7 +70,7 @@ MSpecificCoxPh<-function(Survival,
   gNames<-rownames(ReduMdata)
 
   HRp <- matrix(0,n.metabolite,3)
-  gr <- vector("list", n.metabolite)
+  gr <- matrix(0, n.metabolite,n.patients)
   res <-  vector("list", n.metabolite)
 
   for (i in 1:n.metabolite){  #---------------------------  STRAT FOR LOOP ------------------------
@@ -101,7 +101,7 @@ MSpecificCoxPh<-function(Survival,
     Tempmeti <-EstimateHR(Risk.Scores =p1,Data.Survival =cdata, Prognostic=Prognostic,Plots = FALSE, Quantile = 0.5 )
     res[[i]]<-Tempmeti$SurvResult
     HRp[i,]<-summary(Tempmeti$SurvResult)[[8]][1,c(1,3,4)]
-    gr[[i]]<-Tempmeti$Riskgroup
+    gr[i,]<-Tempmeti$Riskgroup
 
   }#---------------------------  END OF  FOR LOOP ------------------------
 

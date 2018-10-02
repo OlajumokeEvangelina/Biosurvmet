@@ -7,7 +7,7 @@
 #' @param Mdata A large or small metabolic profile matrix. A matrix with metabolic profiles where the number of rows should be equal to the number of metabolites and number of columns should be equal to number of patients.
 #' @param Censor A vector of censoring indicator
 #' @param Reduce A boolean parameter indicating if the metabolic profile matrix should be reduced, default is TRUE and larger metabolic profile matrix is reduced by supervised pca approach and first pca is extracted from the reduced matrix to be used in the classifier.
-#' @param TopK Number of top K metabolites (default is 15) to be selected from supervised PCA. This is valid only if th argument Reduce=TRUE
+#' @param Select Number of metabolites (default is 15) to be selected from supervised PCA. This is valid only if th argument Reduce=TRUE
 #' @param Prognostic A dataframe containing possible prognostic(s) factor and/or treatment effect to be used in the model.
 #' @param Plots A boolean parameter indicating if the plots should be shown. Default is FALSE
 #' @param Quantile The cut off value for the classifier, default is the median cutoff
@@ -32,7 +32,7 @@
 #'
 #' ## USING THE FUNCTION
 #'Result = SurvPcaClass(Survival=Data$Survival, Mdata=t(Data$Mdata),
-#'Censor=Data$Censor, Reduce = FALSE, TopK = 150,
+#'Censor=Data$Censor, Reduce = FALSE, Select = 150,
 #'Prognostic = Data$Prognostic, Plots = FALSE, Quantile = 0.5)
 #'
 #' ## GETTING THE SURVIVAL REGRESSION OUTPUT
@@ -54,7 +54,7 @@ SurvPcaClass<-function(
   Mdata,
   Censor,
   Reduce=TRUE,
-  TopK=150,
+  Select=150,
   Prognostic=NULL,
   Plots = FALSE,
   Quantile = 0.5
@@ -68,7 +68,7 @@ SurvPcaClass<-function(
 
   if (Reduce) {
     DataForReduction<-list(x=Mdata,y=Survival, censoring.status=Censor, metnames=rownames(Mdata))
-    TentativeList<-names(sort(abs(superpc.train(DataForReduction, type="survival")$feature.scores),decreasing =TRUE))[1:TopK]
+    TentativeList<-names(sort(abs(superpc.train(DataForReduction, type="survival")$feature.scores),decreasing =TRUE))[1:Select]
     TentativeList
 
     ReduMdata<-Mdata[TentativeList,]

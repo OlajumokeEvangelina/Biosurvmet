@@ -47,7 +47,7 @@ EstimateHR<-function(Risk.Scores,Data.Survival,
   # Based on cut-off value
 
   Cut <- quantile(Risk.Scores,Quantile,type=6)
-  Risk.Group <- as.factor(ifelse(Risk.Scores >= Cut,'High risk', 'Low risk'))
+  Risk.Group <- ifelse(Risk.Scores >= Cut,'High risk', 'Low risk')
 
   # Make a data frame
 

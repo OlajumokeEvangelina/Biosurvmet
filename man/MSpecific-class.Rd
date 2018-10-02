@@ -59,7 +59,7 @@ Data<-MSData(nPatients=100,nMet=150,Prop=0.5)
 
 ## DO THE METABOLITE BY METABOLITE ANALYSIS
 Eg = MSpecificCoxPh(Survival=Data$Survival, Mdata=t(Data$Mdata),
-Censor=Data$Censor, Reduce = FALSE, TopK = 15,
+Censor=Data$Censor, Reduce = FALSE, Select = 15,
 Prognostic=Data$Prognostic, Quantile = 0.5)
 
 ## GET THE CLASS OF THE OBJECT
