@@ -29,7 +29,7 @@ A object of class SurvPca is returned with the following values
   \item{Survfit}{The cox proportional regression result using the first PCA}
   \item{Riskscores}{A vector of risk scores which is equal to the number of patents.}
   \item{Riskgroup}{The classification of the subjects based on the PCA into low or high risk group}
-  \item{pc1}{The First PCA scores based on either the reduced Metabolomics matrix ot the full matrix}
+  \item{pc1}{The First PCA scores based on either the reduced Metabolite matrix or the full matrix}
 \item{KMplot}{The Kaplan-Meier survival plot of the riskgroup}
  \item{SurvBPlot}{The distribution of the survival in the riskgroup}
  \item{Riskpca}{The plot of  Risk scores vs first PCA}
@@ -62,12 +62,12 @@ Result$Riskgroup
 Result$pc1
 }
 \references{
-\insertRef{ye1}{MetabolomicsSignature}
+\insertRef{ye1}{Biosurvmet}
 }
 \seealso{
 \code{\link[survival]{coxph}},
-\code{\link[MetabolomicsSignature]{EstimateHR}}, \code{\link[stats]{princomp}},
- \code{\link[MetabolomicsSignature]{SurvPlsClass}}
+\code{\link[Biosurvmet]{EstimateHR}}, \code{\link[stats]{princomp}},
+ \code{\link[Biosurvmet]{SurvPlsClass}}
 }
 \author{
 Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@uhasselt.be}

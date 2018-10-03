@@ -98,7 +98,7 @@ MSpecificCoxPh<-function(Survival,
     TrtandPC1<-summary(m0)[[7]][c("meti"),1]
     p1 <- TrtandPC1*meti
 
-    Tempmeti <-EstimateHR(Risk.Scores =p1,Data.Survival =cdata, Prognostic=Prognostic,Plots = FALSE, Quantile = 0.5 )
+    Tempmeti <-EstimateHR(Risk.Scores =p1,Data.Survival =cdata, Prognostic=Prognostic,Plots = FALSE, Quantile = Quantile )
     res[[i]]<-Tempmeti$SurvResult
     HRp[i,]<-summary(Tempmeti$SurvResult)[[8]][1,c(1,3,4)]
     gr[i,]<-Tempmeti$Riskgroup

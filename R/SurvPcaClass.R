@@ -15,17 +15,17 @@
 #'   \item{Survfit}{The cox proportional regression result using the first PCA}
 #'   \item{Riskscores}{A vector of risk scores which is equal to the number of patents.}
 #'   \item{Riskgroup}{The classification of the subjects based on the PCA into low or high risk group}
-#'   \item{pc1}{The First PCA scores based on either the reduced Metabolomics matrix ot the full matrix}
+#'   \item{pc1}{The First PCA scores based on either the reduced Metabolite matrix or the full matrix}
 #' \item{KMplot}{The Kaplan-Meier survival plot of the riskgroup}
 #'  \item{SurvBPlot}{The distribution of the survival in the riskgroup}
 #'  \item{Riskpca}{The plot of  Risk scores vs first PCA}
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
 #' @author Ziv Shkedy
 #' @seealso \code{\link[survival]{coxph}},
-#' \code{\link[MetabolomicsSignature]{EstimateHR}}, \code{\link[stats]{princomp}},
-#'  \code{\link[MetabolomicsSignature]{SurvPlsClass}}
+#' \code{\link[Biosurvmet]{EstimateHR}}, \code{\link[stats]{princomp}},
+#'  \code{\link[Biosurvmet]{SurvPlsClass}}
 #' @references
-#' \insertRef{ye1}{MetabolomicsSignature}
+#' \insertRef{ye1}{Biosurvmet}
 #' @examples
 #' ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 #'Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)
@@ -108,7 +108,7 @@ SurvPcaClass<-function(
   TrtandPC1<-summary(m0)[[7]][c("pc1"),1]
   p1 <- TrtandPC1*pc1
 
-  TempRes<- EstimateHR(Risk.Scores = p1, Data.Survival = cdata, Prognostic = Prognostic, Plots = TRUE, Quantile = 0.5)
+  TempRes<- EstimateHR(Risk.Scores = p1, Data.Survival = cdata, Prognostic = Prognostic, Plots = TRUE, Quantile = Quantile)
   gg <- data.frame(Riskscores = p1,Riskgroup = TempRes$Riskgroup,pc1 = pc1)
   ab <- ggplot(gg, aes(x=Riskscores, y=pc1, shape=Riskgroup, color=Riskgroup)) + geom_point()
 

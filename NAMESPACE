@@ -3,6 +3,7 @@
 export(EstimateHR)
 export(MSData)
 export(MSpecificCoxPh)
+export(QuantileAnalysis)
 export(SIMet)
 export(SurvPcaClass)
 export(SurvPlsClass)

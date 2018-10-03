@@ -48,7 +48,7 @@ Any parameters of \code{\link[graphics]{plot.default}} may be passed on to this 
 
 \item{\code{HRRG}}{A dataframe with estimated metabolite-specific HR for low risk group and 95 percent CI.}
 
-\item{\code{Group}}{A list of vectors of the classification group a subject belongs to for each of the metabolite analysis.}
+\item{\code{Group}}{A matrix of the classification group a subject belongs to for each of the metabolite analysis. The metabolites are on the rows and the subjects are the columns}
 
 \item{\code{Metnames}}{The names of the metabolites for the analysis}
 }}
