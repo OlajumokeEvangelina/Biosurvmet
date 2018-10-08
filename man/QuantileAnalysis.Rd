@@ -56,6 +56,11 @@ Plots = TRUE,DimMethod="None")
 \references{
 \insertRef{ye1}{Biosurvmet}
 }
+\seealso{
+\code{\link[survival]{coxph}},\code{\link[Biosurvmet]{EstimateHR}},
+\code{\link[Biosurvmet]{SurvPcaClass}},
+ \code{\link[Biosurvmet]{SurvPlsClass}},\code{\link[Biosurvmet]{MSpecificCoxPh}}
+}
 \author{
 Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@uhasselt.be}
 

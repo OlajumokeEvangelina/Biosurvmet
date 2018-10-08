@@ -13,7 +13,10 @@
 #' summary(MSpecific-object)
 #' ## S4 method for signature 'MSpecific'
 #' show(MSpecific-object)
-#' @param x	 A GeneSpecific class object
+#' @name MSpecific-class
+#' @rdname MSpecific-class
+#' @exportClass MSpecific
+#' @param x	 A MSpecific class object
 #' @param y	 missing
 #' @param ...	The usual extra arguments to generic functions — see \code{\link[graphics]{plot}}, \code{\link[graphics]{plot.default}}
 #' @slot Result A list of dataframes of each output object of coxph for the metabolites.
@@ -45,11 +48,11 @@ setClass("MSpecific",slots = list(Result="list",HRRG="matrix",Group="matrix",Met
          prototype=list(Result=list(1),HRRG=matrix(0,0,0),Group=matrix(0,0,0), Metnames = vector()))
 
 
-#' Method dhow.
-#' @name MSpecific-class
+#' Method show.
+#' @name MSpecific
 #' @rdname MSpecific-class
 #' @exportMethod show
-setGeneric("show", function(object,...) standardGeneric("show"))
+#setGeneric("show", function(object) standardGeneric("show"))
 
 #' @rdname MSpecific-class
 #' @aliases show,MSpecific-method

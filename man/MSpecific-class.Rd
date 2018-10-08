@@ -3,6 +3,7 @@
 \docType{class}
 \name{MSpecific-class}
 \alias{MSpecific-class}
+\alias{MSpecific}
 \alias{show,MSpecific-method}
 \alias{summary,MSpecific-method}
 \alias{plot,MSpecific-method}
@@ -15,8 +16,6 @@ summary(MSpecific-object)
 ## S4 method for signature 'MSpecific'
 show(MSpecific-object)
 
-show(object, ...)
-
 \S4method{show}{MSpecific}(object)
 
 summary(object, ...)
@@ -28,7 +27,7 @@ summary(object, ...)
 \arguments{
 \item{...}{The usual extra arguments to generic functions — see \code{\link[graphics]{plot}}, \code{\link[graphics]{plot.default}}}
 
-\item{x}{A GeneSpecific class object}
+\item{x}{A MSpecific class object}
 
 \item{y}{missing}
 }

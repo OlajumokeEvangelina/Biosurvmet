@@ -58,8 +58,7 @@ Example1@Result
 Example1@Group
 }
 \seealso{
-\code{\link[survival]{coxph}},  \code{\link[Biosurvmet]{
-EstimateHR}}
+\code{\link[survival]{coxph}},  \code{\link[Biosurvmet]{EstimateHR}}
 }
 \author{
 Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@uhasselt.be}

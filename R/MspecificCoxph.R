@@ -17,8 +17,7 @@
 #'   \item{Metnames}{The names of the metabolites for the analysis}
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
 #' @author Ziv Shkedy
-#' @seealso \code{\link[survival]{coxph}},  \code{\link[Biosurvmet]{
-#' EstimateHR}}
+#' @seealso \code{\link[survival]{coxph}},  \code{\link[Biosurvmet]{EstimateHR}}
 #' @examples
 #' ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 #'Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)
