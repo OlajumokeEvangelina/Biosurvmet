@@ -25,7 +25,7 @@ Lasoelacox(Survival, Censor, Mdata, Prognostic, Quantile = 0.5,
 
 \item{Standardize}{A Logical flag for the standardization of the metabolite matrix, prior to fitting the model sequence. The coefficients are always returned on the original scale. Default is standardize=TRUE.}
 
-\item{Alpha}{The mixing parameter for glmnet (see \code{\link[glmnet ]{glmnet}}). The range is 0<= Alpha <= 1. The Default is 1}
+\item{Alpha}{The mixing parameter for glmnet (see \code{\link[glmnet]{glmnet}}). The range is 0<= Alpha <= 1. The Default is 1}
 
 \item{Fold}{number of folds to be used for the cross validation. Its value ranges between 3 and the numbe rof subjects in the dataset}
 
