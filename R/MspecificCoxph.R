@@ -106,6 +106,8 @@ MSpecificCoxPh<-function(Survival,
 
   colnames(HRp) = c("HR","LowerCI","UpperCI")
   Metnames = rownames(as.matrix(Mdata))
+  rownames(gr) = Metnames
+  colnames(gr) = paste0("Subject", 1: ncol(ReduMdata))
 
   return(new("MSpecific",Result=res,HRRG=HRp,Group=gr,Metnames = Metnames))
 }
