@@ -7,11 +7,6 @@
 #'
 #' Any parameters of \code{\link[graphics]{plot.default}} may be passed on to this particular plot method.
 #'
-#' @usage ## S4 method for signature 'MSpecific'
-#' plot(x, y, ...)
-#' ## S4 method for signature 'MSpecific'
-#' summary(MSpecific-object)
-#' ## S4 method for signature 'MSpecific'
 #' show(MSpecific-object)
 #' @name MSpecific-class
 #' @rdname MSpecific-class

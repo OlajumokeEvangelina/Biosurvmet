@@ -9,20 +9,13 @@
 \alias{plot,MSpecific-method}
 \title{The MSpecific Class.}
 \usage{
-## S4 method for signature 'MSpecific'
-plot(x, y, ...)
-## S4 method for signature 'MSpecific'
-summary(MSpecific-object)
-## S4 method for signature 'MSpecific'
-show(MSpecific-object)
-
 \S4method{show}{MSpecific}(object)
 
 summary(object, ...)
 
 \S4method{summary}{MSpecific}(object)
 
-\S4method{plot}{MSpecific}(x, y, ...)
+\S4method{plot}{MSpecific,ANY}(x, y, ...)
 }
 \arguments{
 \item{...}{The usual extra arguments to generic functions — see \code{\link[graphics]{plot}}, \code{\link[graphics]{plot.default}}}
@@ -39,6 +32,8 @@ plot {signature(x = "MSpecific"): Plots for MSpecific class analysis results}
 signature(x = "MSpecific"): Plots for MSpecific class analysis results.
 
 Any parameters of \code{\link[graphics]{plot.default}} may be passed on to this particular plot method.
+
+show(MSpecific-object)
 }
 \section{Slots}{
 

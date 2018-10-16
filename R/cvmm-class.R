@@ -7,13 +7,6 @@
 #'
 #' Any parameters of \code{\link[graphics]{plot.default}} may be passed on to this particular plot method.
 #'
-#' @usage ## S4 method for signature 'cvmm'
-#' plot(x, y, ...)
-#' ## S4 method for signature 'cvmm'
-#' summary(cvmm-object)
-#' ## S4 method for signature 'cvmm'
-#' show(cvmm-object)
-#' @name cvmm-class
 #' @rdname cvmm-class
 #' @exportClass cvmm
 #' @param x	 A CVMetSpecificCoxPh class object

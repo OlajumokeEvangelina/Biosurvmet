@@ -16,7 +16,7 @@ MSpecificCoxPh(Survival, Mdata, Censor, Reduce = FALSE, Select = 15,
 
 \item{Reduce}{A boolean parameter indicating if the metabolic profile matrix should be reduced, default is TRUE and larger metabolic profile matrix is reduced by supervised pca approach and first pca is extracted from the reduced matrix to be used in the classifier.}
 
-\item{Select}{Number of metabolites (default is 15) to be selected from supervised PCA. This is valid only if th argument Reduce=TRUE}
+\item{Select}{Number of metabolites (default is 15) to be selected from supervised PCA. This is valid only if the argument Reduce=TRUE}
 
 \item{Prognostic}{A dataframe containing possible prognostic(s) factor and/or treatment effect to be used in the model.}
 

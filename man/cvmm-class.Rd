@@ -9,20 +9,13 @@
 \alias{plot,cvmm-method}
 \title{The cvmm Class.}
 \usage{
-## S4 method for signature 'cvmm'
-plot(x, y, ...)
-## S4 method for signature 'cvmm'
-summary(cvmm-object)
-## S4 method for signature 'cvmm'
-show(cvmm-object)
-
 \S4method{show}{cvmm}(object)
 
 summary(object, ...)
 
 \S4method{summary}{cvmm}(object, which = 1)
 
-\S4method{plot}{cvmm}(x, y, which = 1, ...)
+\S4method{plot}{cvmm,ANY}(x, y, which = 1, ...)
 }
 \arguments{
 \item{...}{The usual extra arguments to generic functions — see \code{\link[graphics]{plot}}, \code{\link[graphics]{plot.default}}}
