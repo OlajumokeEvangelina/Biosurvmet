@@ -16,6 +16,8 @@
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
 #' @author Ziv Shkedy
 #' @seealso \code{\link[Biosurvmet]{MSpecificCoxPh}}, \code{\link[survival]{coxph}},  \code{\link[Biosurvmet]{EstimateHR}}
+#' @references
+#' \insertRef{tib}{Biosurvmet}
 #' @examples
 #' ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 #'Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)
@@ -42,7 +44,7 @@
 #' @export MajorityVotes
 
 
-MajorityVotes<-function(Result,Prognostic, Survival,Censor,J=1){
+MajorityVotes<-function(Result,Prognostic, Survival,Censor,K=1){
 
 
   if (class(Result)!="MSpecific") stop("Invalid class object.")
@@ -86,8 +88,8 @@ MajorityVotes<-function(Result,Prognostic, Survival,Censor,J=1){
   ng<-nrow(VoteMat)
   np<-ncol(VoteMat)
   Jmax<-floor(np/25)
-  if (J<Jmax) {
-    slist<-(1+(J-1)*25):(J*25)
+  if (K<Jmax) {
+    slist<-(1+(K-1)*25):(K*25)
 
     plot(0,0, xlim=c(-2,ng),ylim=c(1,25),xlab="Metabolites",ylab="Patient Index",axes=FALSE,type="n",
          main="Metabolite-Specific Classification\n of 25  selected patients",cex.main=0.9)
@@ -98,7 +100,7 @@ MajorityVotes<-function(Result,Prognostic, Survival,Censor,J=1){
     axis(1);axis(2,at=1:25,slist);box()
     legend("bottom",c("Low Risk","High Risk"),pch=c(15,15),col=c(4,5), xpd = TRUE, bty = "n", horiz = TRUE, inset = c(0,0))
     #par(xpd = T, mar = par()$mar + c(0,0,0,7))
-  } else {stop("J should be less than (no.of patients / 25)")
+  } else {stop("K should be less than (no.of patients / 25)")
   }
 
   return(list(Model.result=m0, N= per.R, Classif=ggr,Group=VoteMat))

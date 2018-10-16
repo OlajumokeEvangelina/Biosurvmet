@@ -4,7 +4,7 @@
 \alias{MajorityVotes}
 \title{Classifiction for Majority Votes}
 \usage{
-MajorityVotes(Result, Prognostic, Survival, Censor, J = 1)
+MajorityVotes(Result, Prognostic, Survival, Censor, K = 1)
 }
 \arguments{
 \item{Result}{An object obtained from the metabolite specific analysis (\code{\link[Biosurvmet]{MSpecificCoxPh}}) which is of class "MSpecific"}
@@ -53,6 +53,9 @@ new$Classif
 
 ### THE GROUP FOR EACH SUBJECT BASED ON THE METABOLITE SPPECIFIC ANALYSIS
 new$Group
+}
+\references{
+\insertRef{tib}{Biosurvmet}
 }
 \seealso{
 \code{\link[Biosurvmet]{MSpecificCoxPh}}, \code{\link[survival]{coxph}},  \code{\link[Biosurvmet]{EstimateHR}}
