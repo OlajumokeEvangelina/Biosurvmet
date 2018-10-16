@@ -7,7 +7,7 @@
 #' @exportClass cvelascox
 #' @param x	 A cvelascox class object
 #' @param y	 missing
-#' @param type Plot type. 1 distribution of the HR under test and train data. 2 HR vs number genes selected. 3. Top mostly selected 30 genes.
+#' @param type Plot type. 1 distribution of the HR under test and train data. 2 HR vs number genes selected. 3. Top mostly selected 30 metabolites.
 #' @param  object A cvelascox class object
 #' @param ...	 The usual extra arguments to generic functions — see \code{\link[graphics]{plot}}, \code{\link[graphics]{plot.default}}
 #' @slot Coef.mat A matrix of coefficients with rows equals to number of cross validations and columns equals to number of metabolites.
