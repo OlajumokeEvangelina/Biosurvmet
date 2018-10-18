@@ -14,7 +14,7 @@
 #' @param Select Number of metabolites (default is 15) to be selected from supervised PCA. This is valid only if the argument Reduce=TRUE
 #' @param Alpha The mixing parameter for glmnet (see \code{\link[glmnet]{glmnet}}). The range is 0<= Alpha <= 1. The Default is 1
 #' @param Fold number of folds to be used for the cross validation. Its value ranges between 3 and the numbe rof subjects in the dataset
-#' @param N.cv Number of validations to be carried out. The default is 25.
+#' @param Ncv Number of validations to be carried out. The default is 25.
 #' @param nlamda The number of lambda values - default is 100 as in glmnet.
 #' @return A object of class \code{\link[Biosurvmet]{cvelascox}} is returned with the following values
 #'   \item{Coef.mat}{A matrix of coefficients with rows equals to number of cross validations and columns equals to number of metabolites.}
@@ -37,7 +37,7 @@
 #' ## USING THE FUNCTION
 #' Results = CVLasoelacox(Survival = Data$Survival,Censor = Data$Censor,Mdata = t(Data$Mdata),
 #' Prognostic = Data$Prognostic, Quantile = 0.5,Metlist = NULL,Standardize = TRUE,
-#' Reduce=FALSE,Select=15,Alpha = 1,Fold = 4,N.cv = 10,nlambda = 100)
+#' Reduce=FALSE,Select=15,Alpha = 1,Fold = 4,Ncv = 10,nlambda = 100)
 #'
 #' ## VIEW THE SELECTED METABOLITES
 #' Results$Selected.mets
@@ -69,7 +69,7 @@ CVLasoelacox <- function (Survival,
                         Select=15,
                         Alpha = 1,
                         Fold = 4,
-                        N.cv = 10,
+                        Ncv = 10,
                         nlambda = 100)
 {
 
@@ -99,20 +99,20 @@ CVLasoelacox <- function (Survival,
 
   n.mets<-nrow(Mdata)
   n.patients<-ncol(Mdata)
-  Run.Time<-rep(NA, N.cv)
+  Run.Time<-rep(NA, Ncv)
   n.train<-(n.patients-floor(n.patients/fold))
   n.test<-floor(n.patients/fold)
-  cv.train <-matrix(0,N.cv,n.train)
-  cv.test  <-matrix(0,N.cv,n.test)
-  n.g<-rep(0, N.cv)
+  cv.train <-matrix(0,Ncv,n.train)
+  cv.test  <-matrix(0,Ncv,n.test)
+  n.g<-rep(0, Ncv)
 
   #optimum lambda
-  lambda<-rep(NA, N.cv)
-  pld<-rep(NA, N.cv)
+  lambda<-rep(NA, Ncv)
+  pld<-rep(NA, Ncv)
 
   #HR--------
-  HRTrain<-matrix(NA,nrow=N.cv,ncol=3)
-  HRTest<-matrix(NA,nrow=N.cv,ncol=3)
+  HRTrain<-matrix(NA,nrow=Ncv,ncol=3)
+  HRTest<-matrix(NA,nrow=Ncv,ncol=3)
 
 
 
@@ -129,11 +129,11 @@ CVLasoelacox <- function (Survival,
   # Survival times must be larger than 0
   Survival[Survival <= 0] <- quantile(Survival, probs = 0.01)
   perPrognostic<-NULL
-  coef.mat<-met.mat<-matrix(0,nrow=N.cv,ncol=nrow(Mdata))
+  coef.mat<-met.mat<-matrix(0,nrow=Ncv,ncol=nrow(Mdata))
 
   pIndex <- c(1:n.patients)
 
-  for (i in 1:N.cv){
+  for (i in 1:Ncv){
     message('Cross validation loop ',i)
 
     cv.train[i,] <-sort(sample(pIndex,n.train,replace=F) )

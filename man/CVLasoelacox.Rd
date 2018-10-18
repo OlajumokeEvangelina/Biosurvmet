@@ -6,7 +6,7 @@
 \usage{
 CVLasoelacox(Survival, Censor, Mdata, Prognostic, Quantile = 0.5,
   Metlist = NULL, Standardize = TRUE, Reduce = TRUE, Select = 15,
-  Alpha = 1, Fold = 4, N.cv = 10, nlambda = 100)
+  Alpha = 1, Fold = 4, Ncv = 10, nlambda = 100)
 }
 \arguments{
 \item{Survival}{A vector of survival time with length equals to number of subjects}
@@ -31,7 +31,7 @@ CVLasoelacox(Survival, Censor, Mdata, Prognostic, Quantile = 0.5,
 
 \item{Fold}{number of folds to be used for the cross validation. Its value ranges between 3 and the numbe rof subjects in the dataset}
 
-\item{N.cv}{Number of validations to be carried out. The default is 25.}
+\item{Ncv}{Number of validations to be carried out. The default is 25.}
 
 \item{nlamda}{The number of lambda values - default is 100 as in glmnet.}
 }
@@ -60,7 +60,7 @@ Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)
 ## USING THE FUNCTION
 Results = CVLasoelacox(Survival = Data$Survival,Censor = Data$Censor,Mdata = t(Data$Mdata),
 Prognostic = Data$Prognostic, Quantile = 0.5,Metlist = NULL,Standardize = TRUE,
-Reduce=FALSE,Select=15,Alpha = 1,Fold = 4,N.cv = 10,nlambda = 100)
+Reduce=FALSE,Select=15,Alpha = 1,Fold = 4,Ncv = 10,nlambda = 100)
 
 ## VIEW THE SELECTED METABOLITES
 Results$Selected.mets

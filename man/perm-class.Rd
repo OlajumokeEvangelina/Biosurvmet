@@ -49,7 +49,7 @@ Censor = Data$Censor,Reduce=FALSE,Select=15,Prognostic=Data$Prognostic,
 Quantile = 0.5, nperm=100, case=2, Validation=c("L1based"))
 
 ## GET THE CLASS OF THE OBJECT
-class(Example)     # An "perm" Class
+class(Example)     # A "perm" Class
 
 ##  METHOD THAT CAN BE USED FOR THIS CLASS
 show(Example)

@@ -52,7 +52,8 @@ f.pca=function (x)
 }
 
 
-
+#---------------------------------------------------------------------------------------------------
+#----------------------------------- Variance ----------------------------------------------
 #### variance for each row or column of x
 #### 1=row and 2 = columns
 variance <- function(x, type =1){
@@ -64,3 +65,70 @@ variance <- function(x, type =1){
 }
 
 
+
+
+#---------------------------------------------------------------------------------------------------
+#----------------------------------- Intermediate PCA ----------------------------------------------
+
+IntermediatePCA<-function(Mdata,Prognostic,Survival,Censor,index){
+  if (is.matrix(Mdata)) {
+    pc1 <- f.pca(as.matrix(Mdata[,index]))[[6]][,1]
+  } else {
+    pc1<-Mdata[,index]
+  }
+
+  if (is.null(Prognostic)) {
+
+    cdata <- data.frame(Survival=Survival[index],Censor=Censor[index],pc1)
+    m0 <- coxph(Surv(Survival, Censor==1) ~ pc1,data=cdata)
+  }
+
+  if (!is.null(Prognostic)) {
+    if (is.data.frame(Prognostic)) {
+      nPrgFac<-ncol(Prognostic)
+      cdata <- data.frame(Survival=Survival[index],Censor=Censor[index],pc1,Prognostic[index,])
+      NameProg<-colnames(Prognostic)
+      eval(parse(text=paste( "m0 <-coxph(Surv(Survival, Censor==1) ~ pc1",paste("+",NameProg[1:nPrgFac],sep="",collapse =""),",data=cdata)" ,sep="")))
+    } else {
+      stop(" Argument 'Prognostic' is NOT a data frame ")
+    }
+
+  }
+
+  return(list(m0=m0,pc1=pc1,cdata=cdata))
+}
+
+
+#---------------------------------------------------------------------------------------------------
+#----------------------------------- Intermediate PLS ----------------------------------------------
+
+
+IntermediatePLS<-function(Mdata,Prognostic,Survival,Censor,index){
+  if (is.matrix(Mdata)) {
+
+    PLSforGSK<-data.frame(1:length(index))
+    PLSforGSK$g<-as.matrix(t(Mdata[,index]))
+    colnames(PLSforGSK)[1]<-c("Survival")
+    PLSforGSK[,1]<-Survival[index]
+    plsr.1 <- plsr(Survival ~ g, method="simpls",ncomp = 10, scale =TRUE,data = PLSforGSK, validation =  "CV")
+    pc1<-scores(plsr.1)[,1] # extract the first com
+  } else {
+    pc1<-Mdata[,index]
+  }
+
+  if (is.null(Prognostic)) {
+    cdata <- data.frame(Survival=Survival[index],Censor=Censor[index],pc1)
+    m0 <- coxph(Surv(Survival, Censor==1) ~ pc1,data=cdata)
+  }
+  if (!is.null(Prognostic)) {
+    if (is.data.frame(Prognostic)) {
+      nPrgFac<-ncol(Prognostic)
+      cdata <- data.frame(Survival=Survival[index],Censor=Censor[index],pc1,Prognostic[index,])
+      NameProg<-colnames(Prognostic)
+      eval(parse(text=paste( "m0 <-coxph(Surv(Survival, Censor==1) ~ pc1",paste("+",NameProg[1:nPrgFac],sep="",collapse =""),",data=cdata)" ,sep="")))
+    } else {
+      stop(" Argument 'Prognostic' is NOT a data frame ")
+    }
+  }
+  return(list(m0=m0,pc1=pc1,cdata=cdata))
+}
