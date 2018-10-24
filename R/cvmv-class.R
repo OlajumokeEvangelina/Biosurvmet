@@ -1,6 +1,6 @@
 #' The cvmv Class.
 #'
-#' Class of object returned by function \code{\link[Biosurvmet]{CVMajorityVotes}}.
+#' Class of object returned by function \code{\link[Biosurvmet]{CVMajorityvotes}}.
 #'
 #' @name cvmv-class
 #' @rdname cvmv-class
@@ -17,15 +17,15 @@
 #'
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
 #' @author Ziv Shkedy
-#' @seealso \code{\link[Biosurvmet]{CVpcaPls}}, \code{\link[Biosurvmet]{SurvPcaClass}}, \code{\link[Biosurvmet]{SurvPlsClass}}
+#' @seealso \code{\link[Biosurvmet]{CVPcaPls}}, \code{\link[Biosurvmet]{SurvPcaClass}}, \code{\link[Biosurvmet]{SurvPlsClass}}
 #' @examples
 #' ## GENERATE SOME METABOLIC SURVIVAL DATA WITH PROGNOSTIC FACTORS
 #' Data<-MSData(nPatients=100,nMet=150,Prop=0.5)
 #'
 #' ## USING THE FUNCTION
-#' Result = CVMajorityVotes(Survival=Data$Survival,Censor=Data$Censor,
-#' Prognostic=Data$Prognostic, Mdata=t(Data$Mdata), Reduce=FALSE, S
-#' elect=15, Fold=3, Ncv=10)
+#' Result = CVMajorityvotes(Survival=Data$Survival,Censor=Data$Censor,
+#' Prognostic=Data$Prognostic, Mdata=t(Data$Mdata), Reduce=FALSE,
+#' Select=15, Fold=3, Ncv=10)
 #'
 #' ## GET THE CLASS OF THE OBJECT
 #' class(Result)     # A "cvmv" Class

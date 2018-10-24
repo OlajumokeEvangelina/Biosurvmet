@@ -46,7 +46,7 @@ EstimateHR<-function(Risk.Scores,Data.Survival,
   # Group by high risk or low risk
   # Based on cut-off value
 
-  Cut <- quantile(Risk.Scores,Quantile,type=6)
+  Cut <- stats::quantile(Risk.Scores,Quantile,type=6)
   Risk.Group <- ifelse(Risk.Scores >= Cut,'High risk', 'Low risk')
 
   # Make a data frame
@@ -62,20 +62,20 @@ EstimateHR<-function(Risk.Scores,Data.Survival,
   if (Plots)
   {
     Data.KM <- data.frame(Survival=Survival,Censor=Censor,Risk.Group=Risk.Group)
-    KM  <- survfit(Surv(Survival,Censor)~ Risk.Group,data=Data.KM)
-    KMplot <- ggsurvplot(fit=KM,surv.scale ='percent',risk.table=FALSE,ggtheme = theme_classic(),palette='Dark2',conf.int=TRUE,legend='right',legend.title='Risk',legend.labs=c('High risk','Low risk'),data=Data.KM)
+    KM  <- survival::survfit(survival::Surv(Survival,Censor)~ Risk.Group,data=Data.KM)
+    KMplot <- survminer::ggsurvplot(fit=KM,surv.scale ='percent',risk.table=FALSE,ggtheme = ggplot2::theme_classic(),palette='Dark2',conf.int=TRUE,legend='right',legend.title='Risk',legend.labs=c('High risk','Low risk'),data=Data.KM)
 
     # Plot 2
     Data.Boxplot <- data.frame(Survival=Survival,Risk.Group=Risk.Group)
     Data.Boxplot$Risk.Group <- factor(Data.Boxplot$Risk.Group, levels=c('Low risk','High risk'))
-    SurvBPlot <- ggplot(Data.Boxplot,aes(y = Survival,x = Risk.Group)) +
-      geom_boxplot(aes(fill = Risk.Group),width=0.4) +
-      ggtitle('Low risk vs high risk')+
-      ylab(expression('Survival time ')) +
-      xlab(expression()) +
-      theme_bw()+
-      theme(panel.grid.major = element_blank(),panel.grid.minor = element_blank()) +
-      theme(legend.position = 'none',plot.title = element_text(hjust = 0.5))
+    SurvBPlot <- ggplot2::ggplot(Data.Boxplot,ggplot2::aes(y = Survival,x = Risk.Group)) +
+      ggplot2::geom_boxplot(ggplot2::aes(fill = Risk.Group),width=0.4) +
+      ggplot2::ggtitle('Low risk vs high risk')+
+      ggplot2::ylab(expression('Survival time ')) +
+      ggplot2::xlab(expression()) +
+      ggplot2::theme_bw()+
+      ggplot2::theme(panel.grid.major = ggplot2::element_blank(),panel.grid.minor = ggplot2::element_blank()) +
+      ggplot2::theme(legend.position = 'none',plot.title = ggplot2::element_text(hjust = 0.5))
   }
 
 
@@ -84,7 +84,7 @@ EstimateHR<-function(Risk.Scores,Data.Survival,
 
   if (is.null(Prognostic))
   {
-    Cox.Fit.Risk.Group <- coxph(Surv(Survival, Censor==1) ~ Risk.Group,data=Data.Risk.Group)
+    Cox.Fit.Risk.Group <- survival::coxph(survival::Surv(Survival, Censor==1) ~ Risk.Group,data=Data.Risk.Group)
   }
 
   if (is.data.frame(Prognostic))
@@ -92,9 +92,7 @@ EstimateHR<-function(Risk.Scores,Data.Survival,
     Number.Prognostic <- ncol(Prognostic)
     Data.Risk.Group <- data.frame(Data.Risk.Group,Prognostic)
     Names.Prognostic<-colnames(Prognostic)
-    eval(parse(text=paste('Cox.Fit.Risk.Group <- coxph(Surv(Survival, Censor==1) ~ Risk.Group',
-                          paste('+',Names.Prognostic[1:Number.Prognostic],sep='',collapse =''),',
-                          data=Data.Risk.Group)' ,sep='')))
+    eval(parse(text=paste('Cox.Fit.Risk.Group <- survival::coxph(survival::Surv(Survival, Censor==1) ~ Risk.Group', paste('+',Names.Prognostic[1:Number.Prognostic],sep='',collapse =''),',data=Data.Risk.Group)' ,sep='')))
   }
 
   if (Plots){

@@ -1,17 +1,17 @@
-#' The MSpecific Class.
+#' The ms Class.
 #'
 #' Class of object returned by function \code{\link[Biosurvmet]{MSpecificCoxPh}}.
 #'
-#' plot {signature(x = "MSpecific"): Plots for MSpecific class analysis results}
-#' signature(x = "MSpecific"): Plots for MSpecific class analysis results.
+#' plot {signature(x = "ms"): Plots for ms class analysis results}
+#' signature(x = "ms"): Plots for ms class analysis results.
 #'
 #' Any parameters of \code{\link[graphics]{plot.default}} may be passed on to this particular plot method.
 #'
-#' show(MSpecific-object)
-#' @name MSpecific-class
-#' @rdname MSpecific-class
-#' @exportClass MSpecific
-#' @param x	 A MSpecific class object
+#' show(ms-object)
+#' @name ms-class
+#' @rdname ms-class
+#' @exportClass ms
+#' @param x	 A ms class object
 #' @param y	 missing
 #' @param ...	The usual extra arguments to generic functions — see \code{\link[graphics]{plot}}, \code{\link[graphics]{plot.default}}
 #' @slot Result A list of dataframes of each output object of coxph for the metabolites.
@@ -32,41 +32,40 @@
 #' Prognostic=Data$Prognostic, Quantile = 0.5)
 #'
 #' ## GET THE CLASS OF THE OBJECT
-#' class(Eg)     # An "MSpecific" Class
+#' class(Eg)     # An "ms" Class
 #'
 #' ##  METHOD THAT CAN BE USED FOR THIS CLASS
 #' show(Eg)
 #' summary(Eg)
 #' plot(Eg)
 
-setClass("MSpecific",slots = list(Result="list",HRRG="matrix",Group="matrix",Metnames="vector"),
+setClass("ms",slots = list(Result="list",HRRG="matrix",Group="matrix",Metnames="vector"),
          prototype=list(Result=list(1),HRRG=matrix(0,0,0),Group=matrix(0,0,0), Metnames = vector()))
 
 
 #' Method show.
-#' @name MSpecific
-#' @rdname MSpecific-class
+#' @name ms
+#' @rdname ms-class
 #' @exportMethod show
 #setGeneric("show", function(object) standardGeneric("show"))
 
-#' @rdname MSpecific-class
-#' @aliases show,MSpecific-method
-setMethod("show",signature="MSpecific"
+#' @rdname ms-class
+#' @aliases show,ms-method
+setMethod("show",signature="ms"
           , function(object){
             cat("Metabolite by Metabolite CoxPh Model\n")
             cat("Number of Metabolite used: ", length(object@Metnames), "\n")
-            cat("Number of Univariate coxph: ", length(object@Metnames), "\n")
           })
 
 #' Method summary.
-#' @name MSpecific-class
-#' @rdname MSpecific-class
+#' @name ms-class
+#' @rdname ms-class
 #' @exportMethod summary
 setGeneric("summary", function(object,...) standardGeneric("summary"))
 
-#' @rdname MSpecific-class
-#' @aliases summary,MSpecific-method
-setMethod("summary",signature="MSpecific"
+#' @rdname ms-class
+#' @aliases summary,ms-method
+setMethod("summary",signature="ms"
           , function(object){
   cat("Summary of Metabolite by Metabolite CoxPh Models\n")
   cat("Number of Metabolites used: ", length(object@Metnames), "\n")
@@ -92,13 +91,13 @@ setMethod("summary",signature="MSpecific"
 
 
 #' Method plot.
-#' @name MSpecific-class
-#' @rdname MSpecific-class
+#' @name ms-class
+#' @rdname ms-class
 #' @exportMethod plot
 
-#' @rdname MSpecific-class
-#' @aliases plot,MSpecific-method
-setMethod(f="plot", signature = "MSpecific",
+#' @rdname ms-class
+#' @aliases plot,ms-method
+setMethod(f="plot", signature = "ms",
           definition = function(x,y,...){
             object <-  x
             Names.KMetabolites<-object@Metnames

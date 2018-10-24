@@ -30,7 +30,7 @@ SIMet(TopK = 15, Survival, Mdata, Censor, Reduce = TRUE, Select = 50,
 }
 \value{
 A list containing a data frame with estimated HR along with 95\% CI at each TopK value for the sequential analysis.
-  \item{Result}{The hazard ratio statistics (Hazard-ratio, Lower confidence interval and upper confidence interval) of the lower riskgroup based for each sequential metabolite analysis}
+  \item{Result}{The hazard ratio statistics (HR, Lower confidence interval and upper confidence interval) of the lower riskgroup based for each sequential metabolite analysis}
   \item{TopKplot}{A graphical representation of the Result containing the hazard ratio statistics}
 }
 \description{

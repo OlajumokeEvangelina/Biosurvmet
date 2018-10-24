@@ -88,8 +88,8 @@ SurvPlsClass<-function(
     colnames(PLSforGSK)[1]<-c("Survival")
     PLSforGSK[,1]<-Survival
 
-    plsr.1 <- plsr(Survival ~ g, method="simpls",ncomp =2, scale =TRUE,data = PLSforGSK, validation =  "CV")
-    pc1<-scores(plsr.1)[,1] # extract the first column
+    plsr.1 <- pls::plsr(Survival ~ g, method="simpls",ncomp =2, scale =TRUE,data = PLSforGSK, validation =  "CV")
+    pc1<-pls::scores(plsr.1)[,1] # extract the first column
   } else {
     pc1<-ReduMdata
   }
@@ -97,20 +97,21 @@ SurvPlsClass<-function(
   if (is.null(Prognostic)) {
 
     cdata <- data.frame(Survival,Censor,pc1)
-    m0 <- coxph(Surv(Survival, Censor==1) ~ pc1,data=cdata)
+    m0 <- survival::coxph(survival::Surv(Survival, Censor==1) ~ pc1,data=cdata)
   }
   if (!is.null(Prognostic)) {
     if (is.data.frame(Prognostic)) {
       nPrgFac<-ncol(Prognostic)
       cdata <- data.frame(Survival,Censor,pc1,Prognostic)
       NameProg<-colnames(Prognostic)
-      eval(parse(text=paste( "m0 <-coxph(Surv(Survival, Censor==1) ~ pc1",paste("+",NameProg[1:nPrgFac],sep="",collapse =""),",data=cdata)" ,sep="")))
+      eval(parse(text=paste( "m0 <-survival::coxph(survival::Surv(Survival, Censor==1) ~ pc1",paste("+",NameProg[1:nPrgFac],sep="",collapse =""),",data=cdata)" ,sep="")))
     } else {
 
       stop(" Argument 'Prognostic' is NOT a data frame ")
     }
 
   }
+  Riskscores <- Riskgroup <- NULL
 
   #risk Score
   TrtandPC1<-summary(m0)[[7]][c("pc1"),1]
@@ -118,7 +119,7 @@ SurvPlsClass<-function(
   TempRes<- EstimateHR(Risk.Scores = p1, Data.Survival = cdata, Prognostic = Prognostic, Plots = TRUE, Quantile = Quantile)
 
   gg <- data.frame(Riskscores = p1,Riskgroup = TempRes$Riskgroup,pc1 = pc1)
-  ab <- ggplot(gg, aes(x=Riskscores, y=pc1, shape=Riskgroup, color=Riskgroup)) + geom_point()
+  ab <- ggplot2::ggplot(gg, ggplot2::aes(x=Riskscores, y=pc1, shape=Riskgroup, color=Riskgroup)) + ggplot2::geom_point()
 
   tempp<-list(SurvFit=TempRes$SurvResult,Riskscores = p1, Riskgroup=TempRes$Riskgroup,pc1=pc1)
   class(tempp)<-"SurvPca"

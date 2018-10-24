@@ -23,7 +23,7 @@ MSpecificCoxPh(Survival, Mdata, Censor, Reduce = FALSE, Select = 15,
 \item{Quantile}{The cut off value for the classifier, default is the median cutoff}
 }
 \value{
-A object of class \code{\link[Biosurvmet]{MSpecific}} is returned with the following values
+A object of class \code{\link[Biosurvmet]{ms}} is returned with the following values
   \item{Result}{The cox proportional regression result for each metabolite}
   \item{HRRG}{The hazard ratio statistics (Hazard-ratio, Lower confidence interval and upper confidence interval) of the riskgroup based on the riskscore and the cut off value for each metabolite}
   \item{Group}{The classification of the subjects based on each metabolite analysis}

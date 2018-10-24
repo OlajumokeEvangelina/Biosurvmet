@@ -34,8 +34,8 @@ Data<-MSData(nPatients=100,nMet=150,Prop=0.5)
 
 SurvTime<-Data$Survival
 Censor<-Data$Censor
-ProgFact<-SData$Prognostic
-MetData<-Data$MData
+ProgFact<-Data$Prognostic
+MetData<-Data$Mdata
 Metnames<-Data$Met.names
 }
 \seealso{

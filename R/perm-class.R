@@ -24,7 +24,7 @@
 #' ## USING THE FUNCTION
 #' Example <- NullDistHR(Survival = Data$Survival,Mdata = t(Data$Mdata),
 #' Censor = Data$Censor,Reduce=FALSE,Select=15,Prognostic=Data$Prognostic,
-#' Quantile = 0.5, nperm=100, case=2, Validation=c("L1based"))
+#' Quantile = 0.5, nperm=10, case=2, Validation=c("L1based"))
 #'
 #' ## GET THE CLASS OF THE OBJECT
 #' class(Example)     # A "perm" Class
@@ -66,7 +66,7 @@ setMethod("summary",signature="perm", function(object){
   cat("validation scheme used :",object@Validation,"\n")
   cat("Number of Permutations: ", object@nperm, "\n")
   cat("Estimated  quantiles of the null distribution of HR\n")
-  print(quantile(object@HRlowPerm[,1],probs=c(0.05,0.25,0.5,0.75,0.95)))
+  print(quantile(object@HRperm[,1],probs=c(0.05,0.25,0.5,0.75,0.95)))
   cat("\n")
   cat("Estimated HR on original data\n")
   ttt<-object@HRobs

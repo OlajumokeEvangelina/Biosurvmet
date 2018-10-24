@@ -19,15 +19,15 @@
 #'   \item{Progfact}{The names of prognostic factors used}
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
 #' @author Ziv Shkedy
-#' @seealso \code{\link[Biosurvmet]{Majorityvotes}}
+#' @seealso \code{\link[Biosurvmet]{MajorityVotes}}
 #' @examples
 #' ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 #' Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)
 #'
 #' ## USING THE FUNCTION
-#' Result = CVMajorityVotes(Survival=Data$Survival,Censor=Data$Censor,
-#' Prognostic=Data$Prognostic, Mdata=t(Data$Mdata), Reduce=FALSE, S
-#' elect=15, Fold=3, Ncv=10)
+#' Result = CVMajorityvotes(Survival=Data$Survival,Censor=Data$Censor,
+#' Prognostic=Data$Prognostic, Mdata=t(Data$Mdata), Reduce=FALSE,
+#' Select=15, Fold=3, Ncv=10)
 #'
 #' ## GET THE CLASS OF THE OBJECT
 #' class(Result)     # An "cvpp" Class
@@ -36,12 +36,12 @@
 #' show(Result)
 #' summary(Result)
 #' plot(Result)
-#' @export CVMajorityVotes
+#' @import survival
+#' @export CVMajorityvotes
 
-CVMajorityVotes<-function(Survival,Censor, Prognostic=NULL, Mdata, Reduce=TRUE, Select=150, Fold=3, Ncv=100){
+CVMajorityvotes<-function(Survival,Censor, Prognostic=NULL, Mdata, Reduce=TRUE, Select=15, Fold=3, Ncv=100){
 
   options( warn = -1)
-
 
   if (Reduce) {
     DataForReduction<-list(x=Mdata,y=Survival, censoring.status=Censor, featurenames=rownames(Mdata))
@@ -86,14 +86,14 @@ CVMajorityVotes<-function(Survival,Censor, Prognostic=NULL, Mdata, Reduce=TRUE, 
       if (is.null(Prognostic)) {
 
         cdata <- data.frame(Survival=Survival[ind.train[j,]],Censor=Censor[ind.train[j,]],genei)
-        m0 <- coxph(Surv(Survival, Censor==1) ~ genei,data=cdata)
+        m0 <- survival::coxph(survival::Surv(Survival, Censor==1) ~ genei,data=cdata)
       }
       if (!is.null(Prognostic)) {
         if (is.data.frame(Prognostic)) {
           nPrgFac<-ncol(Prognostic)
           cdata <- data.frame(Survival=Survival[ind.train[j,]],Censor=Censor[ind.train[j,]],genei,Prognostic[ind.train[j,],])
           NameProg<-colnames(Prognostic)
-          eval(parse(text=paste( "m0 <-coxph(Surv(Survival, Censor==1) ~ genei",paste("+",NameProg[1:nPrgFac],sep="",collapse =""),",data=cdata)" ,sep="")))
+          eval(parse(text=paste( "m0 <-survival::coxph(survival::Surv(Survival, Censor==1) ~ genei",paste("+",NameProg[1:nPrgFac],sep="",collapse =""),",data=cdata)" ,sep="")))
         } else {
 
           stop(" Argument 'Prognostic' is NOT a data frame ")
@@ -115,7 +115,7 @@ CVMajorityVotes<-function(Survival,Censor, Prognostic=NULL, Mdata, Reduce=TRUE, 
           nPrgFac<-ncol(Prognostic)
           cdata <- data.frame(Survival=Survival[ind.test[j,]],Censor=Censor[ind.test[j,]],geneit,Prognostic[ind.test[j,],])
           NameProg<-colnames(Prognostic)
-          eval(parse(text=paste( "m0 <-coxph(Surv(Survival, Censor==1) ~ geneit",paste("+",NameProg[1:nPrgFac],sep="",collapse =""),",data=cdata)" ,sep="")))
+          eval(parse(text=paste( "m0 <-survival::coxph(survival::Surv(Survival, Censor==1) ~ geneit",paste("+",NameProg[1:nPrgFac],sep="",collapse =""),",data=cdata)" ,sep="")))
         } else {
 
           stop(" Argument 'Prognostic' is NOT a data frame ")
@@ -151,14 +151,14 @@ CVMajorityVotes<-function(Survival,Censor, Prognostic=NULL, Mdata, Reduce=TRUE, 
     if (is.null(Prognostic)) {
 
       cdata <- data.frame(Survival=Survival[ind.train[j,]],Censor=Censor[ind.train[j,]],GS)
-      mTrain <- coxph(Surv(Survival, Censor==1) ~ GS,data=cdata)
+      mTrain <- survival::coxph(survival::Surv(Survival, Censor==1) ~ GS,data=cdata)
     }
     if (!is.null(Prognostic)) {
       if (is.data.frame(Prognostic)) {
         nPrgFac<-ncol(Prognostic)
         cdata <- data.frame(Survival=Survival[ind.train[j,]],Censor=Censor[ind.train[j,]],GS,Prognostic[ind.train[j,],])
         NameProg<-colnames(Prognostic)
-        eval(parse(text=paste( "mTrain <-coxph(Surv(Survival, Censor==1) ~ GS",paste("+",NameProg[1:nPrgFac],sep="",collapse =""),",data=cdata)" ,sep="")))
+        eval(parse(text=paste( "mTrain <-survival::coxph(Surv(Survival, Censor==1) ~ GS",paste("+",NameProg[1:nPrgFac],sep="",collapse =""),",data=cdata)" ,sep="")))
       } else {
         stop(" Argument 'Prognostic' is NOT a data frame ")
       }
@@ -177,14 +177,14 @@ CVMajorityVotes<-function(Survival,Censor, Prognostic=NULL, Mdata, Reduce=TRUE, 
     if (is.null(Prognostic)) {
 
       cdata <- data.frame(Survival=Survival[ind.test[j,]],Censor=Censor[ind.test[j,]],GS)
-      mTest <- coxph(Surv(Survival, Censor==1) ~ GS,data=cdata)
+      mTest <- survival::coxph(survival::Surv(Survival, Censor==1) ~ GS,data=cdata)
     }
     if (!is.null(Prognostic)) {
       if (is.data.frame(Prognostic)) {
         nPrgFac<-ncol(Prognostic)
         cdata <- data.frame(Survival=Survival[ind.test[j,]],Censor=Censor[ind.test[j,]],GS,Prognostic[ind.test[j,],])
         NameProg<-colnames(Prognostic)
-        eval(parse(text=paste( "mTest <-coxph(Surv(Survival, Censor==1) ~ GS",paste("+",NameProg[1:nPrgFac],sep="",collapse =""),",data=cdata)" ,sep="")))
+        eval(parse(text=paste( "mTest <-survival::coxph(Surv(Survival, Censor==1) ~ GS",paste("+",NameProg[1:nPrgFac],sep="",collapse =""),",data=cdata)" ,sep="")))
       } else {
         stop(" Argument 'Prognostic' is NOT a data frame ")
       }

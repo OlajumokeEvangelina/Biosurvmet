@@ -46,7 +46,7 @@ Data<-MSData(nPatients=100,nMet=150,Prop=0.5)
 ## USING THE FUNCTION
 Example <- NullDistHR(Survival = Data$Survival,Mdata = t(Data$Mdata),
 Censor = Data$Censor,Reduce=FALSE,Select=15,Prognostic=Data$Prognostic,
-Quantile = 0.5, nperm=100, case=2, Validation=c("L1based"))
+Quantile = 0.5, nperm=10, case=2, Validation=c("L1based"))
 
 ## GET THE CLASS OF THE OBJECT
 class(Example)     # A "perm" Class

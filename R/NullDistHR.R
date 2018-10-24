@@ -170,7 +170,7 @@ NullDistHR<-function(Survival,
 
       Ana1<-MSpecificCoxPh( Survival=Survival[ind.s[i,]], Mdata=Mdata[,ind.gene[i,]], Censor=Censor[ind.s[i,]], Reduce=FALSE,Select=15, Prognostic=perPrognostic, Quantile = Quantile)
 
-      Temp<-MajorityVotes(Ana1,Prognostic=Prognostic[ind.w[i,],], Survival=Survival[ind.s[i,]],Censor=Censor[ind.s[i,]],K=1)
+      Temp<-MajorityVotes(Ana1,Prognostic=Prognostic[ind.w[i,],], Survival=Survival[ind.s[i,]],Censor=Censor[ind.s[i,]],J=1)
 
       if (!is.null(Prognostic)) HRlowPerm[i,]<-summary(Temp$Model.result)[[8]][1,][-2]
       if ( is.null(Prognostic)) HRlowPerm[i,]<-summary(Temp$Model.result)[[8]][-2]
@@ -184,7 +184,7 @@ NullDistHR<-function(Survival,
                              Prognostic=Prognostic,
                              Quantile = Quantile)
 
-    TempObs<-MajorityVotes(Ana2,Prognostic, Survival,Censor,K=1)
+    TempObs<-MajorityVotes(Ana2,Prognostic, Survival,Censor,J=1)
 
     if (!is.null(Prognostic)) HRlowObs<-(summary(TempObs$Model.result)[[8]])[1,][-2]
     if ( is.null(Prognostic)) HRlowObs<-(summary(TempObs$Model.result)[[8]])[-2]

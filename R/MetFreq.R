@@ -10,7 +10,7 @@
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
 #' @author Ziv Shkedy
 #' @seealso \code{\link[Biosurvmet]{cvmm}}, \code{\link[survival]{coxph}},
-#' \code{\link[Biosurvmet]{EstimateHR}}, \code{\link[Biosurvmet]{MSpecificCoxph}},\code{\link[Biosurvmet]{CVMetSpecificCoxPh}}
+#' \code{\link[Biosurvmet]{EstimateHR}}, \code{\link[Biosurvmet]{MSpecificCoxPh}},\code{\link[Biosurvmet]{CVMetSpecificCoxPh}}
 #' @examples
 #' ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 #' Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)
@@ -18,7 +18,7 @@
 #' ## METABOLITE SPECIFIC CROSS VALIDATION
 #' Result = CVMetSpecificCoxPh(Fold=3,Survival=Data$Survival,
 #' Mdata=t(Data$Mdata),Censor= Data$Censor,Reduce=FALSE,
-#' Select=150,Prognostic=Data$Prognostic,Quantile = 0.5,Ncv=300)
+#' Select=15,Prognostic=Data$Prognostic,Quantile = 0.5,Ncv=30)
 #'
 #' ## CONFIRMING THE CLASS
 #' class(Result)

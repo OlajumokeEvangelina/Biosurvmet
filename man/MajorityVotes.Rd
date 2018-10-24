@@ -4,10 +4,10 @@
 \alias{MajorityVotes}
 \title{Classifiction for Majority Votes}
 \usage{
-MajorityVotes(Result, Prognostic, Survival, Censor, K = 1)
+MajorityVotes(Result, Prognostic, Survival, Censor, J = 1)
 }
 \arguments{
-\item{Result}{An object obtained from the metabolite specific analysis (\code{\link[Biosurvmet]{MSpecificCoxPh}}) which is of class "MSpecific"}
+\item{Result}{An object obtained from the metabolite specific analysis (\code{\link[Biosurvmet]{MSpecificCoxPh}}) which is of class "ms"}
 
 \item{Prognostic}{A dataframe containing possible prognostic(s) factor and/or treatment effect to be used in the model.}
 
@@ -15,7 +15,7 @@ MajorityVotes(Result, Prognostic, Survival, Censor, K = 1)
 
 \item{Censor}{A vector of censoring indicator}
 
-\item{K}{The kth set of patients required for the visualization. The default is K=1 which is the first set of patients. For visualization, K should be less than the number of patients divided by 25}
+\item{J}{The jth set of patients required for the visualization. The default is J=1 which is the first set of patients. For visualization, J should be less than the number of patients divided by 25}
 }
 \value{
 A list is returned with the following values
@@ -40,19 +40,19 @@ Mdata = t(Data$Mdata), Censor = Data$Censor, Reduce = FALSE,
 Select = 15,Prognostic = Data$Prognostic, Quantile = 0.5)
 
 ## USING THE FUNCTION
-new = MajorityVotes(Example1,Prognostic, Survival,Censor,J=2)
+Result2 = MajorityVotes(Example1,Data$Prognostic, Data$Survival,Data$Censor,J=2)
 
 ## THE SURVIVAL ANALYSIS FOR MAJORITY VOTE RESULT
-new$Model.result
+ Result2$Model.result
 
 ### THE MAJORITY VOTE FOR EACH SUBJECT
-new$N
+Result2$N
 
 ### THE MAJORITY VOTE CLASSIFICATION FOR EACH SUBJECT
-new$Classif
+Result2$Classif
 
 ### THE GROUP FOR EACH SUBJECT BASED ON THE METABOLITE SPPECIFIC ANALYSIS
-new$Group
+Result2$Group
 }
 \references{
 \insertRef{tib}{Biosurvmet}

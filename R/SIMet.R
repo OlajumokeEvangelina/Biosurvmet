@@ -14,7 +14,7 @@
 #' @param DimMethod	 Dimension reduction method which can either be PLS or PCA.
 #' @param ...	 Additinal arguments for plotting and only valid  if Plot=TRUE
 #' @return A list containing a data frame with estimated HR along with 95\% CI at each TopK value for the sequential analysis.
-#'   \item{Result}{The hazard ratio statistics (Hazard-ratio, Lower confidence interval and upper confidence interval) of the lower riskgroup based for each sequential metabolite analysis}
+#'   \item{Result}{The hazard ratio statistics (HR, Lower confidence interval and upper confidence interval) of the lower riskgroup based for each sequential metabolite analysis}
 #'   \item{TopKplot}{A graphical representation of the Result containing the hazard ratio statistics}
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
 #' @author Ziv Shkedy
@@ -60,7 +60,7 @@ SIMet<-function(TopK=15,
 
   if (Reduce) {
     DataForReduction<-list(x=Mdata,y=Survival, censoring.status=Censor, metabolitenames=rownames(Mdata))
-    TentativeList<-names(sort(abs(superpc.train(DataForReduction, type="survival")$feature.scores),decreasing =TRUE))[1:Select]
+    TentativeList<-names(sort(abs(superpc::superpc.train(DataForReduction, type="survival")$feature.scores),decreasing =TRUE))[1:Select]
     TentativeList
 
     ReduMdata<-Mdata[TentativeList,]
@@ -95,14 +95,15 @@ SIMet<-function(TopK=15,
     if (is.null(Prognostic)) Result[i,]<-c(i,(summary(Temp$SurvFit)[[8]][1,])[-2] )
     if (!is.null(Prognostic)) Result[i,]<-c(i,(summary(Temp$SurvFit)[[8]][1,])[-2] )
   }
-  colnames(Result)<-c("Topk","EstimatedHR","LowerCI","UpperCI")
+  HR <- LowerCI <- UpperCI <- NULL
+  colnames(Result)<-c("Topk","HR","LowerCI","UpperCI")
   Result <- data.frame(Result)
 
   if (Plot) {
-    TopKplot <- ggplot(data=Result, aes(x=1:nrow(Result)),EstimatedHR) +
-      geom_errorbar(aes(x =1:nrow(Result), ymax = UpperCI, ymin = LowerCI)) +
-      ylab(paste("HR Interval Range Based on ",DimMethod,sep="")) +
-      xlab("Top K")+ theme_classic() + geom_point(aes(y=Result[,2],x=1:nrow(Result)),colour="red")
+    TopKplot <- ggplot2::ggplot(data=Result, ggplot2::aes(x=1:nrow(Result)),HR) +
+      ggplot2::geom_errorbar(ggplot2::aes(x =1:nrow(Result), ymax = UpperCI, ymin = LowerCI)) +
+      ggplot2::ylab(paste("HR Interval Range Based on ",DimMethod,sep="")) +
+      ggplot2::xlab("Top K")+ ggplot2::theme_classic() + ggplot2::geom_point(ggplot2::aes(y=Result[,2],x=1:nrow(Result)),colour="red")
 
     return(list(Result=Result, TopKplot=TopKplot))
   }

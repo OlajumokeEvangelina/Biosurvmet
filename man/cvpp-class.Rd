@@ -6,7 +6,7 @@
 \alias{cvpp}
 \alias{show,cvpp-method}
 \alias{summary,cvpp-method}
-\alias{plot,cvpp-method}
+\alias{plot,cvpp-method,}
 \title{The cvpp Class.}
 \usage{
 \S4method{show}{cvpp}(object)
@@ -30,7 +30,7 @@ Class of object returned by function \code{\link[Biosurvmet]{CVPcaPls}}.
 \section{Slots}{
 
 \describe{
-\item{\code{Result}}{A dataframe containg the estimated Hazard ratio of the test dataset and the training dataset}
+\item{\code{Results}}{A dataframe containg the estimated Hazard ratio of the test dataset and the training dataset}
 
 \item{\code{Ncv}}{The number of cross validation performed}
 
@@ -40,7 +40,7 @@ Class of object returned by function \code{\link[Biosurvmet]{CVPcaPls}}.
 
 \item{\code{CVtest}}{The test dataset indices matrix used for the cross validation}
 
-\item{\code{SelectThe}}{number of metabolite used for the dimesion reduction method used}
+\item{\code{Select}}{The number of metabolite used for the dimesion reduction method used}
 }}
 
 \examples{
@@ -61,7 +61,7 @@ summary(Result)
 plot(Result)
 }
 \seealso{
-\code{\link[Biosurvmet]{CVpcaPls}}, \code{\link[Biosurvmet]{SurvPcaClass}}, \code{\link[Biosurvmet]{SurvPlsClass}}
+\code{\link[Biosurvmet]{CVPcaPls}}, \code{\link[Biosurvmet]{SurvPcaClass}}, \code{\link[Biosurvmet]{SurvPlsClass}}
 }
 \author{
 Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@uhasselt.be}

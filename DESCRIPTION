@@ -13,8 +13,7 @@ URL: https://www.uhasselt.be/fiche?email=olajumoke.owokotomo#fiche
 License: GPL-3 
 Encoding: UTF-8
 LazyData: true
-Depends: R (>= 3.1.0),
-         methods
+Depends: R (>= 3.1.0)
 Imports:
     superpc,
     glmnet,
@@ -27,7 +26,11 @@ Imports:
     plyr,
     tidyr,
     pls,
-    Rdpack
+    Rdpack,
+    methods,
+    stats,
+    Biobase,
+    gplots
 RdMacros: Rdpack
 RoxygenNote: 6.1.0
 Suggests: 

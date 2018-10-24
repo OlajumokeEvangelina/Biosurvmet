@@ -38,7 +38,7 @@
 #' ## USING THE None METHOD
 #'Result = QuantileAnalysis(Data$Survival,t(Data$Mdata),
 #'Data$Censor,Reduce=FALSE, Select=150, Prognostic=Data$Prognostic,
-#'Plots = TRUE,DimMethod="None")
+#'Plots = FALSE,DimMethod="None")
 
 #' @export QuantileAnalysis
 
@@ -88,9 +88,13 @@ QuantileAnalysis<-function(Survival,Mdata,Censor,Reduce=TRUE, Select=150, Progno
     }
   }
 
-  if (Plots) { plotCI(x=Grinding[,1],xaxt="n", ui=Grinding[,4],li=Grinding[,3],  col="black", barcol="red", lwd=2,ylab="HR",xlab="CutOFF (Quantile)",main=paste("Dimension reduction using ",DimMethod,sep=""))
+  if (Plots) {
+    if (substring(DimMethod, 1, 1)=="P"){
+      gplots::plotCI(x=Grinding[,1],xaxt="n", ui=Grinding[,4],li=Grinding[,3],  col="black", barcol="red", lwd=2,ylab="HR",xlab="CutOFF (Quantile)",main=paste("Dimension reduction using ",DimMethod,sep=""))
     axis(side=1,at=1:length(cutpoint),seq(0.10, 0.9, 0.05)*100,cex=0.7)
+    }
   }
+
   data1<-Grinding[,-2]
   colnames(data1)<-c("EstimatedHR","LowerCI","UpperCI","CutOff")
   if (substring(DimMethod, 1, 1)=="P"){

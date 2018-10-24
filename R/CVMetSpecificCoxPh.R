@@ -23,7 +23,7 @@
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
 #' @author Ziv Shkedy
 #' @seealso \code{\link[survival]{coxph}},
-#' \code{\link[Biosurvmet]{EstimateHR}}, \code{\link[Biosurvmet]{MSpecificCoxph}},
+#' \code{\link[Biosurvmet]{EstimateHR}}, \code{\link[Biosurvmet]{MSpecificCoxPh}},
 #' @examples
 #' ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 #' Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)
@@ -89,14 +89,14 @@ CVMetSpecificCoxPh<-function(Fold=3,
     if (is.null(Prognostic)) {
 
       scdata <- data.frame(Survival=Survival[index],Censor=Censor[index],imet=imet[index])
-      model1 <- coxph(Surv(Survival, Censor==1) ~ imet,data=scdata)
+      model1 <- survival::coxph(Surv(Survival, Censor==1) ~ imet,data=scdata)
     }
     if (!is.null(Prognostic)) {
       if (is.data.frame(Prognostic)) {
         nprog<-ncol(Prognostic)
         scdata <- data.frame(Survival=Survival[index],Censor=Censor[index],imet=imet[index],Prognostic[index,])
         prognames<-colnames(Prognostic)
-        eval(parse(text=paste( "model1 <-coxph(Surv(Survival, Censor==1) ~ imet",paste("+",prognames[1:nprog],sep="",collapse =""),",data=scdata)" ,sep="")))
+        eval(parse(text=paste( "model1 <-survival::coxph(Surv(Survival, Censor==1) ~ imet",paste("+",prognames[1:nprog],sep="",collapse =""),",data=scdata)" ,sep="")))
       } else {
         stop(" Argument 'Prognostic' is NOT a data frame ")
       }

@@ -22,8 +22,8 @@
 #'
 #' SurvTime<-Data$Survival
 #' Censor<-Data$Censor
-#' ProgFact<-SData$Prognostic
-#' MetData<-Data$MData
+#' ProgFact<-Data$Prognostic
+#' MetData<-Data$Mdata
 #' Metnames<-Data$Met.names
 #' @export MSData
 

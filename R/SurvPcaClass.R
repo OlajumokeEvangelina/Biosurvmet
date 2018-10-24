@@ -68,7 +68,7 @@ SurvPcaClass<-function(
 
   if (Reduce) {
     DataForReduction<-list(x=Mdata,y=Survival, censoring.status=Censor, metnames=rownames(Mdata))
-    TentativeList<-names(sort(abs(superpc.train(DataForReduction, type="survival")$feature.scores),decreasing =TRUE))[1:Select]
+    TentativeList<-names(sort(abs(superpc::superpc.train(DataForReduction, type="survival")$feature.scores),decreasing =TRUE))[1:Select]
     TentativeList
 
     ReduMdata<-Mdata[TentativeList,]
@@ -89,20 +89,21 @@ SurvPcaClass<-function(
   if (is.null(Prognostic)) {
 
     cdata <- data.frame(Survival,Censor,pc1)
-    m0 <- coxph(Surv(Survival, Censor==1) ~ pc1,data=cdata)
+    m0 <- survival::coxph(Surv(Survival, Censor==1) ~ pc1,data=cdata)
   }
   if (!is.null(Prognostic)) {
     if (is.data.frame(Prognostic)) {
       nPrgFac<-ncol(Prognostic)
       cdata <- data.frame(Survival,Censor,pc1,Prognostic)
       NameProg<-colnames(Prognostic)
-      eval(parse(text=paste( "m0 <-coxph(Surv(Survival, Censor==1) ~ pc1",paste("+",NameProg[1:nPrgFac],sep="",collapse =""),",data=cdata)" ,sep="")))
+      eval(parse(text=paste( "m0 <-survival::coxph(survival::Surv(Survival, Censor==1) ~ pc1",paste("+",NameProg[1:nPrgFac],sep="",collapse =""),",data=cdata)" ,sep="")))
     } else {
 
       stop(" Argument 'Prognostic' is NOT a data frame ")
     }
 
   }
+  Riskscores <- Riskgroup <- NULL
 
   #risk Score
   TrtandPC1<-summary(m0)[[7]][c("pc1"),1]
@@ -110,7 +111,7 @@ SurvPcaClass<-function(
 
   TempRes<- EstimateHR(Risk.Scores = p1, Data.Survival = cdata, Prognostic = Prognostic, Plots = TRUE, Quantile = Quantile)
   gg <- data.frame(Riskscores = p1,Riskgroup = TempRes$Riskgroup,pc1 = pc1)
-  ab <- ggplot(gg, aes(x=Riskscores, y=pc1, shape=Riskgroup, color=Riskgroup)) + geom_point()
+  ab <- ggplot2::ggplot(gg, ggplot2::aes(x=Riskscores, y=pc1, shape=Riskgroup, color=Riskgroup)) + ggplot2::geom_point()
 
   tempp<-list(SurvFit=TempRes$SurvResult,Riskscores = p1, Riskgroup=TempRes$Riskgroup,pc1=pc1)
   class(tempp)<-"SurvPca"

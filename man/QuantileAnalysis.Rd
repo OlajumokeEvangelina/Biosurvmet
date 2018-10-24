@@ -51,7 +51,7 @@ Plots = TRUE,DimMethod="PLS")
 ## USING THE None METHOD
 Result = QuantileAnalysis(Data$Survival,t(Data$Mdata),
 Data$Censor,Reduce=FALSE, Select=150, Prognostic=Data$Prognostic,
-Plots = TRUE,DimMethod="None")
+Plots = FALSE,DimMethod="None")
 }
 \references{
 \insertRef{ye1}{Biosurvmet}

@@ -15,11 +15,11 @@
 #' @param Alpha The mixing parameter for glmnet (see \code{\link[glmnet]{glmnet}}). The range is 0<= Alpha <= 1. The Default is 1
 #' @param Fold number of folds to be used for the cross validation. Its value ranges between 3 and the numbe rof subjects in the dataset
 #' @param Ncv Number of validations to be carried out. The default is 25.
-#' @param nlamda The number of lambda values - default is 100 as in glmnet.
-#' @return A object of class \code{\link[Biosurvmet]{cvelascox}} is returned with the following values
+#' @param nlambda The number of lambda values - default is 100 as in glmnet.
+#' @return A object of class \code{\link[Biosurvmet]{cvle}} is returned with the following values
 #'   \item{Coef.mat}{A matrix of coefficients with rows equals to number of cross validations and columns equals to number of metabolites.}
 #'   \item{Runtime}{A vector of runtime for each iteration measured in seconds.}
-#'   \item{lamda}{A vector of estimated optimum lambda for each iterations.}
+#'   \item{lambda}{A vector of estimated optimum lambda for each iterations.}
 #'   \item{n}{A vector of the number of selected metabolites}
 #'   \item{HRTrain}{A matrix of survival information for the training dataset. It has three columns representing the estimated HR, the 95\% lower confidence interval and the 95\% upper confidence interval.}
 #'   \item{HRTest}{A matrix of survival information for the test dataset. It has three columns representing the estimated HR, the 95\% lower confidence interval and the 95\% upper confidence interval.}
@@ -35,28 +35,29 @@
 #' Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)
 #'
 #' ## USING THE FUNCTION
-#' Results = CVLasoelacox(Survival = Data$Survival,Censor = Data$Censor,Mdata = t(Data$Mdata),
-#' Prognostic = Data$Prognostic, Quantile = 0.5,Metlist = NULL,Standardize = TRUE,
-#' Reduce=FALSE,Select=15,Alpha = 1,Fold = 4,Ncv = 10,nlambda = 100)
+#' Results = CVLasoelacox(Survival = Data$Survival,Censor = Data$Censor,
+#' Mdata = t(Data$Mdata),Prognostic = Data$Prognostic, Quantile = 0.5,
+#' Metlist = NULL,Standardize = TRUE, Reduce=FALSE, Select=15,
+#' Alpha = 1,Fold = 4,Ncv = 10,nlambda = 100)
 #'
-#' ## VIEW THE SELECTED METABOLITES
-#' Results$Selected.mets
+#' ## NUMBER OF SELECTED METABOLITES PER CV
+#' Results@n
 #'
-#' ## NUMBER OF SELECTED METABOLITES
-#' Results$n
+#' ## GET THE MATRIX OF COEFFICIENTS
+#' Results@Coef.mat
 #'
-#' ## VIEW THE CLASSIFICATION GROUP OF EACH SUBJECT
-#' Results$Risk.Group
+#' ## SURVIVAL INFORMATION OF THE TRAIN DATASET
+#' Results@HRTrain
 #'
-#' ## VIEW THE SURVIVAL ANALYSIS RESULT
-#' Results$Result
-#'
-#' ## TO CHECK IF THERE WAS ANY SELECTION
-#' Results$Select
-
+#' ## SURVIVAL INFORMATION OF THE TEST DATASET
+#' Results@HRTest
 
 #' @export CVLasoelacox
-
+#' @import superpc
+#' @import stats
+#' @import methods
+#' @import grDevices
+#' @import graphics
 
 CVLasoelacox <- function (Survival,
                         Censor,
@@ -87,7 +88,7 @@ CVLasoelacox <- function (Survival,
   if (Reduce) {
     Dat <- Mdata
     DataForReduction<-list(x=Dat,y=Survival, censoring.status=Censor, metabolitenames=rownames(Dat))
-    TentativeList<-names(sort(abs(superpc.train(DataForReduction, type="survival")$feature.scores),decreasing =TRUE))[1:Select]
+    TentativeList<-names(sort(abs(superpc::superpc.train(DataForReduction, type="survival")$feature.scores),decreasing =TRUE))[1:Select]
     Mdata<-Dat[TentativeList,]
   } else {
     Mdata<-Mdata
@@ -100,8 +101,8 @@ CVLasoelacox <- function (Survival,
   n.mets<-nrow(Mdata)
   n.patients<-ncol(Mdata)
   Run.Time<-rep(NA, Ncv)
-  n.train<-(n.patients-floor(n.patients/fold))
-  n.test<-floor(n.patients/fold)
+  n.train<-(n.patients-floor(n.patients/Fold))
+  n.test<-floor(n.patients/Fold)
   cv.train <-matrix(0,Ncv,n.train)
   cv.test  <-matrix(0,Ncv,n.test)
   n.g<-rep(0, Ncv)
@@ -127,7 +128,7 @@ CVLasoelacox <- function (Survival,
   }
 
   # Survival times must be larger than 0
-  Survival[Survival <= 0] <- quantile(Survival, probs = 0.01)
+  Survival[Survival <= 0] <- stats::quantile(Survival, probs = 0.01)
   perPrognostic<-NULL
   coef.mat<-met.mat<-matrix(0,nrow=Ncv,ncol=nrow(Mdata))
 
@@ -143,8 +144,8 @@ CVLasoelacox <- function (Survival,
     sen= Censor[cv.train[i,]]
     Data.Full2 <-Data.Full[cv.train[i,],]
 
-    Run.Time[i] <-system.time(Lasso.Cox.CV <- cv.glmnet(x = as.matrix(Data.Full2),
-                            y = Surv(as.vector(Stime),as.vector(sen) == 1),
+    Run.Time[i] <-system.time(Lasso.Cox.CV <- glmnet::cv.glmnet(x = as.matrix(Data.Full2),
+                            y = survival::Surv(as.vector(Stime),as.vector(sen) == 1),
                             family = 'cox',
                             alpha = Alpha,
                             nfolds= Fold,
@@ -156,7 +157,7 @@ CVLasoelacox <- function (Survival,
 
   Lambda <- Lasso.Cox.CV$lambda.min
   Alllamda <- Lasso.Cox.CV$lambda
-  Coefficients <- coef(Lasso.Cox.CV, s =Lambda)
+  Coefficients <- stats::coef(Lasso.Cox.CV, s =Lambda)
   Coefficients.NonZero <- Coefficients[Coefficients[, 1] != 0, ]
 
 
@@ -197,7 +198,7 @@ CVLasoelacox <- function (Survival,
 
   while (n.g[i] <= 0) {
     Lambda.Index.Add <- Lambda.Index.Add + 1
-    Coefficients <- coef(Lasso.Cox.CV, s = 0.12)
+    Coefficients <- stats::coef(Lasso.Cox.CV, s = 0.12)
     Coefficients.NonZero <- Coefficients[Coefficients[, 1] != 0,]
 
     if (!is.null(dim(Coefficients.NonZero)))
@@ -264,5 +265,5 @@ CVLasoelacox <- function (Survival,
 
 }
 
-  return(new("cvelascox",Coef.mat=coef.mat,Runtime=Run.Time,lambda=lambda,n=n.g,Met.mat=met.mat,HRTrain=HRTrain,HRTest=HRTest,pld=pld,Mdata=Mdata))
+  return(methods::new("cvle",Coef.mat=coef.mat,Runtime=Run.Time,lambda=lambda,n=n.g,Met.mat=met.mat,HRTrain=HRTrain,HRTest=HRTest,pld=pld,Mdata=Mdata))
 }

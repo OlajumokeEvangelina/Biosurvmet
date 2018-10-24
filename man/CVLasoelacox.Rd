@@ -33,13 +33,13 @@ CVLasoelacox(Survival, Censor, Mdata, Prognostic, Quantile = 0.5,
 
 \item{Ncv}{Number of validations to be carried out. The default is 25.}
 
-\item{nlamda}{The number of lambda values - default is 100 as in glmnet.}
+\item{nlambda}{The number of lambda values - default is 100 as in glmnet.}
 }
 \value{
-A object of class \code{\link[Biosurvmet]{cvelascox}} is returned with the following values
+A object of class \code{\link[Biosurvmet]{cvle}} is returned with the following values
   \item{Coef.mat}{A matrix of coefficients with rows equals to number of cross validations and columns equals to number of metabolites.}
   \item{Runtime}{A vector of runtime for each iteration measured in seconds.}
-  \item{lamda}{A vector of estimated optimum lambda for each iterations.}
+  \item{lambda}{A vector of estimated optimum lambda for each iterations.}
   \item{n}{A vector of the number of selected metabolites}
   \item{HRTrain}{A matrix of survival information for the training dataset. It has three columns representing the estimated HR, the 95\% lower confidence interval and the 95\% upper confidence interval.}
   \item{HRTest}{A matrix of survival information for the test dataset. It has three columns representing the estimated HR, the 95\% lower confidence interval and the 95\% upper confidence interval.}
@@ -58,24 +58,22 @@ The function performs the cross validations for Lasso, Elastic net and Ridge reg
 Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)
 
 ## USING THE FUNCTION
-Results = CVLasoelacox(Survival = Data$Survival,Censor = Data$Censor,Mdata = t(Data$Mdata),
-Prognostic = Data$Prognostic, Quantile = 0.5,Metlist = NULL,Standardize = TRUE,
-Reduce=FALSE,Select=15,Alpha = 1,Fold = 4,Ncv = 10,nlambda = 100)
+Results = CVLasoelacox(Survival = Data$Survival,Censor = Data$Censor,
+Mdata = t(Data$Mdata),Prognostic = Data$Prognostic, Quantile = 0.5,
+Metlist = NULL,Standardize = TRUE, Reduce=FALSE, Select=15,
+Alpha = 1,Fold = 4,Ncv = 10,nlambda = 100)
 
-## VIEW THE SELECTED METABOLITES
-Results$Selected.mets
+## NUMBER OF SELECTED METABOLITES PER CV
+Results@n
 
-## NUMBER OF SELECTED METABOLITES
-Results$n
+## GET THE MATRIX OF COEFFICIENTS
+Results@Coef.mat
 
-## VIEW THE CLASSIFICATION GROUP OF EACH SUBJECT
-Results$Risk.Group
+## SURVIVAL INFORMATION OF THE TRAIN DATASET
+Results@HRTrain
 
-## VIEW THE SURVIVAL ANALYSIS RESULT
-Results$Result
-
-## TO CHECK IF THERE WAS ANY SELECTION
-Results$Select
+## SURVIVAL INFORMATION OF THE TEST DATASET
+Results@HRTest
 }
 \seealso{
 \code{\link[survival]{coxph}},

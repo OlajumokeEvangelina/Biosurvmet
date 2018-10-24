@@ -29,7 +29,7 @@ Lasoelacox(Survival, Censor, Mdata, Prognostic, Quantile = 0.5,
 
 \item{Fold}{number of folds to be used for the cross validation. Its value ranges between 3 and the numbe rof subjects in the dataset}
 
-\item{nlamda}{The number of lambda values - default is 100 as in glmnet.}
+\item{nlambda}{The number of lambda values - default is 100 as in glmnet.}
 }
 \value{
 A object is returned with the following values

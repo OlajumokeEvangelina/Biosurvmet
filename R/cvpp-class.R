@@ -9,16 +9,16 @@
 #' @param y	 missing
 #' @param  object A cvpp class object
 #' @param ...	 The usual extra arguments to generic functions — see \code{\link[graphics]{plot}}, \code{\link[graphics]{plot.default}}
-#' @slot Result A dataframe containg the estimated Hazard ratio of the test dataset and the training dataset
+#' @slot Results A dataframe containg the estimated Hazard ratio of the test dataset and the training dataset
 #' @slot Ncv The number of cross validation performed
 #' @slot Method The dimesion reduction method used
 #' @slot CVtrain The training dataset indices matrix used for the cross validation
 #' @slot CVtest The test dataset indices matrix used for the cross validation
-#' @slot SelectThe number of metabolite used for the dimesion reduction method used
+#' @slot Select The number of metabolite used for the dimesion reduction method used
 #'
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
 #' @author Ziv Shkedy
-#' @seealso \code{\link[Biosurvmet]{CVpcaPls}}, \code{\link[Biosurvmet]{SurvPcaClass}}, \code{\link[Biosurvmet]{SurvPlsClass}}
+#' @seealso \code{\link[Biosurvmet]{CVPcaPls}}, \code{\link[Biosurvmet]{SurvPcaClass}}, \code{\link[Biosurvmet]{SurvPlsClass}}
 #' @examples
 #' ## GENERATE SOME METABOLIC SURVIVAL DATA WITH PROGNOSTIC FACTORS
 #' Data<-MSData(nPatients=100,nMet=150,Prop=0.5)
@@ -77,14 +77,16 @@ setMethod("summary",signature="cvpp", function(object){
   print(quantile(object@Results[,2],probs=c(0.05,0.25,0.5,0.75,0.95)))
 })
 
+#" setGeneric("plot", function(x,y, ...) standardGeneric("plot"))
 
 #' Method plot.
 #' @name cvpp-class
 #' @rdname cvpp-class
 #' @exportMethod plot
+#' @importFrom graphics plot
 
 #' @rdname cvpp-class
-#' @aliases plot,cvpp-method
+#' @aliases plot,cvpp-method,
 setMethod("plot", signature(x="cvpp", y="missing"),
           function(x,  y, ...) {
             dotsCall <- substitute(list(...))

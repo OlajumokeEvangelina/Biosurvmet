@@ -80,7 +80,7 @@ IntermediatePCA<-function(Mdata,Prognostic,Survival,Censor,index){
   if (is.null(Prognostic)) {
 
     cdata <- data.frame(Survival=Survival[index],Censor=Censor[index],pc1)
-    m0 <- coxph(Surv(Survival, Censor==1) ~ pc1,data=cdata)
+    m0 <- survival::coxph(Surv(Survival, Censor==1) ~ pc1,data=cdata)
   }
 
   if (!is.null(Prognostic)) {
@@ -88,7 +88,7 @@ IntermediatePCA<-function(Mdata,Prognostic,Survival,Censor,index){
       nPrgFac<-ncol(Prognostic)
       cdata <- data.frame(Survival=Survival[index],Censor=Censor[index],pc1,Prognostic[index,])
       NameProg<-colnames(Prognostic)
-      eval(parse(text=paste( "m0 <-coxph(Surv(Survival, Censor==1) ~ pc1",paste("+",NameProg[1:nPrgFac],sep="",collapse =""),",data=cdata)" ,sep="")))
+      eval(parse(text=paste( "m0 <-survival::coxph(Surv(Survival, Censor==1) ~ pc1",paste("+",NameProg[1:nPrgFac],sep="",collapse =""),",data=cdata)" ,sep="")))
     } else {
       stop(" Argument 'Prognostic' is NOT a data frame ")
     }
@@ -110,22 +110,22 @@ IntermediatePLS<-function(Mdata,Prognostic,Survival,Censor,index){
     PLSforGSK$g<-as.matrix(t(Mdata[,index]))
     colnames(PLSforGSK)[1]<-c("Survival")
     PLSforGSK[,1]<-Survival[index]
-    plsr.1 <- plsr(Survival ~ g, method="simpls",ncomp = 10, scale =TRUE,data = PLSforGSK, validation =  "CV")
-    pc1<-scores(plsr.1)[,1] # extract the first com
+    plsr.1 <- pls::plsr(Survival ~ g, method="simpls",ncomp = 2, scale =TRUE,data = PLSforGSK, validation =  "CV")
+    pc1<-pls::scores(plsr.1)[,1] # extract the first com
   } else {
     pc1<-Mdata[,index]
   }
 
   if (is.null(Prognostic)) {
     cdata <- data.frame(Survival=Survival[index],Censor=Censor[index],pc1)
-    m0 <- coxph(Surv(Survival, Censor==1) ~ pc1,data=cdata)
+    m0 <- survival::coxph(Surv(Survival, Censor==1) ~ pc1,data=cdata)
   }
   if (!is.null(Prognostic)) {
     if (is.data.frame(Prognostic)) {
       nPrgFac<-ncol(Prognostic)
       cdata <- data.frame(Survival=Survival[index],Censor=Censor[index],pc1,Prognostic[index,])
       NameProg<-colnames(Prognostic)
-      eval(parse(text=paste( "m0 <-coxph(Surv(Survival, Censor==1) ~ pc1",paste("+",NameProg[1:nPrgFac],sep="",collapse =""),",data=cdata)" ,sep="")))
+      eval(parse(text=paste( "m0 <-survival::coxph(Surv(Survival, Censor==1) ~ pc1",paste("+",NameProg[1:nPrgFac],sep="",collapse =""),",data=cdata)" ,sep="")))
     } else {
       stop(" Argument 'Prognostic' is NOT a data frame ")
     }

@@ -10,7 +10,7 @@
 #' @param Select Number of metabolites (default is 15) to be selected from supervised PCA. This is valid only if the argument Reduce=TRUE
 #' @param Prognostic A dataframe containing possible prognostic(s) factor and/or treatment effect to be used in the model.
 #' @param Quantile The cut off value for the classifier, default is the median cutoff
-#' @return A object of class \code{\link[Biosurvmet]{MSpecific}} is returned with the following values
+#' @return A object of class \code{\link[Biosurvmet]{ms}} is returned with the following values
 #'   \item{Result}{The cox proportional regression result for each metabolite}
 #'   \item{HRRG}{The hazard ratio statistics (Hazard-ratio, Lower confidence interval and upper confidence interval) of the riskgroup based on the riskscore and the cut off value for each metabolite}
 #'   \item{Group}{The classification of the subjects based on each metabolite analysis}
@@ -79,14 +79,14 @@ MSpecificCoxPh<-function(Survival,
     if (is.null(Prognostic)) {
 
       cdata <- data.frame(Survival,Censor,meti)
-      m0 <- coxph(Surv(Survival, Censor==1) ~ meti,data=cdata)
+      m0 <- survival::coxph(survival::Surv(Survival, Censor==1) ~ meti,data=cdata)
     }
     if (!is.null(Prognostic)) {
       if (is.data.frame(Prognostic)) {
         nPrgFac<-ncol(Prognostic)
         cdata <- data.frame(Survival,Censor,meti,Prognostic)
         NameProg<-colnames(Prognostic)
-        eval(parse(text=paste( "m0 <-coxph(Surv(Survival, Censor==1) ~ meti",paste("+",NameProg[1:nPrgFac],sep="",collapse =""),",data=cdata)" ,sep="")))
+        eval(parse(text=paste( "m0 <-survival::coxph(survival::Surv(Survival, Censor==1) ~ meti",paste("+",NameProg[1:nPrgFac],sep="",collapse =""),",data=cdata)" ,sep="")))
       } else {
 
         stop(" Argument 'Prognostic' is NOT a data frame ")
@@ -109,5 +109,5 @@ MSpecificCoxPh<-function(Survival,
   rownames(gr) = Metnames
   colnames(gr) = paste0("Subject", 1: ncol(ReduMdata))
 
-  return(new("MSpecific",Result=res,HRRG=HRp,Group=gr,Metnames = Metnames))
+  return(new("ms",Result=res,HRRG=HRp,Group=gr,Metnames = Metnames))
 }
