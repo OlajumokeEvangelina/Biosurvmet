@@ -35,9 +35,7 @@
 #' Example <- NullDistHR(Survival = Data$Survival,Mdata = t(Data$Mdata),
 #' Censor = Data$Censor,Reduce=FALSE,Select=15,Prognostic=Data$Prognostic,
 #' Quantile = 0.5, nperm=100, case=2, Validation=c("L1based"))
-
 #' @export NullDistHR
-
 
 NullDistHR<-function(Survival,
                      Censor,
