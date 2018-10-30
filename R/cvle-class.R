@@ -1,6 +1,6 @@
 #' The cvle Class.
 #'
-#' Class of object returned by function \code{\link[Biosurvmet]{CVLasoelacox}}.
+#' Class of object returned by function \code{\link[MetabolicSurv]{CVLasoelacox}}.
 #'
 #' @name cvle-class
 #' @rdname cvle-class
@@ -22,7 +22,7 @@
 #'
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
 #' @author Ziv Shkedy
-#' @seealso \code{\link[Biosurvmet]{EstimateHR}}, \code{\link[glmnet]{glmnet}}, \code{\link[Biosurvmet]{Lasoelacox}}
+#' @seealso \code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[glmnet]{glmnet}}, \code{\link[MetabolicSurv]{Lasoelacox}}
 #' @examples
 #' ## GENERATE SOME METABOLIC SURVIVAL DATA WITH PROGNOSTIC FACTORS
 #' Data<-MSData(nPatients=100,nMet=150,Prop=0.5)

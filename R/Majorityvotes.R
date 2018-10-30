@@ -3,7 +3,7 @@
 #' The Function fits cox proportional hazard model and does classification based on the majority votes.
 #'
 #' The Function fits cox proportional hazard model and does classification based on the majority votes while estimating the Hazard ratio of the low risk group. The function firstly count the number of Low risk classification for each subject based on the metabolite specific analysis which determ,ines the majority votes. In addition, It visualizes the metabolic specific calssification for the subjects. 25 ssubjects is taken for visualization purpose.
-#' @param Result An object obtained from the metabolite specific analysis (\code{\link[Biosurvmet]{MSpecificCoxPh}}) which is of class "ms"
+#' @param Result An object obtained from the metabolite specific analysis (\code{\link[MetabolicSurv]{MSpecificCoxPh}}) which is of class "ms"
 #' @param Prognostic A dataframe containing possible prognostic(s) factor and/or treatment effect to be used in the model.
 #' @param Censor A vector of censoring indicator
 #' @param Survival A vector of survival time with length equals to number of subjects
@@ -15,9 +15,9 @@
 #'   \item{Group}{The classification of the subjects based on each metabolite analysis}
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
 #' @author Ziv Shkedy
-#' @seealso \code{\link[Biosurvmet]{MSpecificCoxPh}}, \code{\link[survival]{coxph}},  \code{\link[Biosurvmet]{EstimateHR}}
+#' @seealso \code{\link[MetabolicSurv]{MSpecificCoxPh}}, \code{\link[survival]{coxph}},  \code{\link[MetabolicSurv]{EstimateHR}}
 #' @references
-#' \insertRef{tib}{Biosurvmet}
+#' \insertRef{tib}{MetabolicSurv}
 #' @examples
 #' ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 #'Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)

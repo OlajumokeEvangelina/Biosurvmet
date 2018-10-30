@@ -8,7 +8,7 @@ CVSim(Object, Top = seq(5, 100, by = 5), Survival, Censor,
   Prognostic = NULL)
 }
 \arguments{
-\item{Object}{An object of class \code{\link[Biosurvmet]{cvmm}}}
+\item{Object}{An object of class \code{\link[MetabolicSurv]{cvmm}}}
 
 \item{Top}{The Top k number of metabolites to be used}
 
@@ -19,7 +19,7 @@ CVSim(Object, Top = seq(5, 100, by = 5), Survival, Censor,
 \item{Prognostic}{A dataframe containing possible prognostic(s) factor and/or treatment effect to be used in the model.}
 }
 \value{
-A object of class \code{\link[Biosurvmet]{cvsim}} is returned with the following values
+A object of class \code{\link[MetabolicSurv]{cvsim}} is returned with the following values
    \item{HRpca}{A 3-way array in which first, second, and third dimensions correspond to number of metabolites, Hazard ratio infromation(Estimated HR, LowerCI and UpperCI), and number of cross validation respectively. This contains the estimated HR on test data and dimension reduction method is PCA.}
    \item{HRpls}{A 3-way array in which first, second, and third dimensions correspond to number of metabolites, Hazard ratio infromation(Estimated HR, LowerCI and UpperCI), and number of cross validation respectively. This contains the estimated HR on test data and dimension reduction method is PLS.}
    \item{Nmets}{The number of metabolites in the reduced matrix}
@@ -30,7 +30,7 @@ A object of class \code{\link[Biosurvmet]{cvsim}} is returned with the following
 This function does cross validation for the metabolite by metabolite analysis while sequentially increasing the number of metabolites as specified.
 }
 \details{
-The function is a cross validation version of the function \code{\link[Biosurvmet]{SIMet}}. This function firstly processes the cross validation for the metabolite by metabolite  analysis results, and then sequentially considers top k metabolites. The function recompute first PCA or PLS on train data and estimate risk scores on both test and train data only on the metabolite matrix with top k metabolites. Patients are then classified as having low or high risk based on the test data where the cutoff used is median of the risk score. The process is repeated for each top K metabolite sets.
+The function is a cross validation version of the function \code{\link[MetabolicSurv]{SIMet}}. This function firstly processes the cross validation for the metabolite by metabolite  analysis results, and then sequentially considers top k metabolites. The function recompute first PCA or PLS on train data and estimate risk scores on both test and train data only on the metabolite matrix with top k metabolites. Patients are then classified as having low or high risk based on the test data where the cutoff used is median of the risk score. The process is repeated for each top K metabolite sets.
 }
 \examples{
 ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
@@ -49,7 +49,7 @@ Prognostic=Data$Prognostic,Quantile = 0.5,Ncv=3)
 class(Result2)     # An "cvsim" Class
 }
 \seealso{
-\code{\link[Biosurvmet]{MSpecificCoxPh}}, \code{\link[Biosurvmet]{SIMet}}
+\code{\link[MetabolicSurv]{MSpecificCoxPh}}, \code{\link[MetabolicSurv]{SIMet}}
 }
 \author{
 Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@uhasselt.be}

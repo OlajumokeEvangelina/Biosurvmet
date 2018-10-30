@@ -1,8 +1,8 @@
 #' The cvmm Class.
 #'
-#' Class of object returned by function \code{\link[Biosurvmet]{CVMetSpecificCoxPh}}.
+#' Class of object returned by function \code{\link[MetabolicSurv]{CVMetSpecificCoxPh}}.
 #'
-#' plot signature(x = "cvmm"): Plots for \code{\link[Biosurvmet]{CVMetSpecificCoxPh}} class analysis results.
+#' plot signature(x = "cvmm"): Plots for \code{\link[MetabolicSurv]{CVMetSpecificCoxPh}} class analysis results.
 #'
 #' Any parameters of \code{\link[graphics]{plot.default}} may be passed on to this particular plot method.
 #'
@@ -22,7 +22,7 @@
 #' @slot Rdata The Metabolite data matrix that was used for the analysis either same as Mdata or a reduced version
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
 #' @author Ziv Shkedy
-#' @seealso \code{\link[Biosurvmet]{CVMetSpecificCoxPh}}
+#' @seealso \code{\link[MetabolicSurv]{CVMetSpecificCoxPh}}
 #' @examples
 #' ## GENERATE SOME METABOLIC SURVIVAL DATA WITH PROGNOSTIC FACTORS
 #' Data<-MSData(nPatients=100,nMet=150,Prop=0.5)

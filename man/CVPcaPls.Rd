@@ -27,7 +27,7 @@ CVPcaPls(Fold = 3, Survival, Mdata, Censor, Reduce = TRUE,
 \item{DR}{The dimension reduction method. It can be either "PCA" for Principle components analysis or "PLS" for Partial least squares.}
 }
 \value{
-A object of class \code{\link[Biosurvmet]{cvpp}} is returned with the following values
+A object of class \code{\link[MetabolicSurv]{cvpp}} is returned with the following values
   \item{Result}{A dataframe containg the estimated Hazard ratio of the test dataset and the training dataset}
  \item{Ncv}{The number of cross validation performed}
   \item{Method}{The dimesion reduction method used}
@@ -36,10 +36,10 @@ A object of class \code{\link[Biosurvmet]{cvpp}} is returned with the following 
 \item{Select}{The number of metabolite used for the dimesion reduction method used}
 }
 \description{
-This function does cross validation  for the analysis performs by \code{\link[Biosurvmet]{SurvPcaClass}} and \code{\link[Biosurvmet]{SurvPlsClass}} functions where the dimension reduction methods can either be PCA and PLS.
+This function does cross validation  for the analysis performs by \code{\link[MetabolicSurv]{SurvPcaClass}} and \code{\link[MetabolicSurv]{SurvPlsClass}} functions where the dimension reduction methods can either be PCA and PLS.
 }
 \details{
-This function does cross validation for the analysis using two reduction method. The reduction method can be PCA or PLS. If it is PCA then the \code{\link[Biosurvmet]{SurvPcaClass}} is internally used for the cross validation and \code{\link[Biosurvmet]{SurvPlsClass}} otherwise.
+This function does cross validation for the analysis using two reduction method. The reduction method can be PCA or PLS. If it is PCA then the \code{\link[MetabolicSurv]{SurvPcaClass}} is internally used for the cross validation and \code{\link[MetabolicSurv]{SurvPlsClass}} otherwise.
 }
 \examples{
 ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
@@ -59,13 +59,13 @@ summary(Result)
 plot(Result)
 }
 \references{
-\insertRef{ye1}{Biosurvmet}
+\insertRef{ye1}{MetabolicSurv}
 
-\insertRef{ye2}{Biosurvmet}
+\insertRef{ye2}{MetabolicSurv}
 }
 \seealso{
-\code{\link[Biosurvmet]{SurvPlsClass}},
-\code{\link[Biosurvmet]{SurvPcaClass}}
+\code{\link[MetabolicSurv]{SurvPlsClass}},
+\code{\link[MetabolicSurv]{SurvPcaClass}}
 }
 \author{
 Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@uhasselt.be}

@@ -16,7 +16,7 @@
 #' @param Fold number of folds to be used for the cross validation. Its value ranges between 3 and the numbe rof subjects in the dataset
 #' @param Ncv Number of validations to be carried out. The default is 25.
 #' @param nlambda The number of lambda values - default is 100 as in glmnet.
-#' @return A object of class \code{\link[Biosurvmet]{cvle}} is returned with the following values
+#' @return A object of class \code{\link[MetabolicSurv]{cvle}} is returned with the following values
 #'   \item{Coef.mat}{A matrix of coefficients with rows equals to number of cross validations and columns equals to number of metabolites.}
 #'   \item{Runtime}{A vector of runtime for each iteration measured in seconds.}
 #'   \item{lambda}{A vector of estimated optimum lambda for each iterations.}
@@ -29,7 +29,7 @@
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
 #' @author Ziv Shkedy
 #' @seealso \code{\link[survival]{coxph}},
-#' \code{\link[Biosurvmet]{EstimateHR}}, \code{\link[glmnet]{glmnet}}, \code{\link[Biosurvmet]{Lasoelacox}}
+#' \code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[glmnet]{glmnet}}, \code{\link[MetabolicSurv]{Lasoelacox}}
 #' @examples
 #' ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 #' Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)

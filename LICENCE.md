@@ -4,7 +4,7 @@
 ### General Public License
 
 
-#### Biosurvmet Pakage
+#### MetabolicSurv Pakage
 
  Copyright (c) 2018  Olajumoke Evangelina Owokotomo
 

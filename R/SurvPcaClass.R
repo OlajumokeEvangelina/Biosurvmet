@@ -22,10 +22,10 @@
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
 #' @author Ziv Shkedy
 #' @seealso \code{\link[survival]{coxph}},
-#' \code{\link[Biosurvmet]{EstimateHR}}, \code{\link[stats]{princomp}},
-#'  \code{\link[Biosurvmet]{SurvPlsClass}}
+#' \code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[stats]{princomp}},
+#'  \code{\link[MetabolicSurv]{SurvPlsClass}}
 #' @references
-#' \insertRef{ye1}{Biosurvmet}
+#' \insertRef{ye1}{MetabolicSurv}
 #' @examples
 #' ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 #'Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)

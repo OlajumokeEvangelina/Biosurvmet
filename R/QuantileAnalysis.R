@@ -1,9 +1,9 @@
 
 #'Quantile sensitivity analysis
 #'
-#' The function performs sensitivity of the cut off quantile for obtaining the risk group obtained under \code{\link[Biosurvmet]{SurvPlsClass}}, \code{\link[Biosurvmet]{SurvPcaClass}} or \code{\link[Biosurvmet]{MSpecificCoxPh}} requires for the survival analysis and classification.
+#' The function performs sensitivity of the cut off quantile for obtaining the risk group obtained under \code{\link[MetabolicSurv]{SurvPlsClass}}, \code{\link[MetabolicSurv]{SurvPcaClass}} or \code{\link[MetabolicSurv]{MSpecificCoxPh}} requires for the survival analysis and classification.
 #'
-#' This function investigates how each analysis differs from the general median cutoff of 0.5, therefore to see the sensitive nature of the survival result different quantiles ranging from 10th percentile to 90th percentiles were used. The sensitive nature of the quantile is investigated under \code{\link[Biosurvmet]{SurvPlsClass}}, \code{\link[Biosurvmet]{SurvPcaClass}} or \code{\link[Biosurvmet]{MSpecificCoxPh}} while relate to the 3 different Dimension method to select from.
+#' This function investigates how each analysis differs from the general median cutoff of 0.5, therefore to see the sensitive nature of the survival result different quantiles ranging from 10th percentile to 90th percentiles were used. The sensitive nature of the quantile is investigated under \code{\link[MetabolicSurv]{SurvPlsClass}}, \code{\link[MetabolicSurv]{SurvPcaClass}} or \code{\link[MetabolicSurv]{MSpecificCoxPh}} while relate to the 3 different Dimension method to select from.
 #' @param Survival A vector of survival time with length equals to number of subjects
 #' @param Mdata A large or small metabolic profile matrix. A matrix with metabolic profiles where the number of rows should be equal to the number of metabolites and number of columns should be equal to number of patients.
 #' @param Censor A vector of censoring indicator
@@ -11,16 +11,16 @@
 #' @param Select Number of metabolites (default is 15) to be selected from supervised PCA. This is valid only if th argument Reduce=TRUE
 #' @param Prognostic A dataframe containing possible prognostic(s) factor and/or treatment effect to be used in the model.
 #' @param Plots A boolean parameter indicating if the graphical represenataion of the analysis should be shown. Default is FALSE and it is only valid for the PCA or PLS dimension method.
-#' @param DimMethod The dimension method to be used. PCA implies using the \code{\link[Biosurvmet]{SurvPcaClass}}, PLS uses \code{\link[Biosurvmet]{SurvPcaClass}} while None uses the \code{\link[Biosurvmet]{MSpecificCoxPh}} which requires no data reduction approach but performs the analysis metabolite by metabolite.
+#' @param DimMethod The dimension method to be used. PCA implies using the \code{\link[MetabolicSurv]{SurvPcaClass}}, PLS uses \code{\link[MetabolicSurv]{SurvPcaClass}} while None uses the \code{\link[MetabolicSurv]{MSpecificCoxPh}} which requires no data reduction approach but performs the analysis metabolite by metabolite.
 #' @return A Dataframe is returned depending on weather a data reduction method should be used or not. For the PCA and the PLS, the dataframe contains the HR of the low risk group for each percentile while for the "None"method the Dataframe contains the HR of the risk group done metabolite by metabolite for each percentile.
 
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
 #' @author Ziv Shkedy
-#' @seealso \code{\link[survival]{coxph}},\code{\link[Biosurvmet]{EstimateHR}},
-#' \code{\link[Biosurvmet]{SurvPcaClass}},
-#'  \code{\link[Biosurvmet]{SurvPlsClass}},\code{\link[Biosurvmet]{MSpecificCoxPh}}
+#' @seealso \code{\link[survival]{coxph}},\code{\link[MetabolicSurv]{EstimateHR}},
+#' \code{\link[MetabolicSurv]{SurvPcaClass}},
+#'  \code{\link[MetabolicSurv]{SurvPlsClass}},\code{\link[MetabolicSurv]{MSpecificCoxPh}}
 #' @references
-#' \insertRef{ye1}{Biosurvmet}
+#' \insertRef{ye1}{MetabolicSurv}
 #' @examples
 #' ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 #'Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)

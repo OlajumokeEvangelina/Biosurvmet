@@ -25,7 +25,7 @@
 \item{...}{The usual extra arguments to generic functions — see \code{\link[graphics]{plot}}, \code{\link[graphics]{plot.default}}}
 }
 \description{
-Class of object returned by function \code{\link[Biosurvmet]{DistHR}}.
+Class of object returned by function \code{\link[MetabolicSurv]{DistHR}}.
 }
 \section{Slots}{
 
@@ -57,7 +57,7 @@ summary(Example)
 plot(Example)
 }
 \seealso{
-\code{\link[Biosurvmet]{DistHR}}, \code{\link[Biosurvmet]{EstimateHR}}, \code{\link[Biosurvmet]{SurvPcaClass}}, \code{\link[Biosurvmet]{SurvPlsClass}}, \code{\link[Biosurvmet]{Majorityvotes}}, \code{\link[Biosurvmet]{Lasoelacox}}, \code{\link[Biosurvmet]{EstimateHR}}, \code{\link[Biosurvmet]{Lasoelacox}}
+\code{\link[MetabolicSurv]{DistHR}}, \code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[MetabolicSurv]{SurvPcaClass}}, \code{\link[MetabolicSurv]{SurvPlsClass}}, \code{\link[MetabolicSurv]{Majorityvotes}}, \code{\link[MetabolicSurv]{Lasoelacox}}, \code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[MetabolicSurv]{Lasoelacox}}
 }
 \author{
 Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@uhasselt.be}

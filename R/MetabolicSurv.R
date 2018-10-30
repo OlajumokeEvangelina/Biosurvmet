@@ -1,8 +1,8 @@
-#' Biosurvmet: A biomarker validation approach for predicting survival using metabolic signature.
+#' MetabolicSurv: A biomarker validation approach for predicting survival using metabolic signature.
 #'
 #' This package develope biomarker signature for metabolic data. It contains a set of functions and cross validation methods  to validate and select biomarkers when the outcome of interest is survival. The package can handle prognostic factors and mainly metabolite matrix as input, the package can served as biomarker validation tool.
 #'
-#' @section Biosurvmet functions:
+#' @section MetabolicSurv functions:
 #' \enumerate{
 #' \item It can be used with any form of high dimensional/omics data such as: Metabolic data, Gene expression matrix, incase you dont have a data it can simulate hypothetical scinerio of a high dimensional data based on the desired biological parameters
 #' \item It developed any form of signature from the high dimensional data to be used for other purpose
@@ -15,5 +15,5 @@
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
 #' @author Ziv Shkedy
 #' @docType package
-#' @name Biosurvmet
+#' @name MetabolicSurv
 NULL

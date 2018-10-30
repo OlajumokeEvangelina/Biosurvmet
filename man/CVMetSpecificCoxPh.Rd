@@ -27,7 +27,7 @@ CVMetSpecificCoxPh(Fold = 3, Survival, Mdata, Censor, Reduce = TRUE,
 \item{Ncv}{The Number of cross validation loop. Default is 50 but it is recommended to have at least 100.}
 }
 \value{
-A object of class \code{\link[Biosurvmet]{cvmm}} is returned with the following values
+A object of class \code{\link[MetabolicSurv]{cvmm}} is returned with the following values
   \item{HRTrain}{The Train dataset HR statistics for each metabolite by the number of CV}
   \item{HRTest}{The Test dataset HR statistics for each metabolite by the number of CV}
   \item{train}{The selected subjects for each CV in the train dataset}
@@ -61,7 +61,7 @@ plot(Result)
 }
 \seealso{
 \code{\link[survival]{coxph}},
-\code{\link[Biosurvmet]{EstimateHR}}, \code{\link[Biosurvmet]{MSpecificCoxPh}},
+\code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[MetabolicSurv]{MSpecificCoxPh}},
 }
 \author{
 Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@uhasselt.be}

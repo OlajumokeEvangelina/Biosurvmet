@@ -37,7 +37,7 @@ A list containing a data frame with estimated HR along with 95\% CI at each TopK
 The Function fits cox proportional hazard model and does classification by sequentially increasing the metabolites  using either PCA or PLS based on the topK metabolites specified.
 }
 \details{
-This function sequentially increase the number of top K metabolites to be used in the PCA or PLS methods in order to obtain the risk score. This function internally calls \code{\link[Biosurvmet]{MSpecificCoxPh}} to rank the metabolites based on HR for each metabolite. Therefore metabolites can be ordered based on increasing order of the HR for low risk group. Thereafter, the function takes few top K (15 is the default) to be used in the sequential analysis.
+This function sequentially increase the number of top K metabolites to be used in the PCA or PLS methods in order to obtain the risk score. This function internally calls \code{\link[MetabolicSurv]{MSpecificCoxPh}} to rank the metabolites based on HR for each metabolite. Therefore metabolites can be ordered based on increasing order of the HR for low risk group. Thereafter, the function takes few top K (15 is the default) to be used in the sequential analysis.
 }
 \examples{
 ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
@@ -55,12 +55,12 @@ Example1$Result
 Example1$TopKplot
 }
 \references{
-\insertRef{ye2}{Biosurvmet}
+\insertRef{ye2}{MetabolicSurv}
 
-\insertRef{ye1}{Biosurvmet}
+\insertRef{ye1}{MetabolicSurv}
 }
 \seealso{
-\code{\link[survival]{coxph}},  \code{\link[Biosurvmet]{EstimateHR}}, \code{\link[Biosurvmet]{MSpecificCoxPh}}, \code{\link[Biosurvmet]{SurvPcaClass}}, \code{\link[Biosurvmet]{SurvPcaClass}}
+\code{\link[survival]{coxph}},  \code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[MetabolicSurv]{MSpecificCoxPh}}, \code{\link[MetabolicSurv]{SurvPcaClass}}, \code{\link[MetabolicSurv]{SurvPcaClass}}
 }
 \author{
 Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@uhasselt.be}

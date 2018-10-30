@@ -25,7 +25,7 @@ CVMajorityvotes(Survival, Censor, Prognostic = NULL, Mdata,
 \item{Ncv}{The Number of cross validation loop. Default is 50 but it is recommended to have at least 100.}
 }
 \value{
-A object of class \code{\link[Biosurvmet]{cvmv}} is returned with the following values
+A object of class \code{\link[MetabolicSurv]{cvmv}} is returned with the following values
   \item{HRTrain}{A matrix of survival information for the training dataset. It has three columns representing the estimated HR, the 95\% lower confidence interval and the 95\% upper confidence interval.}
   \item{HRTest}{A matrix of survival information for the test dataset. It has three columns representing the estimated HR, the 95\% lower confidence interval and the 95\% upper confidence interval.}
   \item{Ncv}{The number of cross validation used}
@@ -36,7 +36,7 @@ A object of class \code{\link[Biosurvmet]{cvmv}} is returned with the following 
 This function does cross validation for the Majority votes based classification.
 }
 \details{
-This function does cross validation for the Majority votes based classification which is a cross validated approach to \code{\link[Biosurvmet]{Majorityvotes}}.
+This function does cross validation for the Majority votes based classification which is a cross validated approach to \code{\link[MetabolicSurv]{Majorityvotes}}.
 }
 \examples{
 ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
@@ -56,7 +56,7 @@ summary(Result)
 plot(Result)
 }
 \seealso{
-\code{\link[Biosurvmet]{Majorityvotes}}
+\code{\link[MetabolicSurv]{Majorityvotes}}
 }
 \author{
 Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@uhasselt.be}

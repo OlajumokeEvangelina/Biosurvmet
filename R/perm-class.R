@@ -1,6 +1,6 @@
 #' The perm Class.
 #'
-#' Class of object returned by function \code{\link[Biosurvmet]{DistHR}}.
+#' Class of object returned by function \code{\link[MetabolicSurv]{DistHR}}.
 #'
 #' @name perm-class
 #' @rdname perm-class
@@ -16,7 +16,7 @@
 #'
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
 #' @author Ziv Shkedy
-#' @seealso \code{\link[Biosurvmet]{DistHR}}, \code{\link[Biosurvmet]{EstimateHR}}, \code{\link[Biosurvmet]{SurvPcaClass}}, \code{\link[Biosurvmet]{SurvPlsClass}}, \code{\link[Biosurvmet]{Majorityvotes}}, \code{\link[Biosurvmet]{Lasoelacox}}, \code{\link[Biosurvmet]{EstimateHR}}, \code{\link[Biosurvmet]{Lasoelacox}}
+#' @seealso \code{\link[MetabolicSurv]{DistHR}}, \code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[MetabolicSurv]{SurvPcaClass}}, \code{\link[MetabolicSurv]{SurvPlsClass}}, \code{\link[MetabolicSurv]{Majorityvotes}}, \code{\link[MetabolicSurv]{Lasoelacox}}, \code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[MetabolicSurv]{Lasoelacox}}
 #' @examples
 #' ## GENERATE SOME METABOLIC SURVIVAL DATA WITH PROGNOSTIC FACTORS
 #' Data<-MSData(nPatients=100,nMet=150,Prop=0.5)

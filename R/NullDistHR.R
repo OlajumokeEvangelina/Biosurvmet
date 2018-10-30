@@ -2,7 +2,7 @@
 #'
 #' This function generates the null distribution of the HR by permutation approach. Several ways of permutation setting can be implemented. That is, function can be used to generate null distributions for four different validation schemes, PLS based, PCA based, Majority votes based and Lasso based.
 #'
-#' This function generates the null distribution of the HR by permutation approach either using a large metabolite matrix or a reduced version by supervised pca approach. Several ways of permutation setting can be implemented. That is, the function can be used to generate null distributions for four different validation schemes which are PLS based, PCA based, Majority votes based and Lasso based. Note this function internally calls function  \code{\link[Biosurvmet]{SurvPcaClass}}, \code{\link[Biosurvmet]{SurvPlsClass}}, \code{\link[Biosurvmet]{Majorityvotes}}, and \code{\link[Biosurvmet]{Lasoelacox}}.
+#' This function generates the null distribution of the HR by permutation approach either using a large metabolite matrix or a reduced version by supervised pca approach. Several ways of permutation setting can be implemented. That is, the function can be used to generate null distributions for four different validation schemes which are PLS based, PCA based, Majority votes based and Lasso based. Note this function internally calls function  \code{\link[MetabolicSurv]{SurvPcaClass}}, \code{\link[MetabolicSurv]{SurvPlsClass}}, \code{\link[MetabolicSurv]{Majorityvotes}}, and \code{\link[MetabolicSurv]{Lasoelacox}}.
 #' @param Survival A vector of survival time with length equals to number of subjects
 #' @param Censor A vector of censoring indicator
 #' @param Mdata A large or small metabolic profile matrix. A matrix with metabolic profiles where the number of rows should be equal to the number of metabolites and number of columns should be equal to number of patients.
@@ -19,14 +19,14 @@
 #' \item{Permute metabolite matrix only.}
 #' }
 #' @param Validation There are four different validation schemes where the null distribution can be estimated. That is c("PLSbased","PCAbased","L1based","MVbased").
-#' @return A object of class \code{\link[Biosurvmet]{perm}} is returned with the following values
+#' @return A object of class \code{\link[MetabolicSurv]{perm}} is returned with the following values
 #'   \item{HRobs}{Estimated HR for low risk group on the original data}
 #'   \item{HRperm}{Estimated HR for low risk group on the permuted data}
 #'   \item{nperm}{Number of permutations carried out}
 #'   \item{Validation}{The validation scheme that was used}
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
 #' @author Ziv Shkedy
-#' @seealso \code{\link[survival]{coxph}}, \code{\link[Biosurvmet]{EstimateHR}}, \code{\link[Biosurvmet]{SurvPcaClass}}, \code{\link[Biosurvmet]{SurvPlsClass}}, \code{\link[Biosurvmet]{Majorityvotes}}, \code{\link[Biosurvmet]{Lasoelacox}}, \code{\link[Biosurvmet]{EstimateHR}}, \code{\link[Biosurvmet]{Lasoelacox}}
+#' @seealso \code{\link[survival]{coxph}}, \code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[MetabolicSurv]{SurvPcaClass}}, \code{\link[MetabolicSurv]{SurvPlsClass}}, \code{\link[MetabolicSurv]{Majorityvotes}}, \code{\link[MetabolicSurv]{Lasoelacox}}, \code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[MetabolicSurv]{Lasoelacox}}
 #' @examples
 #' ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 #' Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)

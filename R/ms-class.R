@@ -1,6 +1,6 @@
 #' The ms Class.
 #'
-#' Class of object returned by function \code{\link[Biosurvmet]{MSpecificCoxPh}}.
+#' Class of object returned by function \code{\link[MetabolicSurv]{MSpecificCoxPh}}.
 #'
 #' plot {signature(x = "ms"): Plots for ms class analysis results}
 #' signature(x = "ms"): Plots for ms class analysis results.
@@ -22,7 +22,7 @@
 #'
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
 #' @author Ziv Shkedy
-#' @seealso \code{\link[Biosurvmet]{MSpecificCoxPh}}
+#' @seealso \code{\link[MetabolicSurv]{MSpecificCoxPh}}
 #' @examples
 #' ## GENERATE SOME METABOLIC SURVIVAL DATA WITH PROGNOSTIC FACTORS
 #' Data<-MSData(nPatients=100,nMet=150,Prop=0.5)

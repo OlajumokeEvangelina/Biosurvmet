@@ -25,7 +25,7 @@
 \item{...}{The usual extra arguments to generic functions — see \code{\link[graphics]{plot}}, \code{\link[graphics]{plot.default}}}
 }
 \description{
-Class of object returned by function \code{\link[Biosurvmet]{CVMajorityvotes}}.
+Class of object returned by function \code{\link[MetabolicSurv]{CVMajorityvotes}}.
 }
 \section{Slots}{
 
@@ -59,7 +59,7 @@ summary(Result)
 plot(Result)
 }
 \seealso{
-\code{\link[Biosurvmet]{Majorityvotes}}, \code{\link[Biosurvmet]{CVPcaPls}}, \code{\link[Biosurvmet]{SurvPcaClass}}, \code{\link[Biosurvmet]{SurvPlsClass}}
+\code{\link[MetabolicSurv]{Majorityvotes}}, \code{\link[MetabolicSurv]{CVPcaPls}}, \code{\link[MetabolicSurv]{SurvPcaClass}}, \code{\link[MetabolicSurv]{SurvPlsClass}}
 }
 \author{
 Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@uhasselt.be}

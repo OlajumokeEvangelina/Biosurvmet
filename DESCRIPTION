@@ -1,4 +1,4 @@
-Package: Biosurvmet
+Package: MetabolicSurv
 Type: Package
 Title: A Biomarker Validation Method for Predicting Survival using Metabolite Signature 
 Version: 1.0.0

@@ -39,7 +39,7 @@ MetData<-Data$Mdata
 Metnames<-Data$Met.names
 }
 \seealso{
-\code{\link[survival]{coxph}}, \code{\link[Biosurvmet]{DataHR}}
+\code{\link[survival]{coxph}}, \code{\link[MetabolicSurv]{DataHR}}
 }
 \author{
 Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@uhasselt.be}

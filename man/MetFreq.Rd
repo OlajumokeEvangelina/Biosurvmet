@@ -7,7 +7,7 @@
 MetFreq(Object, TopK = 20, Minfreq = 5)
 }
 \arguments{
-\item{Object}{An object of class \code{\link[Biosurvmet]{cvmm}} returned from the function \code{\link[Biosurvmet]{CVMetSpecificCoxPh}}.}
+\item{Object}{An object of class \code{\link[MetabolicSurv]{cvmm}} returned from the function \code{\link[MetabolicSurv]{CVMetSpecificCoxPh}}.}
 
 \item{TopK}{The number of Top K metabolites (20 by default) to be used in the analysis}
 
@@ -38,8 +38,8 @@ class(Result)
 MetFreq(Result,TopK = 5,Minfreq = 20)
 }
 \seealso{
-\code{\link[Biosurvmet]{cvmm}}, \code{\link[survival]{coxph}},
-\code{\link[Biosurvmet]{EstimateHR}}, \code{\link[Biosurvmet]{MSpecificCoxPh}},\code{\link[Biosurvmet]{CVMetSpecificCoxPh}}
+\code{\link[MetabolicSurv]{cvmm}}, \code{\link[survival]{coxph}},
+\code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[MetabolicSurv]{MSpecificCoxPh}},\code{\link[MetabolicSurv]{CVMetSpecificCoxPh}}
 }
 \author{
 Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@uhasselt.be}

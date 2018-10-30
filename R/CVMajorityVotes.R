@@ -2,7 +2,7 @@
 #'
 #' This function does cross validation for the Majority votes based classification.
 #'
-#' This function does cross validation for the Majority votes based classification which is a cross validated approach to \code{\link[Biosurvmet]{Majorityvotes}}.
+#' This function does cross validation for the Majority votes based classification which is a cross validated approach to \code{\link[MetabolicSurv]{Majorityvotes}}.
 #' @param Survival A vector of survival time with length equals to number of subjects
 #' @param Censor A vector of censoring indicator
 #' @param Prognostic A dataframe containing possible prognostic(s) factor and/or treatment effect to be used in the model.
@@ -11,7 +11,7 @@
 #' @param Select Number of metabolites (default is 15) to be selected from supervised PCA. This is valid only if th argument Reduce=TRUE
 #' @param Fold Number of times in which the dataset is divided. Default is 3 which implies dataset will be divided into three groups and 2/3 of the dataset will be the train datset and 1/3 will be to train the results.
 #' @param Ncv The Number of cross validation loop. Default is 50 but it is recommended to have at least 100.
-#' @return A object of class \code{\link[Biosurvmet]{cvmv}} is returned with the following values
+#' @return A object of class \code{\link[MetabolicSurv]{cvmv}} is returned with the following values
 #'   \item{HRTrain}{A matrix of survival information for the training dataset. It has three columns representing the estimated HR, the 95\% lower confidence interval and the 95\% upper confidence interval.}
 #'   \item{HRTest}{A matrix of survival information for the test dataset. It has three columns representing the estimated HR, the 95\% lower confidence interval and the 95\% upper confidence interval.}
 #'   \item{Ncv}{The number of cross validation used}
@@ -19,7 +19,7 @@
 #'   \item{Progfact}{The names of prognostic factors used}
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
 #' @author Ziv Shkedy
-#' @seealso \code{\link[Biosurvmet]{Majorityvotes}}
+#' @seealso \code{\link[MetabolicSurv]{Majorityvotes}}
 #' @examples
 #' ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 #' Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)

@@ -27,10 +27,10 @@
 \item{...}{The usual extra arguments to generic functions — see \code{\link[graphics]{plot}}, \code{\link[graphics]{plot.default}}}
 }
 \description{
-Class of object returned by function \code{\link[Biosurvmet]{CVMetSpecificCoxPh}}.
+Class of object returned by function \code{\link[MetabolicSurv]{CVMetSpecificCoxPh}}.
 }
 \details{
-plot signature(x = "cvmm"): Plots for \code{\link[Biosurvmet]{CVMetSpecificCoxPh}} class analysis results.
+plot signature(x = "cvmm"): Plots for \code{\link[MetabolicSurv]{CVMetSpecificCoxPh}} class analysis results.
 
 Any parameters of \code{\link[graphics]{plot.default}} may be passed on to this particular plot method.
 }
@@ -70,7 +70,7 @@ summary(Result)
 plot(Result)
 }
 \seealso{
-\code{\link[Biosurvmet]{CVMetSpecificCoxPh}}
+\code{\link[MetabolicSurv]{CVMetSpecificCoxPh}}
 }
 \author{
 Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@uhasselt.be}

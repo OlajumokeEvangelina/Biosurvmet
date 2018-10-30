@@ -2,7 +2,7 @@
 #'
 #' The Function fits cox proportional hazard model and does classification by sequentially increasing the metabolites  using either PCA or PLS based on the topK metabolites specified.
 #'
-#' This function sequentially increase the number of top K metabolites to be used in the PCA or PLS methods in order to obtain the risk score. This function internally calls \code{\link[Biosurvmet]{MSpecificCoxPh}} to rank the metabolites based on HR for each metabolite. Therefore metabolites can be ordered based on increasing order of the HR for low risk group. Thereafter, the function takes few top K (15 is the default) to be used in the sequential analysis.
+#' This function sequentially increase the number of top K metabolites to be used in the PCA or PLS methods in order to obtain the risk score. This function internally calls \code{\link[MetabolicSurv]{MSpecificCoxPh}} to rank the metabolites based on HR for each metabolite. Therefore metabolites can be ordered based on increasing order of the HR for low risk group. Thereafter, the function takes few top K (15 is the default) to be used in the sequential analysis.
 #' @param TopK 	Top K metabolites (15 by default) to be used in the sequential analysis.
 #' @param Survival A vector of survival time with length equals to number of subjects
 #' @param Mdata A large or small metabolic profile matrix. A matrix with metabolic profiles where the number of rows should be equal to the number of metabolites and number of columns should be equal to number of patients.
@@ -18,11 +18,11 @@
 #'   \item{TopKplot}{A graphical representation of the Result containing the hazard ratio statistics}
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
 #' @author Ziv Shkedy
-#' @seealso \code{\link[survival]{coxph}},  \code{\link[Biosurvmet]{EstimateHR}}, \code{\link[Biosurvmet]{MSpecificCoxPh}}, \code{\link[Biosurvmet]{SurvPcaClass}}, \code{\link[Biosurvmet]{SurvPcaClass}}
+#' @seealso \code{\link[survival]{coxph}},  \code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[MetabolicSurv]{MSpecificCoxPh}}, \code{\link[MetabolicSurv]{SurvPcaClass}}, \code{\link[MetabolicSurv]{SurvPcaClass}}
 #' @references
-#' \insertRef{ye2}{Biosurvmet}
+#' \insertRef{ye2}{MetabolicSurv}
 #'
-#' \insertRef{ye1}{Biosurvmet}
+#' \insertRef{ye1}{MetabolicSurv}
 #' @examples
 #' ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 #'Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)

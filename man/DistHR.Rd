@@ -36,7 +36,7 @@ DistHR(Survival, Censor, Mdata, Prognostic = NULL, Quantile = 0.5,
 \item{Validation}{There are four different validation schemes where the null distribution can be estimated. That is c("PLSbased","PCAbased","L1based","MVbased").}
 }
 \value{
-A object of class \code{\link[Biosurvmet]{perm}} is returned with the following values
+A object of class \code{\link[MetabolicSurv]{perm}} is returned with the following values
   \item{HRobs}{Estimated HR for low risk group on the original data}
   \item{HRperm}{Estimated HR for low risk group on the permuted data}
   \item{nperm}{Number of permutations carried out}
@@ -46,7 +46,7 @@ A object of class \code{\link[Biosurvmet]{perm}} is returned with the following 
 This function generates the null distribution of the HR by permutation approach. Several ways of permutation setting can be implemented. That is, function can be used to generate null distributions for four different validation schemes, PLS based, PCA based, Majority votes based and Lasso based.
 }
 \details{
-This function generates the null distribution of the HR by permutation approach either using a large metabolite matrix or a reduced version by supervised pca approach. Several ways of permutation setting can be implemented. That is, the function can be used to generate null distributions for four different validation schemes which are PLS based, PCA based, Majority votes based and Lasso based. Note this function internally calls function  \code{\link[Biosurvmet]{SurvPcaClass}}, \code{\link[Biosurvmet]{SurvPlsClass}}, \code{\link[Biosurvmet]{Majorityvotes}}, and \code{\link[Biosurvmet]{Lasoelacox}}.
+This function generates the null distribution of the HR by permutation approach either using a large metabolite matrix or a reduced version by supervised pca approach. Several ways of permutation setting can be implemented. That is, the function can be used to generate null distributions for four different validation schemes which are PLS based, PCA based, Majority votes based and Lasso based. Note this function internally calls function  \code{\link[MetabolicSurv]{SurvPcaClass}}, \code{\link[MetabolicSurv]{SurvPlsClass}}, \code{\link[MetabolicSurv]{Majorityvotes}}, and \code{\link[MetabolicSurv]{Lasoelacox}}.
 }
 \examples{
 ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
@@ -58,7 +58,7 @@ Censor = Data$Censor,Reduce=FALSE,Select=15,Prognostic=Data$Prognostic,
 Quantile = 0.5, nperm=100, case=2, Validation=c("L1based"))
 }
 \seealso{
-\code{\link[survival]{coxph}}, \code{\link[Biosurvmet]{EstimateHR}}, \code{\link[Biosurvmet]{SurvPcaClass}}, \code{\link[Biosurvmet]{SurvPlsClass}}, \code{\link[Biosurvmet]{Majorityvotes}}, \code{\link[Biosurvmet]{Lasoelacox}}, \code{\link[Biosurvmet]{EstimateHR}}, \code{\link[Biosurvmet]{Lasoelacox}}
+\code{\link[survival]{coxph}}, \code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[MetabolicSurv]{SurvPcaClass}}, \code{\link[MetabolicSurv]{SurvPlsClass}}, \code{\link[MetabolicSurv]{Majorityvotes}}, \code{\link[MetabolicSurv]{Lasoelacox}}, \code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[MetabolicSurv]{Lasoelacox}}
 }
 \author{
 Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@uhasselt.be}

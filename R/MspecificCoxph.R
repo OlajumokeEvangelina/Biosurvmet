@@ -10,14 +10,14 @@
 #' @param Select Number of metabolites (default is 15) to be selected from supervised PCA. This is valid only if the argument Reduce=TRUE
 #' @param Prognostic A dataframe containing possible prognostic(s) factor and/or treatment effect to be used in the model.
 #' @param Quantile The cut off value for the classifier, default is the median cutoff
-#' @return A object of class \code{\link[Biosurvmet]{ms}} is returned with the following values
+#' @return A object of class \code{\link[MetabolicSurv]{ms}} is returned with the following values
 #'   \item{Result}{The cox proportional regression result for each metabolite}
 #'   \item{HRRG}{The hazard ratio statistics (Hazard-ratio, Lower confidence interval and upper confidence interval) of the riskgroup based on the riskscore and the cut off value for each metabolite}
 #'   \item{Group}{The classification of the subjects based on each metabolite analysis}
 #'   \item{Metnames}{The names of the metabolites for the analysis}
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
 #' @author Ziv Shkedy
-#' @seealso \code{\link[survival]{coxph}},  \code{\link[Biosurvmet]{EstimateHR}}
+#' @seealso \code{\link[survival]{coxph}},  \code{\link[MetabolicSurv]{EstimateHR}}
 #' @examples
 #' ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 #'Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)

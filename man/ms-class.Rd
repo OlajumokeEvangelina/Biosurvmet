@@ -25,7 +25,7 @@
 \item{...}{The usual extra arguments to generic functions — see \code{\link[graphics]{plot}}, \code{\link[graphics]{plot.default}}}
 }
 \description{
-Class of object returned by function \code{\link[Biosurvmet]{MSpecificCoxPh}}.
+Class of object returned by function \code{\link[MetabolicSurv]{MSpecificCoxPh}}.
 }
 \details{
 plot {signature(x = "ms"): Plots for ms class analysis results}
@@ -65,7 +65,7 @@ summary(Eg)
 plot(Eg)
 }
 \seealso{
-\code{\link[Biosurvmet]{MSpecificCoxPh}}
+\code{\link[MetabolicSurv]{MSpecificCoxPh}}
 }
 \author{
 Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@uhasselt.be}

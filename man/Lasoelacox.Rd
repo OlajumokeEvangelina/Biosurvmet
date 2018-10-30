@@ -72,7 +72,7 @@ Results$Select
 }
 \seealso{
 \code{\link[survival]{coxph}},
-\code{\link[Biosurvmet]{EstimateHR}}, \code{\link[glmnet]{glmnet}},
+\code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[glmnet]{glmnet}},
 }
 \author{
 Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@uhasselt.be}

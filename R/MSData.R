@@ -14,7 +14,7 @@
 #'   \item{Prognostic}{A data frame with prognostic factors.}
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
 #' @author Ziv Shkedy
-#' @seealso \code{\link[survival]{coxph}}, \code{\link[Biosurvmet]{DataHR}}
+#' @seealso \code{\link[survival]{coxph}}, \code{\link[MetabolicSurv]{DataHR}}
 #' @examples
 #' #GENERATE SOME METABOLIC SURVIVAL DATA WITH PROGNOSTIC FACTORS
 #'

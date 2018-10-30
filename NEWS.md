@@ -5,7 +5,7 @@
 
 ### The first version of the package
 
-- A software paper associated with this package Biosurvmet will be available in 2 weeks.
+- A software paper associated with this package MetabolicSurv will be available in 2 weeks.
 
 
 

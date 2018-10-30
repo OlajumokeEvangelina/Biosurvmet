@@ -1,8 +1,8 @@
 #'Cross Validations for PCA and PLS based methods
 #'
-#' This function does cross validation  for the analysis performs by \code{\link[Biosurvmet]{SurvPcaClass}} and \code{\link[Biosurvmet]{SurvPlsClass}} functions where the dimension reduction methods can either be PCA and PLS.
+#' This function does cross validation  for the analysis performs by \code{\link[MetabolicSurv]{SurvPcaClass}} and \code{\link[MetabolicSurv]{SurvPlsClass}} functions where the dimension reduction methods can either be PCA and PLS.
 #'
-#' This function does cross validation for the analysis using two reduction method. The reduction method can be PCA or PLS. If it is PCA then the \code{\link[Biosurvmet]{SurvPcaClass}} is internally used for the cross validation and \code{\link[Biosurvmet]{SurvPlsClass}} otherwise.
+#' This function does cross validation for the analysis using two reduction method. The reduction method can be PCA or PLS. If it is PCA then the \code{\link[MetabolicSurv]{SurvPcaClass}} is internally used for the cross validation and \code{\link[MetabolicSurv]{SurvPlsClass}} otherwise.
 #' @param Fold Number of times in which the dataset is divided. Default is 3 which implies dataset will be divided into three groups and 2/3 of the dataset will be the train datset and 1/3 will be to train the results.
 #' @param Survival A vector of survival time with length equals to number of subjects
 #' @param Mdata A large or small metabolic profile matrix. A matrix with metabolic profiles where the number of rows should be equal to the number of metabolites and number of columns should be equal to number of patients.
@@ -12,7 +12,7 @@
 #' @param Prognostic A dataframe containing possible prognostic(s) factor and/or treatment effect to be used in the model.
 #' @param Ncv The Number of cross validation loop. Default is 50 but it is recommended to have at least 100.
 #' @param DR The dimension reduction method. It can be either "PCA" for Principle components analysis or "PLS" for Partial least squares.
-#' @return A object of class \code{\link[Biosurvmet]{cvpp}} is returned with the following values
+#' @return A object of class \code{\link[MetabolicSurv]{cvpp}} is returned with the following values
 #'   \item{Result}{A dataframe containg the estimated Hazard ratio of the test dataset and the training dataset}
 #'  \item{Ncv}{The number of cross validation performed}
 #'   \item{Method}{The dimesion reduction method used}
@@ -21,12 +21,12 @@
 #' \item{Select}{The number of metabolite used for the dimesion reduction method used}
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
 #' @author Ziv Shkedy
-#' @seealso \code{\link[Biosurvmet]{SurvPlsClass}},
-#' \code{\link[Biosurvmet]{SurvPcaClass}}
+#' @seealso \code{\link[MetabolicSurv]{SurvPlsClass}},
+#' \code{\link[MetabolicSurv]{SurvPcaClass}}
 #' @references
-#' \insertRef{ye1}{Biosurvmet}
+#' \insertRef{ye1}{MetabolicSurv}
 #'
-#' \insertRef{ye2}{Biosurvmet}
+#' \insertRef{ye2}{MetabolicSurv}
 #' @examples
 #' ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 #' Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)

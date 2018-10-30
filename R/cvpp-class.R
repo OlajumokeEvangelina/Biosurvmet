@@ -1,6 +1,6 @@
 #' The cvpp Class.
 #'
-#' Class of object returned by function \code{\link[Biosurvmet]{CVPcaPls}}.
+#' Class of object returned by function \code{\link[MetabolicSurv]{CVPcaPls}}.
 #'
 #' @name cvpp-class
 #' @rdname cvpp-class
@@ -18,7 +18,7 @@
 #'
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
 #' @author Ziv Shkedy
-#' @seealso \code{\link[Biosurvmet]{CVPcaPls}}, \code{\link[Biosurvmet]{SurvPcaClass}}, \code{\link[Biosurvmet]{SurvPlsClass}}
+#' @seealso \code{\link[MetabolicSurv]{CVPcaPls}}, \code{\link[MetabolicSurv]{SurvPcaClass}}, \code{\link[MetabolicSurv]{SurvPlsClass}}
 #' @examples
 #' ## GENERATE SOME METABOLIC SURVIVAL DATA WITH PROGNOSTIC FACTORS
 #' Data<-MSData(nPatients=100,nMet=150,Prop=0.5)

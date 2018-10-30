@@ -3,14 +3,14 @@
 #' The function selects the top K metabolites from the metabolite by metabolite cross validation, that is the number of times each metabolite occur during the cross-validation process. In case of large metabolomic matrix then the minfreq is required to select metabolites occurence more than a certain frequency. If the number specified is greater than the maximum frequency of seection then max(frequency)-1 will be automatically used as MinFreq.
 #'
 #' This function outputs the mostly selected metabolites during the metabolite specific cross validation. Selected Top metabolites are ranked based on estimated HR for low risk group. Therefore top metabolites should have minimum HR estimates. Number of top K metabolites needed should be prespecified. In addition, it visualizes the selected top metabolites based on the minimum frequency specified..
-#' @param Object An object of class \code{\link[Biosurvmet]{cvmm}} returned from the function \code{\link[Biosurvmet]{CVMetSpecificCoxPh}}.
+#' @param Object An object of class \code{\link[MetabolicSurv]{cvmm}} returned from the function \code{\link[MetabolicSurv]{CVMetSpecificCoxPh}}.
 #' @param TopK The number of Top K metabolites (20 by default) to be used in the analysis
 #' @param Minfreq  The minimum frequency required for a particular meabolites to be included in the result.
 #' @return A vector of metabolites and their frequency of selection. Also, a graphical representation is displayed.
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
 #' @author Ziv Shkedy
-#' @seealso \code{\link[Biosurvmet]{cvmm}}, \code{\link[survival]{coxph}},
-#' \code{\link[Biosurvmet]{EstimateHR}}, \code{\link[Biosurvmet]{MSpecificCoxPh}},\code{\link[Biosurvmet]{CVMetSpecificCoxPh}}
+#' @seealso \code{\link[MetabolicSurv]{cvmm}}, \code{\link[survival]{coxph}},
+#' \code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[MetabolicSurv]{MSpecificCoxPh}},\code{\link[MetabolicSurv]{CVMetSpecificCoxPh}}
 #' @examples
 #' ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 #' Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)

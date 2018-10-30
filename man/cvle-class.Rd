@@ -27,7 +27,7 @@
 \item{...}{The usual extra arguments to generic functions — see \code{\link[graphics]{plot}}, \code{\link[graphics]{plot.default}}}
 }
 \description{
-Class of object returned by function \code{\link[Biosurvmet]{CVLasoelacox}}.
+Class of object returned by function \code{\link[MetabolicSurv]{CVLasoelacox}}.
 }
 \section{Slots}{
 
@@ -70,7 +70,7 @@ summary(Eg)
 plot(Eg, type =3)
 }
 \seealso{
-\code{\link[Biosurvmet]{EstimateHR}}, \code{\link[glmnet]{glmnet}}, \code{\link[Biosurvmet]{Lasoelacox}}
+\code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[glmnet]{glmnet}}, \code{\link[MetabolicSurv]{Lasoelacox}}
 }
 \author{
 Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@uhasselt.be}

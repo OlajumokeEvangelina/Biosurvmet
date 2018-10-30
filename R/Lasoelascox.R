@@ -25,7 +25,7 @@
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
 #' @author Ziv Shkedy
 #' @seealso \code{\link[survival]{coxph}},
-#' \code{\link[Biosurvmet]{EstimateHR}}, \code{\link[glmnet]{glmnet}},
+#' \code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[glmnet]{glmnet}},
 #' @examples
 #' ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 #' Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)

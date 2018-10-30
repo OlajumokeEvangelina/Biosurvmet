@@ -36,7 +36,7 @@ CVLasoelacox(Survival, Censor, Mdata, Prognostic, Quantile = 0.5,
 \item{nlambda}{The number of lambda values - default is 100 as in glmnet.}
 }
 \value{
-A object of class \code{\link[Biosurvmet]{cvle}} is returned with the following values
+A object of class \code{\link[MetabolicSurv]{cvle}} is returned with the following values
   \item{Coef.mat}{A matrix of coefficients with rows equals to number of cross validations and columns equals to number of metabolites.}
   \item{Runtime}{A vector of runtime for each iteration measured in seconds.}
   \item{lambda}{A vector of estimated optimum lambda for each iterations.}
@@ -77,7 +77,7 @@ Results@HRTest
 }
 \seealso{
 \code{\link[survival]{coxph}},
-\code{\link[Biosurvmet]{EstimateHR}}, \code{\link[glmnet]{glmnet}}, \code{\link[Biosurvmet]{Lasoelacox}}
+\code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[glmnet]{glmnet}}, \code{\link[MetabolicSurv]{Lasoelacox}}
 }
 \author{
 Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@uhasselt.be}

@@ -12,7 +12,7 @@
 #' @param Prognostic A dataframe containing possible prognostic(s) factor and/or treatment effect to be used in the model.
 #' @param Quantile The cut off value for the classifier, default is the median cutoff
 #' @param Ncv The Number of cross validation loop. Default is 50 but it is recommended to have at least 100.
-#' @return A object of class \code{\link[Biosurvmet]{cvmm}} is returned with the following values
+#' @return A object of class \code{\link[MetabolicSurv]{cvmm}} is returned with the following values
 #'   \item{HRTrain}{The Train dataset HR statistics for each metabolite by the number of CV}
 #'   \item{HRTest}{The Test dataset HR statistics for each metabolite by the number of CV}
 #'   \item{train}{The selected subjects for each CV in the train dataset}
@@ -23,7 +23,7 @@
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
 #' @author Ziv Shkedy
 #' @seealso \code{\link[survival]{coxph}},
-#' \code{\link[Biosurvmet]{EstimateHR}}, \code{\link[Biosurvmet]{MSpecificCoxPh}},
+#' \code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[MetabolicSurv]{MSpecificCoxPh}},
 #' @examples
 #' ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 #' Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)

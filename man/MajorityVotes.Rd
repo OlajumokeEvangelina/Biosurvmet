@@ -7,7 +7,7 @@
 Majorityvotes(Result, Prognostic, Survival, Censor, J = 1)
 }
 \arguments{
-\item{Result}{An object obtained from the metabolite specific analysis (\code{\link[Biosurvmet]{MSpecificCoxPh}}) which is of class "ms"}
+\item{Result}{An object obtained from the metabolite specific analysis (\code{\link[MetabolicSurv]{MSpecificCoxPh}}) which is of class "ms"}
 
 \item{Prognostic}{A dataframe containing possible prognostic(s) factor and/or treatment effect to be used in the model.}
 
@@ -55,10 +55,10 @@ Result2$Classif
 Result2$Group
 }
 \references{
-\insertRef{tib}{Biosurvmet}
+\insertRef{tib}{MetabolicSurv}
 }
 \seealso{
-\code{\link[Biosurvmet]{MSpecificCoxPh}}, \code{\link[survival]{coxph}},  \code{\link[Biosurvmet]{EstimateHR}}
+\code{\link[MetabolicSurv]{MSpecificCoxPh}}, \code{\link[survival]{coxph}},  \code{\link[MetabolicSurv]{EstimateHR}}
 }
 \author{
 Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@uhasselt.be}

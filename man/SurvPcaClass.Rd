@@ -62,12 +62,12 @@ Result$Riskgroup
 Result$pc1
 }
 \references{
-\insertRef{ye1}{Biosurvmet}
+\insertRef{ye1}{MetabolicSurv}
 }
 \seealso{
 \code{\link[survival]{coxph}},
-\code{\link[Biosurvmet]{EstimateHR}}, \code{\link[stats]{princomp}},
- \code{\link[Biosurvmet]{SurvPlsClass}}
+\code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[stats]{princomp}},
+ \code{\link[MetabolicSurv]{SurvPlsClass}}
 }
 \author{
 Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@uhasselt.be}
