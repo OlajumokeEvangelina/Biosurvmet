@@ -6,30 +6,31 @@
 \alias{cvmm}
 \alias{show,cvmm-method}
 \alias{summary,cvmm-method}
-\alias{plot,cvmm-method}
+\alias{plot,cvmm,ANY-method}
 \title{The cvmm Class.}
 \usage{
 \S4method{show}{cvmm}(object)
-
-summary(object, ...)
 
 \S4method{summary}{cvmm}(object, which = 1)
 
 \S4method{plot}{cvmm,ANY}(x, y, which = 1, ...)
 }
 \arguments{
-\item{...}{The usual extra arguments to generic functions — see \code{\link[graphics]{plot}}, \code{\link[graphics]{plot.default}}}
+\item{object}{A CVMetSpecificCoxPh class object}
+
+\item{which}{This specify which metabolite for which estimated HR information need to be visualized. By default results of the first metabolite is used.}
 
 \item{x}{A CVMetSpecificCoxPh class object}
 
 \item{y}{missing}
+
+\item{...}{The usual extra arguments to generic functions — see \code{\link[graphics]{plot}}, \code{\link[graphics]{plot.default}}}
 }
 \description{
 Class of object returned by function \code{\link[Biosurvmet]{CVMetSpecificCoxPh}}.
 }
 \details{
-plot {signature(x = "cvmm"): Plots for CVMetSpecificCoxPh class analysis results}
-signature(x = "cvmm"): Plots for CVMetSpecificCoxPh class analysis results.
+plot signature(x = "cvmm"): Plots for \code{\link[Biosurvmet]{CVMetSpecificCoxPh}} class analysis results.
 
 Any parameters of \code{\link[graphics]{plot.default}} may be passed on to this particular plot method.
 }

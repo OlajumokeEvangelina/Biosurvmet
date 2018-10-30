@@ -13,6 +13,7 @@
 #' @exportClass ms
 #' @param x	 A ms class object
 #' @param y	 missing
+#' @param object	 A ms class object
 #' @param ...	The usual extra arguments to generic functions — see \code{\link[graphics]{plot}}, \code{\link[graphics]{plot.default}}
 #' @slot Result A list of dataframes of each output object of coxph for the metabolites.
 #' @slot HRRG A dataframe with estimated metabolite-specific HR for low risk group and 95 percent CI.
@@ -51,6 +52,7 @@ setClass("ms",slots = list(Result="list",HRRG="matrix",Group="matrix",Metnames="
 
 #' @rdname ms-class
 #' @aliases show,ms-method
+#' @aliases ms,ANY
 setMethod("show",signature="ms"
           , function(object){
             cat("Metabolite by Metabolite CoxPh Model\n")
@@ -61,12 +63,11 @@ setMethod("show",signature="ms"
 #' @name ms-class
 #' @rdname ms-class
 #' @exportMethod summary
-setGeneric("summary", function(object,...) standardGeneric("summary"))
+# setGeneric("summary", function(object,...) standardGeneric("summary"))
 
 #' @rdname ms-class
 #' @aliases summary,ms-method
-setMethod("summary",signature="ms"
-          , function(object){
+setMethod("summary",signature="ms",function(object){
   cat("Summary of Metabolite by Metabolite CoxPh Models\n")
   cat("Number of Metabolites used: ", length(object@Metnames), "\n")
   cat("Top 15 Metabolites out of ", length(object@Metnames), "\n")
@@ -91,12 +92,14 @@ setMethod("summary",signature="ms"
 
 
 #' Method plot.
+#' setGeneric("plot",function(x,y,...){standardGeneric("plot")})
 #' @name ms-class
 #' @rdname ms-class
 #' @exportMethod plot
 
 #' @rdname ms-class
-#' @aliases plot,ms-method
+#' @aliases plot,ms,ANY-method
+#' @aliases ms-method
 setMethod(f="plot", signature = "ms",
           definition = function(x,y,...){
             object <-  x

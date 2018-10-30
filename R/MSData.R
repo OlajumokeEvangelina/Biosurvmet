@@ -10,11 +10,11 @@
 #'   \item{Censor}{The censoring/event indicator}
 #'   \item{Survival}{The Survival time}
 #'   \item{Met.names}{The vector of metabolites}
-#'   \item{MData}{The metabolic profile matrix}
+#'   \item{Mdata}{The metabolic profile matrix}
 #'   \item{Prognostic}{A data frame with prognostic factors.}
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
 #' @author Ziv Shkedy
-#' @seealso \code{\link[survival]{coxph}}, \code{\link[Biosurvmet]{DataHR}}, \code{\link[Biosurvmet]{MData}}
+#' @seealso \code{\link[survival]{coxph}}, \code{\link[Biosurvmet]{DataHR}}
 #' @examples
 #' #GENERATE SOME METABOLIC SURVIVAL DATA WITH PROGNOSTIC FACTORS
 #'

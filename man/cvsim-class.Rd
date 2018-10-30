@@ -6,7 +6,7 @@
 \alias{cvsim}
 \alias{show,cvsim-method}
 \alias{summary,cvsim-method}
-\alias{plot,cvsim-method}
+\alias{plot,cvsim,missing-method}
 \title{The cvsim Class.}
 \usage{
 \S4method{show}{cvsim}(object)

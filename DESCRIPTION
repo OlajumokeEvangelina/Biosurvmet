@@ -7,8 +7,8 @@ Authors@R: c(
        person("Ziv","Shkedy",email="ziv.shkedy@uhasselt.be",role="aut"))
 Maintainer: Olajumoke Owokotomo <olajumoke.owokotomo@uhasselt.be>
 Description: Predicting patients Survival using Metabolomics Signatures. The package use the metabolomics signature and other prognostic factors
-   as classifier for dividing the patients into low and high risk groups. The classifier is a linear combination of the signature and the prognostic factor and/or treatment effect.    It implements several
-    advanced classifier techniques and validation procedures. It also implements reduction of the metabolomics data with various reduction method and cross validation approach to investigate the mostly selected metabolic signature.
+   as classifier for classifying the patients into low and high risk groups. The classifier is a linear combination of the signature and the prognostic factor and/or treatment effect.    It implements several
+    advanced classifier techniques and validation procedures. It also implements reduction of the metabolomics data using various reduction method and cross validation approach to investigate the mostly selected metabolic signature.
 URL: https://www.uhasselt.be/fiche?email=olajumoke.owokotomo#fiche
 License: GPL-3 
 Encoding: UTF-8

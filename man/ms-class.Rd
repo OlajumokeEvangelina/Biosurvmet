@@ -6,23 +6,23 @@
 \alias{ms}
 \alias{show,ms-method}
 \alias{summary,ms-method}
-\alias{plot,ms-method}
+\alias{plot,ms,ANY-method}
 \title{The ms Class.}
 \usage{
 \S4method{show}{ms}(object)
-
-summary(object, ...)
 
 \S4method{summary}{ms}(object)
 
 \S4method{plot}{ms,ANY}(x, y, ...)
 }
 \arguments{
-\item{...}{The usual extra arguments to generic functions — see \code{\link[graphics]{plot}}, \code{\link[graphics]{plot.default}}}
+\item{object}{A ms class object}
 
 \item{x}{A ms class object}
 
 \item{y}{missing}
+
+\item{...}{The usual extra arguments to generic functions — see \code{\link[graphics]{plot}}, \code{\link[graphics]{plot.default}}}
 }
 \description{
 Class of object returned by function \code{\link[Biosurvmet]{MSpecificCoxPh}}.

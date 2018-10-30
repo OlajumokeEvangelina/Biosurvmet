@@ -92,12 +92,14 @@ setMethod("summary",signature="cvsim", function(object){
 )
 
 #' Method plot.
+#' setGeneric("plot",function(x,y,...){standardGeneric("plot")})
 #' @name cvsim-class
 #' @rdname cvsim-class
 #' @exportMethod plot
 
 #' @rdname cvsim-class
-#' @aliases plot,cvsim-method
+#' @aliases plot,cvsim,missing-method
+#' @aliases cvsim-method
 setMethod("plot", signature(x="cvsim", y="missing"),
           function(x,  y, ...) {
 

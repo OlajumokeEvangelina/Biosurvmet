@@ -2,7 +2,7 @@
 #'
 #' This function generates the null distribution of the HR by permutation approach. Several ways of permutation setting can be implemented. That is, function can be used to generate null distributions for four different validation schemes, PLS based, PCA based, Majority votes based and Lasso based.
 #'
-#' This function generates the null distribution of the HR by permutation approach either using a large metabolite matrix or a reduced version by supervised pca approach. Several ways of permutation setting can be implemented. That is, the function can be used to generate null distributions for four different validation schemes which are PLS based, PCA based, Majority votes based and Lasso based. Note this function internally calls function  \code{\link[Biosurvmet]{SurvPcaClass}}, \code{\link[Biosurvmet]{SurvPlsClass}}, \code{\link[Biosurvmet]{MajorityVotes}}, and \code{\link[Biosurvmet]{Lasoelacox}}.
+#' This function generates the null distribution of the HR by permutation approach either using a large metabolite matrix or a reduced version by supervised pca approach. Several ways of permutation setting can be implemented. That is, the function can be used to generate null distributions for four different validation schemes which are PLS based, PCA based, Majority votes based and Lasso based. Note this function internally calls function  \code{\link[Biosurvmet]{SurvPcaClass}}, \code{\link[Biosurvmet]{SurvPlsClass}}, \code{\link[Biosurvmet]{Majorityvotes}}, and \code{\link[Biosurvmet]{Lasoelacox}}.
 #' @param Survival A vector of survival time with length equals to number of subjects
 #' @param Censor A vector of censoring indicator
 #' @param Mdata A large or small metabolic profile matrix. A matrix with metabolic profiles where the number of rows should be equal to the number of metabolites and number of columns should be equal to number of patients.
@@ -26,18 +26,18 @@
 #'   \item{Validation}{The validation scheme that was used}
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
 #' @author Ziv Shkedy
-#' @seealso \code{\link[survival]{coxph}}, \code{\link[Biosurvmet]{EstimateHR}}, \code{\link[Biosurvmet]{SurvPcaClass}}, \code{\link[Biosurvmet]{SurvPlsClass}}, \code{\link[Biosurvmet]{MajorityVotes}}, \code{\link[Biosurvmet]{Lasoelacox}}, \code{\link[Biosurvmet]{EstimateHR}}, \code{\link[Biosurvmet]{Lasoelacox}}
+#' @seealso \code{\link[survival]{coxph}}, \code{\link[Biosurvmet]{EstimateHR}}, \code{\link[Biosurvmet]{SurvPcaClass}}, \code{\link[Biosurvmet]{SurvPlsClass}}, \code{\link[Biosurvmet]{Majorityvotes}}, \code{\link[Biosurvmet]{Lasoelacox}}, \code{\link[Biosurvmet]{EstimateHR}}, \code{\link[Biosurvmet]{Lasoelacox}}
 #' @examples
 #' ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 #' Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)
 #'
 #' ## USING THE FUNCTION
-#' Example <- NullDistHR(Survival = Data$Survival,Mdata = t(Data$Mdata),
+#' Example <- DistHR(Survival = Data$Survival,Mdata = t(Data$Mdata),
 #' Censor = Data$Censor,Reduce=FALSE,Select=15,Prognostic=Data$Prognostic,
 #' Quantile = 0.5, nperm=100, case=2, Validation=c("L1based"))
-#' @export NullDistHR
+#' @export DistHR
 
-NullDistHR<-function(Survival,
+DistHR<-function(Survival,
                      Censor,
                      Mdata,
                      Prognostic=NULL,
@@ -168,7 +168,7 @@ NullDistHR<-function(Survival,
 
       Ana1<-MSpecificCoxPh( Survival=Survival[ind.s[i,]], Mdata=Mdata[,ind.gene[i,]], Censor=Censor[ind.s[i,]], Reduce=FALSE,Select=15, Prognostic=perPrognostic, Quantile = Quantile)
 
-      Temp<-MajorityVotes(Ana1,Prognostic=Prognostic[ind.w[i,],], Survival=Survival[ind.s[i,]],Censor=Censor[ind.s[i,]],J=1)
+      Temp<-Majorityvotes(Ana1,Prognostic=Prognostic[ind.w[i,],], Survival=Survival[ind.s[i,]],Censor=Censor[ind.s[i,]],J=1)
 
       if (!is.null(Prognostic)) HRlowPerm[i,]<-summary(Temp$Model.result)[[8]][1,][-2]
       if ( is.null(Prognostic)) HRlowPerm[i,]<-summary(Temp$Model.result)[[8]][-2]
@@ -182,7 +182,7 @@ NullDistHR<-function(Survival,
                              Prognostic=Prognostic,
                              Quantile = Quantile)
 
-    TempObs<-MajorityVotes(Ana2,Prognostic, Survival,Censor,J=1)
+    TempObs<-Majorityvotes(Ana2,Prognostic, Survival,Censor,J=1)
 
     if (!is.null(Prognostic)) HRlowObs<-(summary(TempObs$Model.result)[[8]])[1,][-2]
     if ( is.null(Prognostic)) HRlowObs<-(summary(TempObs$Model.result)[[8]])[-2]

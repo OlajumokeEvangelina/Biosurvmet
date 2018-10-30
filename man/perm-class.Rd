@@ -6,14 +6,14 @@
 \alias{perm}
 \alias{show,perm-method}
 \alias{summary,perm-method}
-\alias{plot,perm-method}
+\alias{plot,perm,ANY-method}
 \title{The perm Class.}
 \usage{
 \S4method{show}{perm}(object)
 
 \S4method{summary}{perm}(object)
 
-\S4method{plot}{perm,missing}(x, y, ...)
+\S4method{plot}{perm,ANY}(x, y, ...)
 }
 \arguments{
 \item{object}{A perm class object}
@@ -25,7 +25,7 @@
 \item{...}{The usual extra arguments to generic functions — see \code{\link[graphics]{plot}}, \code{\link[graphics]{plot.default}}}
 }
 \description{
-Class of object returned by function \code{\link[Biosurvmet]{NullDistHR}}.
+Class of object returned by function \code{\link[Biosurvmet]{DistHR}}.
 }
 \section{Slots}{
 
@@ -44,7 +44,7 @@ Class of object returned by function \code{\link[Biosurvmet]{NullDistHR}}.
 Data<-MSData(nPatients=100,nMet=150,Prop=0.5)
 
 ## USING THE FUNCTION
-Example <- NullDistHR(Survival = Data$Survival,Mdata = t(Data$Mdata),
+Example <- DistHR(Survival = Data$Survival,Mdata = t(Data$Mdata),
 Censor = Data$Censor,Reduce=FALSE,Select=15,Prognostic=Data$Prognostic,
 Quantile = 0.5, nperm=10, case=2, Validation=c("L1based"))
 
@@ -57,7 +57,7 @@ summary(Example)
 plot(Example)
 }
 \seealso{
-\code{\link[Biosurvmet]{NullDistHR}}, \code{\link[Biosurvmet]{EstimateHR}}, \code{\link[Biosurvmet]{SurvPcaClass}}, \code{\link[Biosurvmet]{SurvPlsClass}}, \code{\link[Biosurvmet]{MajorityVotes}}, \code{\link[Biosurvmet]{Lasoelacox}}, \code{\link[Biosurvmet]{EstimateHR}}, \code{\link[Biosurvmet]{Lasoelacox}}
+\code{\link[Biosurvmet]{DistHR}}, \code{\link[Biosurvmet]{EstimateHR}}, \code{\link[Biosurvmet]{SurvPcaClass}}, \code{\link[Biosurvmet]{SurvPlsClass}}, \code{\link[Biosurvmet]{Majorityvotes}}, \code{\link[Biosurvmet]{Lasoelacox}}, \code{\link[Biosurvmet]{EstimateHR}}, \code{\link[Biosurvmet]{Lasoelacox}}
 }
 \author{
 Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@uhasselt.be}

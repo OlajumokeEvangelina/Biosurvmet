@@ -18,7 +18,7 @@ An object of class list is returned with the following items .
   \item{Censor}{The censoring/event indicator}
   \item{Survival}{The Survival time}
   \item{Met.names}{The vector of metabolites}
-  \item{MData}{The metabolic profile matrix}
+  \item{Mdata}{The metabolic profile matrix}
   \item{Prognostic}{A data frame with prognostic factors.}
 }
 \description{
@@ -39,7 +39,7 @@ MetData<-Data$Mdata
 Metnames<-Data$Met.names
 }
 \seealso{
-\code{\link[survival]{coxph}}, \code{\link[Biosurvmet]{DataHR}}, \code{\link[Biosurvmet]{MData}}
+\code{\link[survival]{coxph}}, \code{\link[Biosurvmet]{DataHR}}
 }
 \author{
 Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@uhasselt.be}

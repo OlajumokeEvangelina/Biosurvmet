@@ -1,6 +1,6 @@
 #' The perm Class.
 #'
-#' Class of object returned by function \code{\link[Biosurvmet]{NullDistHR}}.
+#' Class of object returned by function \code{\link[Biosurvmet]{DistHR}}.
 #'
 #' @name perm-class
 #' @rdname perm-class
@@ -16,13 +16,13 @@
 #'
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
 #' @author Ziv Shkedy
-#' @seealso \code{\link[Biosurvmet]{NullDistHR}}, \code{\link[Biosurvmet]{EstimateHR}}, \code{\link[Biosurvmet]{SurvPcaClass}}, \code{\link[Biosurvmet]{SurvPlsClass}}, \code{\link[Biosurvmet]{MajorityVotes}}, \code{\link[Biosurvmet]{Lasoelacox}}, \code{\link[Biosurvmet]{EstimateHR}}, \code{\link[Biosurvmet]{Lasoelacox}}
+#' @seealso \code{\link[Biosurvmet]{DistHR}}, \code{\link[Biosurvmet]{EstimateHR}}, \code{\link[Biosurvmet]{SurvPcaClass}}, \code{\link[Biosurvmet]{SurvPlsClass}}, \code{\link[Biosurvmet]{Majorityvotes}}, \code{\link[Biosurvmet]{Lasoelacox}}, \code{\link[Biosurvmet]{EstimateHR}}, \code{\link[Biosurvmet]{Lasoelacox}}
 #' @examples
 #' ## GENERATE SOME METABOLIC SURVIVAL DATA WITH PROGNOSTIC FACTORS
 #' Data<-MSData(nPatients=100,nMet=150,Prop=0.5)
 #'
 #' ## USING THE FUNCTION
-#' Example <- NullDistHR(Survival = Data$Survival,Mdata = t(Data$Mdata),
+#' Example <- DistHR(Survival = Data$Survival,Mdata = t(Data$Mdata),
 #' Censor = Data$Censor,Reduce=FALSE,Select=15,Prognostic=Data$Prognostic,
 #' Quantile = 0.5, nperm=10, case=2, Validation=c("L1based"))
 #'
@@ -65,6 +65,7 @@ setMethod("summary",signature="perm", function(object){
   cat("Summary of Permutation Analysis\n")
   cat("validation scheme used :",object@Validation,"\n")
   cat("Number of Permutations: ", object@nperm, "\n")
+  cat("\n")
   cat("Estimated  quantiles of the null distribution of HR\n")
   print(quantile(object@HRperm[,1],probs=c(0.05,0.25,0.5,0.75,0.95)))
   cat("\n")
@@ -76,14 +77,16 @@ setMethod("summary",signature="perm", function(object){
 
 
 #' Method plot.
+#' setGeneric("plot",function(x,y,...){standardGeneric("plot")})
 #' @name perm-class
 #' @rdname perm-class
 #' @exportMethod plot
 
 #' @rdname perm-class
-#' @aliases plot,perm-method
-setMethod("plot", signature(x="perm", y="missing"),
-          function(x,  y, ...) {
+#' @aliases plot,perm,ANY-method
+#' @aliases perm-method
+setMethod("plot", signature("perm"),
+          function(x, y, ...) {
             if (class(x)!="perm") stop("Invalid class object")
 
             HR<-x@HRperm[,1]
@@ -94,7 +97,7 @@ setMethod("plot", signature(x="perm", y="missing"),
 
              dotsCall <- substitute(list(...))
             ll <- eval(dotsCall)
-            if(!hasArg("xlab")) ll$xlab <- paste("Estimated HR \n Emperical p-value: ",round(pvalue,4),sep="")
+            if(!hasArg("xlab")) ll$xlab <- paste("Estimated HR: Emperical p-value=", round(pvalue,4) ,"\n The first, third and last line are the lower,median  and upper CI of the permuted data estimated HR \n the red line is the estimated HR of the original data",sep="")
             if(!hasArg("ylab")) ll$ylab <- ""
             ll$main <- "Null Distribution of HR on Permuted Data \n for low risk group"
             if(!hasArg("cex.lab")) ll$cex.lab <- 0.8

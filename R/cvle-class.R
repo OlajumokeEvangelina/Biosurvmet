@@ -40,6 +40,7 @@
 #' show(Eg)
 #' summary(Eg)
 #' plot(Eg, type =3)
+#' @docType class
 
 setClass("cvle",representation(Coef.mat="matrix",Runtime="vector",lambda="vector",n="vector",Met.mat="matrix",HRTrain="matrix",HRTest="matrix",pld="vector",Mdata="matrix"), prototype=list(Coef.mat=matrix(1,1,1),Runtime=c(NA),lambda=c(NA), n=c(NA), Met.mat=matrix(1,1,1),HRTrain=matrix(1,1,1) , HRTest=matrix(1,1,1) , pld=c(NA),Mdata=matrix(1,1,1))
 )
@@ -90,12 +91,14 @@ print(names(sFreq)[1:maxG])
 
 
 #' Method plot.
+#' setGeneric("plot",function(x,y,...){standardGeneric("plot")})
 #' @name cvle-class
 #' @rdname cvle-class
 #' @exportMethod plot
 
 #' @rdname cvle-class
-#' @aliases plot,cvle-method
+#' @aliases plot,cvle,missing-method
+#' @aliases cvle-method
           setMethod(f ="plot", signature(x="cvle", y="missing"),
                     function(x,  y, type=1, ...) {
                       if (class(x)!="cvle") stop("Invalid class object")

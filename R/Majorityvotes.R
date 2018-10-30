@@ -28,7 +28,7 @@
 #'Select = 15,Prognostic = Data$Prognostic, Quantile = 0.5)
 #'
 #' ## USING THE FUNCTION
-#' Result2 = MajorityVotes(Example1,Data$Prognostic, Data$Survival,Data$Censor,J=2)
+#' Result2 = Majorityvotes(Example1,Data$Prognostic, Data$Survival,Data$Censor,J=2)
 #'
 #' ## THE SURVIVAL ANALYSIS FOR MAJORITY VOTE RESULT
 #'  Result2$Model.result
@@ -41,10 +41,10 @@
 #'
 #'### THE GROUP FOR EACH SUBJECT BASED ON THE METABOLITE SPPECIFIC ANALYSIS
 #' Result2$Group
-#' @export MajorityVotes
+#' @export Majorityvotes
 
 
-MajorityVotes<-function(Result,Prognostic, Survival,Censor,J=1){
+Majorityvotes<-function(Result,Prognostic, Survival,Censor,J=1){
 
 
   if (class(Result)!="ms") stop("Invalid class object.")

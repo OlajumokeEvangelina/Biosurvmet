@@ -2,7 +2,7 @@
 #'
 #' This function does cross validation for the Majority votes based classification.
 #'
-#' This function does cross validation for the Majority votes based classification which is a cross validated approach to \code{\link[Biosurvmet]{MajorityVotes}}.
+#' This function does cross validation for the Majority votes based classification which is a cross validated approach to \code{\link[Biosurvmet]{Majorityvotes}}.
 #' @param Survival A vector of survival time with length equals to number of subjects
 #' @param Censor A vector of censoring indicator
 #' @param Prognostic A dataframe containing possible prognostic(s) factor and/or treatment effect to be used in the model.
@@ -19,7 +19,7 @@
 #'   \item{Progfact}{The names of prognostic factors used}
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
 #' @author Ziv Shkedy
-#' @seealso \code{\link[Biosurvmet]{MajorityVotes}}
+#' @seealso \code{\link[Biosurvmet]{Majorityvotes}}
 #' @examples
 #' ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 #' Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)

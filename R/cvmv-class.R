@@ -17,7 +17,7 @@
 #'
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
 #' @author Ziv Shkedy
-#' @seealso \code{\link[Biosurvmet]{CVPcaPls}}, \code{\link[Biosurvmet]{SurvPcaClass}}, \code{\link[Biosurvmet]{SurvPlsClass}}
+#' @seealso \code{\link[Biosurvmet]{Majorityvotes}}, \code{\link[Biosurvmet]{CVPcaPls}}, \code{\link[Biosurvmet]{SurvPcaClass}}, \code{\link[Biosurvmet]{SurvPlsClass}}
 #' @examples
 #' ## GENERATE SOME METABOLIC SURVIVAL DATA WITH PROGNOSTIC FACTORS
 #' Data<-MSData(nPatients=100,nMet=150,Prop=0.5)
@@ -42,8 +42,6 @@ setClass("cvmv",representation(HRTrain="matrix",HRTest="matrix",Ncv="numeric",Md
 #' @name cvmv
 #' @rdname cvmv-class
 #' @exportMethod show
-#setGeneric("show", function(object) standardGeneric("show"))
-
 #' @rdname cvmv-class
 #' @aliases show,cvmv-method
 setMethod("show",signature="cvmv"
@@ -61,8 +59,6 @@ setMethod("show",signature="cvmv"
 #' @name cvmv-class
 #' @rdname cvmv-class
 #' @exportMethod summary
-#setGeneric("summary", function(object,...) standardGeneric("summary"))
-
 #' @rdname cvmv-class
 #' @aliases summary,cvmv-method
 setMethod("summary",signature="cvmv", function(object){
@@ -78,13 +74,14 @@ setMethod("summary",signature="cvmv", function(object){
 
 
 #' Method plot.
+#' setGeneric("plot",function(x,y,...){standardGeneric("plot")})
 #' @name cvmv-class
 #' @rdname cvmv-class
 #' @exportMethod plot
-
 #' @rdname cvmv-class
-#' @aliases plot,cvmv-method
-setMethod("plot", signature(x="cvmv", y="missing"),
+#' @aliases plot,cvmv,ANY-method
+#' @aliases cvmv-method
+setMethod("plot", signature(x="cvmv"),
           function(x,  y, ...) {
             if (class(x)!="cvmv") stop("Invalid class object")
             HRTest<-x@HRTest

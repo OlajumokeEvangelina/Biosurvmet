@@ -6,14 +6,14 @@
 \alias{cvmv}
 \alias{show,cvmv-method}
 \alias{summary,cvmv-method}
-\alias{plot,cvmv-method}
+\alias{plot,cvmv,ANY-method}
 \title{The cvmv Class.}
 \usage{
 \S4method{show}{cvmv}(object)
 
 \S4method{summary}{cvmv}(object)
 
-\S4method{plot}{cvmv,missing}(x, y, ...)
+\S4method{plot}{cvmv,ANY}(x, y, ...)
 }
 \arguments{
 \item{object}{A cvmv class object}
@@ -59,7 +59,7 @@ summary(Result)
 plot(Result)
 }
 \seealso{
-\code{\link[Biosurvmet]{CVPcaPls}}, \code{\link[Biosurvmet]{SurvPcaClass}}, \code{\link[Biosurvmet]{SurvPlsClass}}
+\code{\link[Biosurvmet]{Majorityvotes}}, \code{\link[Biosurvmet]{CVPcaPls}}, \code{\link[Biosurvmet]{SurvPcaClass}}, \code{\link[Biosurvmet]{SurvPlsClass}}
 }
 \author{
 Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@uhasselt.be}

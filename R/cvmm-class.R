@@ -2,8 +2,7 @@
 #'
 #' Class of object returned by function \code{\link[Biosurvmet]{CVMetSpecificCoxPh}}.
 #'
-#' plot {signature(x = "cvmm"): Plots for CVMetSpecificCoxPh class analysis results}
-#' signature(x = "cvmm"): Plots for CVMetSpecificCoxPh class analysis results.
+#' plot signature(x = "cvmm"): Plots for \code{\link[Biosurvmet]{CVMetSpecificCoxPh}} class analysis results.
 #'
 #' Any parameters of \code{\link[graphics]{plot.default}} may be passed on to this particular plot method.
 #'
@@ -11,6 +10,8 @@
 #' @exportClass cvmm
 #' @param x	 A CVMetSpecificCoxPh class object
 #' @param y	 missing
+#' @param object A CVMetSpecificCoxPh class object
+#' @param which This specify which metabolite for which estimated HR information need to be visualized. By default results of the first metabolite is used.
 #' @param ...	The usual extra arguments to generic functions — see \code{\link[graphics]{plot}}, \code{\link[graphics]{plot.default}}
 #' @slot HRTrain A 3-way array, The first dimension is the number of metabolites, the second dimension is the HR statistics for the low risk group in the train dataset (HR,1/HR LCI, UCI) while the third dimension is the number of cross validation performed.
 #' @slot HRTest A 3-way array, The first dimension is the number of metabolites, the second dimension is the HR statistics for the low risk group in the test dataset (HR,1/HR LCI, UCI) while the third dimension is the number of cross validation performed.
@@ -61,9 +62,6 @@ setMethod("show",signature="cvmm"
 #' @name cvmm-class
 #' @rdname cvmm-class
 #' @exportMethod summary
-setGeneric("summary", function(object,...) standardGeneric("summary"))
-
-#' @rdname cvmm-class
 #' @aliases summary,cvmm-method
 setMethod("summary",signature="cvmm"
           ,function(object,which=1){
@@ -98,7 +96,9 @@ setMethod("summary",signature="cvmm"
 #' @exportMethod plot
 
 #' @rdname cvmm-class
-#' @aliases plot,cvmm-method
+#' setGeneric("plot",function(x,y,...){standardGeneric("plot")})
+#' @aliases plot,cvmm,ANY-method
+#' @aliases cvmm-method
 setMethod(f="plot", signature = "cvmm",
           definition =  function(x,  y, which=1, ...) {
             HRTest  <- x@HRTest[which,,][1,]

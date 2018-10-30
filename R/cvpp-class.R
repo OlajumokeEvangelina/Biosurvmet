@@ -80,13 +80,15 @@ setMethod("summary",signature="cvpp", function(object){
 #" setGeneric("plot", function(x,y, ...) standardGeneric("plot"))
 
 #' Method plot.
+#' setGeneric("plot",function(x,y,...){standardGeneric("plot")})
 #' @name cvpp-class
 #' @rdname cvpp-class
 #' @exportMethod plot
-#' @importFrom graphics plot
+#' @import graphics
 
 #' @rdname cvpp-class
-#' @aliases plot,cvpp-method,
+#' @aliases plot,cvpp,missing-method
+#' @aliases cvpp-method
 setMethod("plot", signature(x="cvpp", y="missing"),
           function(x,  y, ...) {
             dotsCall <- substitute(list(...))

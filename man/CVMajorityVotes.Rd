@@ -36,7 +36,7 @@ A object of class \code{\link[Biosurvmet]{cvmv}} is returned with the following 
 This function does cross validation for the Majority votes based classification.
 }
 \details{
-This function does cross validation for the Majority votes based classification which is a cross validated approach to \code{\link[Biosurvmet]{MajorityVotes}}.
+This function does cross validation for the Majority votes based classification which is a cross validated approach to \code{\link[Biosurvmet]{Majorityvotes}}.
 }
 \examples{
 ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
@@ -56,7 +56,7 @@ summary(Result)
 plot(Result)
 }
 \seealso{
-\code{\link[Biosurvmet]{MajorityVotes}}
+\code{\link[Biosurvmet]{Majorityvotes}}
 }
 \author{
 Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@uhasselt.be}
