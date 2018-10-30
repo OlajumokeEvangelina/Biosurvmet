@@ -7,7 +7,7 @@ R package : A biomarker validation approach for predicting survival using metabo
 * It also employs data reduction techniques such as PCA, PLS and Lasso 
 * It classifies subjects based on the signatures into Low and high risk group
 * It incorporate the use of subject prognostic information for the to enhance the biomarker for classification
-* It gives information about the surival rate of subjects depending on the classificationhjkkjkllkkl
+* It gives information about the surival rate of subjects depending on the classification
 
 
 
