@@ -20,7 +20,7 @@
 #'   \item{n}{The number of selected metabolites}
 #'   \item{Risk.scores}{The risk scores of the subjects}
 #'   \item{Risk.group}{The risk classification of the subjects based on the specified quantile}
-#'   \item{Result}{The cox analysis of the riskgroup based on the selected metabolites and the prognostic factors}
+#'   \item{SurvFit}{The cox analysis of the riskgroup based on the selected metabolites and the prognostic factors}
 #'   \item{Select}{A Boolean argument indicating if there was selection or not}
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
 #' @author Ziv Shkedy
@@ -44,13 +44,13 @@
 #' Results$Risk.Group
 #'
 #' ## VIEW THE SURVIVAL ANALYSIS RESULT
-#' Results$Result
+#' Results$SurvFit
 #'
 #' ## TO CHECK IF THERE WAS ANY SELECTION
 #' Results$Select
 #' @import utils
 #' @import stats
-#' @import Biobase
+# #' @import Biobase
 
 
 #' @export Lasoelacox
@@ -135,8 +135,8 @@ Lasoelacox <- function (Survival,
 
 
 
-  # What to do if no gene is selected?
-  # Decrease lambda until a gene is selected
+  # What to do if no metabolite is selected?
+  # Decrease lambda until a metabolite is selected
   # Going through the list of lambda values and repeat the above procedure
 
   n <- length(Selected.mets)
@@ -187,7 +187,7 @@ Lasoelacox <- function (Survival,
 
   if (Plots)
   {
-
+    par(mfrow=c(1,2))
     # Plot 1
 
     plot(log(Lasso.Cox.CV$lambda), Lasso.Cox.CV$cvm,
@@ -218,6 +218,6 @@ Lasoelacox <- function (Survival,
               n = n,
               Risk.Scores=Risk.Scores,
               Risk.Group=Risk.Group,
-              Result=Cox.Fit.Risk.Group,
+              SurvFit=Cox.Fit.Risk.Group,
               Select = Select))
 }

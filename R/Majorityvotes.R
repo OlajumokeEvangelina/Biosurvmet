@@ -90,16 +90,14 @@ Majorityvotes<-function(Result,Prognostic, Survival,Censor,J=1){
   Jmax<-floor(np/25)
   if (J<Jmax) {
     slist<-(1+(J-1)*25):(J*25)
-
-    plot(0,0, xlim=c(-2,ng),ylim=c(1,25),xlab="Metabolites",ylab="Patient Index",axes=FALSE,type="n",
-         main="Metabolite-Specific Classification\n of 25  selected patients",cex.main=0.9)
+    par(mar=c(5.1, 4.1, 4.1, 8.1), xpd=TRUE)
+    plot(0,0, xlim=c(-2,ng),ylim=c(1,25),xlab="Metabolites",ylab="Patient Index",axes=FALSE,type="n", main="Metabolite-Specific Classification\n of 25  selected patients",cex.main=0.9)
     for(i in 1:ng){
       points(rep(i, 25)[VoteMat[i,slist]=="Low risk"],which(VoteMat[i,slist]=="Low risk"),col=4,pch=15)
       points(rep(i, 25)[VoteMat[i,slist]=="High risk"],which(VoteMat[i,slist]=="High risk"),col=5,pch=15)
     }
     axis(1);axis(2,at=1:25,slist);box()
-    legend("bottom",c("Low Risk","High Risk"),pch=c(15,15),col=c(4,5), xpd = TRUE, bty = "n", horiz = TRUE, inset = c(0,0))
-    #par(xpd = T, mar = par()$mar + c(0,0,0,7))
+    legend("topright",inset=c(-0.15,0),c("Low Risk","High Risk"),pch=c(15,15),col=c(4,5))
   } else {stop("J should be less than (no.of patients / 25)")
   }
 

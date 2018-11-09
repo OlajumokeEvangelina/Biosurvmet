@@ -19,6 +19,22 @@ You can install the released version of MetabolicSurv from [CRAN](https://CRAN.R
 install.packages("MetabolicSurv")
 
 ```
+## Illustrations to simulate a Metabolomic profile matrix
+Apart from the survival prediction and classification, \pkg{MetabolicSurv} can also be used to generate an artificial Metabolomic profile matrix, survival data (Survival time and censoring indiicator) and clinical covariates which will be referred to as prognostic factors to be used for further analysis or for other pursoses. Since there a few publicly available metabolic profile matrix this package can be used to firstly simulate each of this respective dataset which is required to evaluate the other basic and advance function in the package.
+
+
+``` r
+	library(MetabolicSurv)
+	Data <- MSData(nPatients = 200, nMet = 3000, Prop = 0.5)
+	Metdata <- Data$Mdata
+	Survdata <- Data$Survival
+	Censordata <- Data$Censor
+	Progdata <- Data$Prognostic
+	
+``` 
+
+The code above was used to simulate a metabolomic, survival and prognostic data with a total of 200 patients with 3000  metabolites in the metabolomic profile matriix  assuming that the proportion of patients having low risk is 0.5 . The proportion can be adjusted depending on how strict one need to be in assuming equal or unequal proportion of classification based on biological findings or intelligent guess. The Metabolomic profile matrix is stored in Metdata, the survival time is stored in Survdata, Censoring information in Censordata and the Prognosticfactor/clinical covariates in Progdata.
+
 
 ## A quick Demostration to solve a problem
 
@@ -48,3 +64,23 @@ Result$SurvResult
 ## Group information
 Result$Riskgroup
 ```
+
+## Functions in the package
+
+| Category	|	Functions	|	Description	                                |
+| --------- | --------- | ------------------------------------------- |
+| Basic	|	MSpecificCoxPh	|	Metabolite by metabolite Cox proportional hazard analysis
+|  | SurvPcaClass	| Classifier based on first PCA
+| | SurvPlsClass| Classifier based on first PLS 
+| | Majorityvotes |Classifiction for Majority Votes	
+| | Lasoelacox | Wrapper function for glmnet
+| | MSData | Generate Artificial Metabolic Survival Data
+| Advance	| CVLasoelacox |Cross Validations for Lasso Elastic Net predictive models and Classification
+|  | CVSim	| Cross-validation for Top $K_{1}, \ldots, K_{n}$ metabolites
+| | CVPcaPls |	Cross-validations for PCA and PLS based methods
+| | CvMajorityvotes | Cross-validation for majority votes	
+| | MetFreq |Frequency of Selected Metabolites from the Metabolite specific Cross Validation
+| | QuantileAnalysis |Sensitivity of the quantile used for classification
+| | Icvlasoel |	Inner and outer cross-validations for shrinkage methods
+| | DistHR | Null distribution of the estimated HR
+| | SIMet | Sequentially increase the number of top $K$ metabolites

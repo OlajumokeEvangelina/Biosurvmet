@@ -66,21 +66,21 @@ CVSim<-function(Object,Top=seq(5,100,by=5),Survival,Censor, Prognostic=NULL){
       hrsetTE<-Object@HRTest[,c(1,3,4),i]
       hrsetmT<-Object@HRTrain[,c(1,3,4),i]
 
-      Names.KGenesT<-rownames(Mdata)[order(hrsetTE[,1],decreasing=Decrease)]
-      index.Top.KGenesT <- order(hrsetTE[,1],decreasing=Decrease)
-      index.Top.KGenes<-index.Top.KGenesT[1:Top[j]]
+      Names.KMetsT<-rownames(Mdata)[order(hrsetTE[,1],decreasing=Decrease)]
+      index.Top.KMetsT <- order(hrsetTE[,1],decreasing=Decrease)
+      index.Top.KMets<-index.Top.KMetsT[1:Top[j]]
 
-      meti <-Mdata[intersect(rownames(Mdata),Names.KGenesT[1:Top[j]]),]
+      meti <-Mdata[intersect(rownames(Mdata),Names.KMetsT[1:Top[j]]),]
 
       #PCA ----------------
 
       TrainTemp<-IntermediatePCA(meti,Prognostic,Survival,Censor,Object@train[i,])
       TestTemp<- IntermediatePCA(meti,Prognostic,Survival,Censor,Object@test[i,])
       m1 <- TrainTemp$m0
-      TrtandGene1<-summary(m1)[[7]][c("pc1"),1]
+      TrtandMet1<-summary(m1)[[7]][c("pc1"),1]
       rm(m1)
-      p1.train     <- TrtandGene1[1]*TrainTemp$pc1
-      p1.test     <-  TrtandGene1[1]*TestTemp$pc1
+      p1.train     <- TrtandMet1[1]*TrainTemp$pc1
+      p1.test     <-  TrtandMet1[1]*TestTemp$pc1
 
       TempmetiTE <-EstimateHR(p1.test,Data.Survival=data.frame(Survival=Survival[Object@test[i,]],Censor=Censor[Object@test[i,]]),Prognostic=Prognostic[Object@test[i,],],Plots = FALSE, Quantile = 0.5)
 
@@ -90,10 +90,10 @@ CVSim<-function(Object,Top=seq(5,100,by=5),Survival,Censor, Prognostic=NULL){
       TrainTemp1<-IntermediatePLS(meti,Prognostic,Survival,Censor,Object@train[i,])
       TestTemp1 <-IntermediatePLS(meti,Prognostic,Survival,Censor,Object@test[i,])
       m1 <- TrainTemp1$m0
-      TrtandGene2<-summary(m1)[[7]][c("pc1"),1]
+      TrtandMet2<-summary(m1)[[7]][c("pc1"),1]
       rm(m1)
-      p1.train     <- TrtandGene2[1]*TrainTemp1$pc1
-      p1.test     <- TrtandGene2[1]*TestTemp1$pc1
+      p1.train     <- TrtandMet2[1]*TrainTemp1$pc1
+      p1.test     <- TrtandMet2[1]*TestTemp1$pc1
       TempmetiTE <-EstimateHR(p1.test,Data.Survival=data.frame(Survival=Survival[Object@test[i,]],Censor=Censor[Object@test[i,]]),Prognostic=Prognostic[Object@test[i,],],Plots = FALSE, Quantile = 0.5)
 
     HRPL[i,,j]<- (summary( TempmetiTE$SurvResult)[[8]][1,])[-2]

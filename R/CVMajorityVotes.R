@@ -81,19 +81,19 @@ CVMajorityvotes<-function(Survival,Censor, Prognostic=NULL, Mdata, Reduce=TRUE, 
 
 
     for (i in 1:n.mets){
-      genei <- ReduMdata[i,ind.train[j,]]
+      meti <- ReduMdata[i,ind.train[j,]]
 
       if (is.null(Prognostic)) {
 
-        cdata <- data.frame(Survival=Survival[ind.train[j,]],Censor=Censor[ind.train[j,]],genei)
-        m0 <- survival::coxph(survival::Surv(Survival, Censor==1) ~ genei,data=cdata)
+        cdata <- data.frame(Survival=Survival[ind.train[j,]],Censor=Censor[ind.train[j,]],meti)
+        m0 <- survival::coxph(survival::Surv(Survival, Censor==1) ~ meti,data=cdata)
       }
       if (!is.null(Prognostic)) {
         if (is.data.frame(Prognostic)) {
           nPrgFac<-ncol(Prognostic)
-          cdata <- data.frame(Survival=Survival[ind.train[j,]],Censor=Censor[ind.train[j,]],genei,Prognostic[ind.train[j,],])
+          cdata <- data.frame(Survival=Survival[ind.train[j,]],Censor=Censor[ind.train[j,]],meti,Prognostic[ind.train[j,],])
           NameProg<-colnames(Prognostic)
-          eval(parse(text=paste( "m0 <-survival::coxph(survival::Surv(Survival, Censor==1) ~ genei",paste("+",NameProg[1:nPrgFac],sep="",collapse =""),",data=cdata)" ,sep="")))
+          eval(parse(text=paste( "m0 <-survival::coxph(survival::Surv(Survival, Censor==1) ~ meti",paste("+",NameProg[1:nPrgFac],sep="",collapse =""),",data=cdata)" ,sep="")))
         } else {
 
           stop(" Argument 'Prognostic' is NOT a data frame ")
@@ -101,35 +101,35 @@ CVMajorityvotes<-function(Survival,Censor, Prognostic=NULL, Mdata, Reduce=TRUE, 
 
       }
       #risk Score
-      TrtandPC1<-summary(m0)[[7]][c("genei"),1]
-      p1 <- TrtandPC1*genei
+      TrtandPC1<-summary(m0)[[7]][c("meti"),1]
+      p1 <- TrtandPC1*meti
 
-      TempGenei <-EstimateHR(p1,Data.Survival=cdata, Prognostic=Prognostic[ind.train[j,],],Plots = FALSE, Quantile = 0.5 )
-      gr.train[i,]<-TempGenei$Riskgroup
+      Tempmeti <-EstimateHR(p1,Data.Survival=cdata, Prognostic=Prognostic[ind.train[j,],],Plots = FALSE, Quantile = 0.5 )
+      gr.train[i,]<-Tempmeti$Riskgroup
 
 
       #---------------------------------------  Testing  Set -------------------------------------------
-      geneit <- ReduMdata[i,ind.test[j,]]
+      metit <- ReduMdata[i,ind.test[j,]]
       if (!is.null(Prognostic)) {
         if (is.data.frame(Prognostic)) {
           nPrgFac<-ncol(Prognostic)
-          cdata <- data.frame(Survival=Survival[ind.test[j,]],Censor=Censor[ind.test[j,]],geneit,Prognostic[ind.test[j,],])
+          cdata <- data.frame(Survival=Survival[ind.test[j,]],Censor=Censor[ind.test[j,]],metit,Prognostic[ind.test[j,],])
           NameProg<-colnames(Prognostic)
-          eval(parse(text=paste( "m0 <-survival::coxph(survival::Surv(Survival, Censor==1) ~ geneit",paste("+",NameProg[1:nPrgFac],sep="",collapse =""),",data=cdata)" ,sep="")))
+          eval(parse(text=paste( "m0 <-survival::coxph(survival::Surv(Survival, Censor==1) ~ metit",paste("+",NameProg[1:nPrgFac],sep="",collapse =""),",data=cdata)" ,sep="")))
         } else {
 
           stop(" Argument 'Prognostic' is NOT a data frame ")
         }
 
       }
-      TrtandPC1<-summary(m0)[[7]][c("geneit"),1]
-      p2 <- TrtandPC1*geneit
+      TrtandPC1<-summary(m0)[[7]][c("metit"),1]
+      p2 <- TrtandPC1*metit
 
-      TempGeneit <-EstimateHR(p2,Data.Survival=cdata, Prognostic=Prognostic[ind.test[j,],],Plots = FALSE, Quantile = 0.5 )
-      gr.test[i,]<-TempGeneit$Riskgroup
+      Tempmetit <-EstimateHR(p2,Data.Survival=cdata, Prognostic=Prognostic[ind.test[j,],],Plots = FALSE, Quantile = 0.5 )
+      gr.test[i,]<-Tempmetit$Riskgroup
 
       #mp1 <- median(p1)
-      #p2 <- TrtandPC1*geneit
+      #p2 <- TrtandPC1*metit
 
 
 

@@ -22,7 +22,7 @@
 
 \item{y}{missing}
 
-\item{type}{Plot type. 1 distribution of the HR under test and train data. 2 HR vs number genes selected. 3. Top mostly selected 30 metabolites.}
+\item{type}{Plot type. 1 distribution of the HR under test and train data. 2 HR vs number selected metabolites. 3. Top mostly selected 30 metabolites.}
 
 \item{...}{The usual extra arguments to generic functions — see \code{\link[graphics]{plot}}, \code{\link[graphics]{plot.default}}}
 }

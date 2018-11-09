@@ -33,6 +33,9 @@
 #' show(Example)
 #' summary(Example)
 #' plot(Example)
+#' @note The first, third and last vertical line on the plot are the lower,
+#' median  and upper CI of the permuted data estimated HR while
+#' the red line is the estimated HR of the original data
 
 setClass("perm",representation(HRobs="vector",HRperm="matrix",nperm="numeric",Validation="vector"),
          prototype=list(HRobs=as.vector(rep(NA,3)),HRperm=matrix(1,1,1),nperm=100,Validation=c(NA))
@@ -97,7 +100,7 @@ setMethod("plot", signature("perm"),
 
              dotsCall <- substitute(list(...))
             ll <- eval(dotsCall)
-            if(!hasArg("xlab")) ll$xlab <- paste("Estimated HR: Emperical p-value=", round(pvalue,4) ,"\n The first, third and last line are the lower,median  and upper CI of the permuted data estimated HR \n the red line is the estimated HR of the original data",sep="")
+            if(!hasArg("xlab")) ll$xlab <- paste("Estimated HR: Emperical p-value = ", pvalue ,sep="")
             if(!hasArg("ylab")) ll$ylab <- ""
             ll$main <- "Null Distribution of HR on Permuted Data \n for low risk group"
             if(!hasArg("cex.lab")) ll$cex.lab <- 0.8

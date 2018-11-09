@@ -117,7 +117,13 @@ setMethod(f="plot", signature = "ms",
             colnames(res.topkMetabolites)<-c("Metnames","HR","LCI","UCI","FDRLCI","FDRUCI")
 
             x= 1:length(object@Metnames)
-            par(mfrow=c(3,1))
+            par(mfrow=c(2,2))
+            boxplot(object@HRRG[,1],col="blue",ylab = "Estimated HR",main = "Distribution of all the HR for the metabolite specific analysis")
+
+            Group2 = object@Group
+            prop = sapply(1:ncol(Group2),function(k) sum(Group2[,k]=="Low risk")/nrow(Group2))
+            barplot(prop, col=rainbow(length(Group2[1,])), xlab = "Patient index", ylab = "Proportion",main = "Proportion of being classified as low risk group",ylim = c(0,max(prop)))
+
             plot(x=x, y = res.topkMetabolites[,2],
                  ylim= c(0,max(res.topkMetabolites[,4])),
                  pch=19, xlab="Metabolites", ylab="Hazard ratio",
@@ -132,9 +138,6 @@ setMethod(f="plot", signature = "ms",
             arrows(x, res.topkMetabolites[,5], x, res.topkMetabolites[,6], length=0.05, angle=90, code=3)
             abline(h=1,col="red2",lwd=2.0)
 
-            Group2 = object@Group
-            prop = sapply(1:ncol(Group2),function(k) sum(Group2[,k]=="Low risk")/nrow(Group2))
-            barplot(prop, col=rainbow(length(Group2[1,])), xlab = "Patient index", ylab = "Proportion",main = "Proportion of being classified as low risk group",ylim = c(0,max(prop)))
             return(invisible())
           })
 

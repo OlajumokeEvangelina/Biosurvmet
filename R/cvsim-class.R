@@ -7,6 +7,7 @@
 #' @exportClass cvsim
 #' @param x	 A cvsim class object
 #' @param y	 missing
+#' @param type Plot type. 1 distribution of the HR under test For the Top K metabolites using PCA. 2 distribution of the HR under test For the Top K metabolites using PLS.
 #' @param  object A cvsim class object
 #' @param ...	 The usual extra arguments to generic functions — see \code{\link[graphics]{plot}}, \code{\link[graphics]{plot.default}}
 #' @slot HRpca A 3-way array in which first, second, and third dimensions correspond to number of metabolites, Hazard ratio infromation(Estimated HR, LowerCI and UpperCI), and number of cross validation respectively. This contains the estimated HR on test data and dimension reduction method is PCA.
@@ -37,7 +38,7 @@
 #' ##  METHOD THAT CAN BE USED FOR THE RESULT
 #' show(Result)
 #' summary(Result)
-#' plot(Result)
+#' plot(Result, type =2)
 #' @importFrom methods setClass setGeneric setMethod setRefClass
 
 setClass("cvsim",representation(HRpca="array",HRpls="array",Nmets="numeric",Ncv="numeric",Top="numeric"),
@@ -70,7 +71,7 @@ setMethod("show",signature="cvsim"
 setMethod("summary",signature="cvsim", function(object){
   cat("Results Based on Test Data\n")
   cat("Summary of Cross Validated Top K metabolites  Analysis\n")
-  cat("Estimated Median of the cross Validated HR for Top K metabolites \n")
+  cat("Estimated Median of the HR for the cross Validated HR for Top K metabolites \n")
   nn<-dim(object@HRpca)[3]
   mean.alpha<- sapply(1:nn,function(i) median(object@HRpca[,1,i],na.rm=T))
   se.alphal<- sapply(1:nn,function(i) quantile(object@HRpca[,1,i],na.rm=T,probs = c(0.025)))
@@ -86,7 +87,7 @@ setMethod("summary",signature="cvsim", function(object){
 
   HR<-data.frame(rbind(mx1,mx3))
   colnames(HR)<-object@Top
-  rownames(HR)<-c("HR  (PCA)","HR  (PLS)")
+  rownames(HR)<-c("(PCA)","(PLS)")
   print(HR)
 }
 )
@@ -101,33 +102,43 @@ setMethod("summary",signature="cvsim", function(object){
 #' @aliases plot,cvsim,missing-method
 #' @aliases cvsim-method
 setMethod("plot", signature(x="cvsim", y="missing"),
-          function(x,  y, ...) {
-
-            par(mfrow=c(1,2))
+          function(x,  y, type=1, ...) {
+            if (class(x)!="cvsim") stop("Invalid class object")
+            if (type==1) {
             nn<-dim(x@HRpca)[3]
             PC.HRp<-x@HRpca[,1,1:nn]
             colnames(PC.HRp)<-x@Top
 
+            dotsCall <- substitute(list(...))
+            ll <- eval(dotsCall)
+            if(!hasArg("xlab")) ll$xlab <- "Top K Metabolites"
+            if(!hasArg("ylab")) ll$ylab <- "Cross Validated HR"
+            ll$main <- "Estimated HR on Test Data \n for Top K Metabolites (PCA)"
+            if(!hasArg("cex.lab")) ll$cex.lab <- 1.2
+            if(!hasArg("cex.main")) ll$cex.main <- 1.3
+            if(!hasArg("col")) ll$col <- 1:nn
+            if(!hasArg("ylim")) ll$ylim <- c(0,max(PC.HRp))
+            ll$x<-PC.HRp
+            do.call(boxplot,args=ll)
+            }
+
+            if (type==2) {
+            nn<-dim(x@HRpca)[3]
             PL.HRp<-x@HRpls[,1,1:nn]
             colnames(PL.HRp)<-x@Top
 
             dotsCall <- substitute(list(...))
-            ll <- eval(dotsCall)
-            if(!hasArg("xlab")) ll$xlab <- "Top K Genes"
-            if(!hasArg("ylab")) ll$ylab <- "Cross Validated HR"
-            ll$main <- "Estimated HR on Test Data \n for Top K Genes (PCA)"
-            if(!hasArg("cex.lab")) ll$cex.lab <- 1.2
-            if(!hasArg("cex.main")) ll$cex.main <- 1.3
-            if(!hasArg("col")) ll$col <- 1:nn
-            if(!hasArg("ylim")) ll$ylim <- c(0,5)
-            ll$x<-PC.HRp
-            do.call(boxplot,args=ll)
-
-            ll$x<-PL.HRp
-            ll$main <- "Estimated HR Test Data \n for Top K Metabolites (PLS)"
-            do.call(boxplot,args=ll)
-
+            lll <- eval(dotsCall)
+            if(!hasArg("xlab")) lll$xlab <- "Top K Metabolites"
+            if(!hasArg("ylab")) lll$ylab <- "Cross Validated HR"
+            lll$main <- "Estimated HR Test Data \n for Top K Metabolites (PLS)"
+            if(!hasArg("cex.lab")) lll$cex.lab <- 1.2
+            if(!hasArg("cex.main")) lll$cex.main <- 1.3
+            if(!hasArg("col")) lll$col <- 1:nn
+            if(!hasArg("ylim")) lll$ylim <- c(0,max(PL.HRp))
+            lll$x<-PL.HRp
+            do.call(boxplot,args=lll)
             return(invisible())
           }
-
+}
 )

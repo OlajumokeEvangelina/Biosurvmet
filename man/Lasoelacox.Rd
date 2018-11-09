@@ -38,7 +38,7 @@ A object is returned with the following values
   \item{n}{The number of selected metabolites}
   \item{Risk.scores}{The risk scores of the subjects}
   \item{Risk.group}{The risk classification of the subjects based on the specified quantile}
-  \item{Result}{The cox analysis of the riskgroup based on the selected metabolites and the prognostic factors}
+  \item{SurvFit}{The cox analysis of the riskgroup based on the selected metabolites and the prognostic factors}
   \item{Select}{A Boolean argument indicating if there was selection or not}
 }
 \description{
@@ -65,7 +65,7 @@ Results$n
 Results$Risk.Group
 
 ## VIEW THE SURVIVAL ANALYSIS RESULT
-Results$Result
+Results$SurvFit
 
 ## TO CHECK IF THERE WAS ANY SELECTION
 Results$Select

@@ -2,7 +2,7 @@
 #'
 #' The Function generates metabolic profile of any number of patients and also their survival information.
 #'
-#' The function generates the metabolic profile where small set of metabolites (30) are informative and rest of them are set as noisy metabolites. Next to that Survival time and Censoring information are generated based on first right singular vectors of \code{\link[base]{svd}} of the metabolic profile matrix. It also generates other prognostic factors such as Age, Stage and sex which are slightly correlated with survival time.
+#' The function generates the metabolic profile where small set of metabolites (30) are informative and rest of them are set as noisy metabolites. Next to that Survival time and Censoring information are generated based on first right singular vectors of \code{\link[base]{svd}} of the metabolic profile matrix. It also generates other prognostic factors such as Age, Stage and Gender which are slightly correlated with survival time.
 #' @param nPatients The number of patients
 #' @param nMet The number of metabolites
 #' @param Prop The proportion of patients having low risk
@@ -48,7 +48,7 @@ MSData<-function(nPatients=100,nMet=150,Prop=0.5){
   rownames(Mdata)<-metabolitenames
 
   ProgFact<-data.frame(Age=floor(Survival*0.68+rnorm(nPatients,30,10)),
-                       Stage=sample(1:4,nPatients,replace=T),sex=rbinom(nPatients, 1, 0.5))
+                       Stage=sample(1:4,nPatients,replace=T),Gender=rbinom(nPatients, 1, 0.5))
 
   Mdata = t(Mdata)
   return(list(Censor=Censor,Survival=Survival,Met.names=metabolitenames,Mdata=Mdata,Prognostic=ProgFact))

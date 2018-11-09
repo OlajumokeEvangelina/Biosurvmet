@@ -4,7 +4,7 @@
 \alias{MetFreq}
 \title{Frequency of Selected Metabolites from the Metabolite specific Cross Validation}
 \usage{
-MetFreq(Object, TopK = 20, Minfreq = 5)
+MetFreq(Object, TopK = 20, Minfreq = 5, N = 10)
 }
 \arguments{
 \item{Object}{An object of class \code{\link[MetabolicSurv]{cvmm}} returned from the function \code{\link[MetabolicSurv]{CVMetSpecificCoxPh}}.}
@@ -12,6 +12,8 @@ MetFreq(Object, TopK = 20, Minfreq = 5)
 \item{TopK}{The number of Top K metabolites (20 by default) to be used in the analysis}
 
 \item{Minfreq}{The minimum frequency required for a particular meabolites to be included in the result.}
+
+\item{N}{The number of Top N metabolites to be displayed in the frequency of selection graph}
 }
 \value{
 A vector of metabolites and their frequency of selection. Also, a graphical representation is displayed.
@@ -35,7 +37,7 @@ Select=15,Prognostic=Data$Prognostic,Quantile = 0.5,Ncv=30)
 class(Result)
 
 ## USING THE FUNCTION
-MetFreq(Result,TopK = 5,Minfreq = 20)
+MetFreq(Result,TopK = 5,Minfreq = 20, N=5)
 }
 \seealso{
 \code{\link[MetabolicSurv]{cvmm}}, \code{\link[survival]{coxph}},

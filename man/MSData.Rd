@@ -25,7 +25,7 @@ An object of class list is returned with the following items .
 The Function generates metabolic profile of any number of patients and also their survival information.
 }
 \details{
-The function generates the metabolic profile where small set of metabolites (30) are informative and rest of them are set as noisy metabolites. Next to that Survival time and Censoring information are generated based on first right singular vectors of \code{\link[base]{svd}} of the metabolic profile matrix. It also generates other prognostic factors such as Age, Stage and sex which are slightly correlated with survival time.
+The function generates the metabolic profile where small set of metabolites (30) are informative and rest of them are set as noisy metabolites. Next to that Survival time and Censoring information are generated based on first right singular vectors of \code{\link[base]{svd}} of the metabolic profile matrix. It also generates other prognostic factors such as Age, Stage and Gender which are slightly correlated with survival time.
 }
 \examples{
 #GENERATE SOME METABOLIC SURVIVAL DATA WITH PROGNOSTIC FACTORS

@@ -6,6 +6,7 @@
 #' @param Object An object of class \code{\link[MetabolicSurv]{cvmm}} returned from the function \code{\link[MetabolicSurv]{CVMetSpecificCoxPh}}.
 #' @param TopK The number of Top K metabolites (20 by default) to be used in the analysis
 #' @param Minfreq  The minimum frequency required for a particular meabolites to be included in the result.
+#' @param N The number of Top N metabolites to be displayed in the frequency of selection graph
 #' @return A vector of metabolites and their frequency of selection. Also, a graphical representation is displayed.
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
 #' @author Ziv Shkedy
@@ -24,10 +25,10 @@
 #' class(Result)
 #'
 #' ## USING THE FUNCTION
-#' MetFreq(Result,TopK = 5,Minfreq = 20)
+#' MetFreq(Result,TopK = 5,Minfreq = 20, N=5)
 #' @export MetFreq
 
-MetFreq<-function(Object,TopK=20,Minfreq=5){
+MetFreq<-function(Object,TopK=20,Minfreq=5, N =10){
 
   Decrease=FALSE
   if (class(Object)!="cvmm") stop("Invalid object class.")
@@ -68,8 +69,10 @@ MetFreq<-function(Object,TopK=20,Minfreq=5){
   if (max(fr)<Minfreq) Minfreq<-max(fr)-1
 
   top.fr<-fr[fr>Minfreq]
-  barplot(top.fr,las=2,ylim=c(0,Object@n.mets),  ylab="",col=1:length(top.fr),cex.names=0.6,main="Mostly selected Metabolites",cex.lab=1,cex.main=1.5  )
+  top <- sort(top.fr,decreasing=TRUE)
+  topn <- top[1:N]
+  barplot(topn,las=2,col=rainbow(length(topn)), ylim = c(0,max(top.fr) + 3),  ylab="",cex.names=0.6,main=paste( "Top ", N, " most selected metabolites ",sep=""),cex.lab=1,cex.main=1.5  )
 
-  return(top.fr)
+  return(top)
 
 }

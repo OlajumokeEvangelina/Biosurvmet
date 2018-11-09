@@ -50,6 +50,10 @@
 #' Results@Weight
 
 #' @export Icvlasoel
+#' @import tidyr
+#' @import rms
+#' @import matrixStats
+#' @import Rdpack
 
 Icvlasoel<-function(Survival, Censor,Prognostic=NULL,Mdata,Fold=3,Ncv=50,Nicv=100,Alpha=0.1
                     ,TopK,Weights=FALSE
@@ -108,9 +112,9 @@ Icvlasoel<-function(Survival, Censor,Prognostic=NULL,Mdata,Fold=3,Ncv=50,Nicv=10
 
     HRInner[,1,j]<-ResT@HRTest[,1]
 
-    MeanWeightGene<-sapply(1:length(TopK),function(i) mean(ResT@Coef.mat[,i]))
-    names(MeanWeightGene)<-TopK
-    WeightMat[j,]<-MeanWeightGene
+    MeanWeightMet<-sapply(1:length(TopK),function(i) mean(ResT@Coef.mat[,i]))
+    names(MeanWeightMet)<-TopK
+    WeightMat[j,]<-MeanWeightMet
     #end of inner cross validation
 
     #weights are NOT fixed
@@ -168,7 +172,7 @@ Icvlasoel<-function(Survival, Censor,Prognostic=NULL,Mdata,Fold=3,Ncv=50,Nicv=10
       #-------------------------  now weights are fixed ----------------------------------------
       # Risk score for Test set
 
-      RiskScore<-MeanWeightGene%*%Mdata[is.element(rownames(Mdata),TopK),ind.test[j,]]
+      RiskScore<-MeanWeightMet%*%Mdata[is.element(rownames(Mdata),TopK),ind.test[j,]]
       gid<- NULL
       n.patients<-n.patients<-n.test
       gid[c(1:n.patients)[RiskScore < median(RiskScore)]]<- "low"

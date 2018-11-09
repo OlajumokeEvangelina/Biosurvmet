@@ -184,8 +184,8 @@ CVLasoelacox <- function (Survival,
 
 
 
-  # What to do if no gene is selected?
-  # Decrease lambda until a gene is selected
+  # What to do if no metabolite is selected?
+  # Decrease lambda until a metabolite is selected
   # Going through the list of lambda values and repeat the above procedure
 
   n.g[i] <- length(Selected.mets)

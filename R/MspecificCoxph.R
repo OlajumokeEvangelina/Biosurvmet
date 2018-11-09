@@ -105,7 +105,7 @@ MSpecificCoxPh<-function(Survival,
   }#---------------------------  END OF  FOR LOOP ------------------------
 
   colnames(HRp) = c("HR","LowerCI","UpperCI")
-  Metnames = rownames(as.matrix(Mdata))
+  Metnames = rownames(as.matrix(ReduMdata))
   rownames(gr) = Metnames
   colnames(gr) = paste0("Subject", 1: ncol(ReduMdata))
 

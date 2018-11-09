@@ -57,7 +57,7 @@ setClass("fcv",representation(Runtime="vector",Fold="numeric", Ncv="numeric",Nic
 #' @aliases show,fcv-method
 setMethod("show",signature="fcv"
           , function(object){
-            cat("Further Cross Valdiated Results for  \n Lasso and Elastic Net based Predictive Gene signature\n")
+            cat("Further Cross Valdiated Results for  \n Lasso and Elastic Net based Predictive Metabolite signature\n")
             cat("Number of Outer CV used: ", object@Ncv, "\n")
             cat("Number of Inner CV used: ", object@Nicv, "\n")
             cat("Number of metabolites subject : ", length(object@TopK), "\n")

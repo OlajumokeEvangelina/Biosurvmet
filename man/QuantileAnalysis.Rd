@@ -6,7 +6,7 @@
 \usage{
 QuantileAnalysis(Survival, Mdata, Censor, Reduce = TRUE, Select = 150,
   Prognostic = NULL, Plots = FALSE, DimMethod = c("PLS", "PCA",
-  "None"))
+  "SM"), Alpha = 1)
 }
 \arguments{
 \item{Survival}{A vector of survival time with length equals to number of subjects}
@@ -23,16 +23,18 @@ QuantileAnalysis(Survival, Mdata, Censor, Reduce = TRUE, Select = 150,
 
 \item{Plots}{A boolean parameter indicating if the graphical represenataion of the analysis should be shown. Default is FALSE and it is only valid for the PCA or PLS dimension method.}
 
-\item{DimMethod}{The dimension method to be used. PCA implies using the \code{\link[MetabolicSurv]{SurvPcaClass}}, PLS uses \code{\link[MetabolicSurv]{SurvPcaClass}} while None uses the \code{\link[MetabolicSurv]{MSpecificCoxPh}} which requires no data reduction approach but performs the analysis metabolite by metabolite.}
+\item{DimMethod}{The dimension method to be used. PCA implies using the \code{\link[MetabolicSurv]{SurvPcaClass}}, PLS uses \code{\link[MetabolicSurv]{SurvPcaClass}} while SM uses the \code{\link[MetabolicSurv]{Lasoelacox}} which ruses the shrinkage method techniques such as lasso and elastic net.}
+
+\item{Alpha}{The mixing parameter for glmnet (see \code{\link[glmnet]{glmnet}}). The range is 0<= Alpha <= 1. The Default is 1}
 }
 \value{
-A Dataframe is returned depending on weather a data reduction method should be used or not. For the PCA and the PLS, the dataframe contains the HR of the low risk group for each percentile while for the "None"method the Dataframe contains the HR of the risk group done metabolite by metabolite for each percentile.
+A Dataframe is returned depending on weather a data reduction method should be used or not. The dataframe contains the HR of the low risk group for each percentile.
 }
 \description{
-The function performs sensitivity of the cut off quantile for obtaining the risk group obtained under \code{\link[MetabolicSurv]{SurvPlsClass}}, \code{\link[MetabolicSurv]{SurvPcaClass}} or \code{\link[MetabolicSurv]{MSpecificCoxPh}} requires for the survival analysis and classification.
+The function performs sensitivity of the cut off quantile for obtaining the risk group obtained under \code{\link[MetabolicSurv]{SurvPlsClass}}, \code{\link[MetabolicSurv]{SurvPcaClass}} or \code{\link[MetabolicSurv]{Lasoelacox}} requires for the survival analysis and classification.
 }
 \details{
-This function investigates how each analysis differs from the general median cutoff of 0.5, therefore to see the sensitive nature of the survival result different quantiles ranging from 10th percentile to 90th percentiles were used. The sensitive nature of the quantile is investigated under \code{\link[MetabolicSurv]{SurvPlsClass}}, \code{\link[MetabolicSurv]{SurvPcaClass}} or \code{\link[MetabolicSurv]{MSpecificCoxPh}} while relate to the 3 different Dimension method to select from.
+This function investigates how each analysis differs from the general median cutoff of 0.5, therefore to see the sensitive nature of the survival result different quantiles ranging from 10th percentile to 90th percentiles were used. The sensitive nature of the quantile is investigated under \code{\link[MetabolicSurv]{SurvPlsClass}}, \code{\link[MetabolicSurv]{SurvPcaClass}} or \code{\link[MetabolicSurv]{Lasoelacox}} while relate to the 3 different Dimension method to select from.
 }
 \examples{
 ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
@@ -41,17 +43,17 @@ Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)
 ## USING THE PCA METHOD
 Result = QuantileAnalysis(Data$Survival,t(Data$Mdata),
 Data$Censor,Reduce=FALSE, Select=150, Prognostic=Data$Prognostic,
-Plots = TRUE,DimMethod="PCA")
+Plots = TRUE,DimMethod="PCA",Alpha=1)
 
 ## USING THE PLS METHOD
 Result = QuantileAnalysis(Data$Survival,t(Data$Mdata),
 Data$Censor,Reduce=FALSE, Select=150, Prognostic=Data$Prognostic,
-Plots = TRUE,DimMethod="PLS")
+Plots = TRUE,DimMethod="PLS",Alpha=1)
 
-## USING THE None METHOD
+## USING THE SM METHOD
 Result = QuantileAnalysis(Data$Survival,t(Data$Mdata),
 Data$Censor,Reduce=FALSE, Select=150, Prognostic=Data$Prognostic,
-Plots = FALSE,DimMethod="None")
+Plots = FALSE,DimMethod="SM",Alpha=1)
 }
 \references{
 \insertRef{ye1}{MetabolicSurv}
@@ -59,7 +61,7 @@ Plots = FALSE,DimMethod="None")
 \seealso{
 \code{\link[survival]{coxph}},\code{\link[MetabolicSurv]{EstimateHR}},
 \code{\link[MetabolicSurv]{SurvPcaClass}},
- \code{\link[MetabolicSurv]{SurvPlsClass}},\code{\link[MetabolicSurv]{MSpecificCoxPh}}
+ \code{\link[MetabolicSurv]{SurvPlsClass}},\code{\link[MetabolicSurv]{Lasoelacox}}
 }
 \author{
 Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@uhasselt.be}

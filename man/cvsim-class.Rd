@@ -13,7 +13,7 @@
 
 \S4method{summary}{cvsim}(object)
 
-\S4method{plot}{cvsim,missing}(x, y, ...)
+\S4method{plot}{cvsim,missing}(x, y, type = 1, ...)
 }
 \arguments{
 \item{object}{A cvsim class object}
@@ -21,6 +21,8 @@
 \item{x}{A cvsim class object}
 
 \item{y}{missing}
+
+\item{type}{Plot type. 1 distribution of the HR under test For the Top K metabolites using PCA. 2 distribution of the HR under test For the Top K metabolites using PLS.}
 
 \item{...}{The usual extra arguments to generic functions — see \code{\link[graphics]{plot}}, \code{\link[graphics]{plot.default}}}
 }
@@ -60,7 +62,7 @@ class(Result)     # A "cvsim" Class
 ##  METHOD THAT CAN BE USED FOR THE RESULT
 show(Result)
 summary(Result)
-plot(Result)
+plot(Result, type =2)
 }
 \seealso{
 \code{\link[MetabolicSurv]{CVPcaPls}}, \code{\link[MetabolicSurv]{SurvPcaClass}}, \code{\link[MetabolicSurv]{SurvPlsClass}}

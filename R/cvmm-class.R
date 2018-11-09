@@ -107,6 +107,7 @@ setMethod(f="plot", signature = "cvmm",
             dotsCall <- substitute(list(...))
             ll <- eval(dotsCall)
             if(!hasArg("xlab")) ll$xlab <- ""
+
             if(!hasArg("ylab")) ll$ylab <- "HR from the Cross validation"
             if(!hasArg("main")) ll$main <- paste("Estimated HR of low risk group for Metabolite ", which, "\n Number of CVs = ",x@Ncv,sep="")
             if(!hasArg("cex.lab")) ll$cex.lab <- 1.2
