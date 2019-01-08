@@ -38,15 +38,15 @@
 #' @export DistHR
 
 DistHR<-function(Survival,
-                     Censor,
-                     Mdata,
-                     Prognostic=NULL,
-                     Quantile=0.5,
-                     Reduce= FALSE,
-                     Select = 15,
-                     nperm=100,
-                     case=2,
-                     Validation=c("PLSbased","PCAbased","L1based","MVbased")
+                 Censor,
+                 Mdata,
+                 Prognostic=NULL,
+                 Quantile=0.5,
+                 Reduce= FALSE,
+                 Select = 15,
+                 nperm=100,
+                 case=2,
+                 Validation=c("PLSbased","PCAbased","L1based","MVbased")
 
 ){
 
@@ -130,8 +130,8 @@ DistHR<-function(Survival,
 
       Temp<-SurvPlsClass(Survival=Survival[ind.s[i,]],Mdata= Mdata[,ind.met[i,]],Censor= Censor[ind.s[i,]], Reduce=FALSE,Select=15, Prognostic=perPrognostic, Plots = FALSE,  Quantile = Quantile )
 
-    if (!is.null(Prognostic))  HRlowPerm[i,]<-summary(Temp$SurvFit)[[8]][1,][-2]
-    if ( is.null(Prognostic))  HRlowPerm[i,]<-summary(Temp$SurvFit)[[8]][-2]
+      if (!is.null(Prognostic))  HRlowPerm[i,]<-summary(Temp$SurvFit)[[8]][1,][-2]
+      if ( is.null(Prognostic))  HRlowPerm[i,]<-summary(Temp$SurvFit)[[8]][-2]
     }
 
 
@@ -149,8 +149,8 @@ DistHR<-function(Survival,
 
       Temp<-SurvPcaClass(Survival=Survival[ind.s[i,]], Mdata=Mdata[,ind.met[i,]], Censor=Censor[ind.s[i,]], Reduce=FALSE,Select=15, Prognostic=perPrognostic, Plots = FALSE,  Quantile = Quantile )
 
-    if (!is.null(Prognostic))  HRlowPerm[i,]<-summary(Temp$SurvFit)[[8]][1,][-2]
-    if ( is.null(Prognostic))  HRlowPerm[i,]<-summary(Temp$SurvFit)[[8]][-2]
+      if (!is.null(Prognostic))  HRlowPerm[i,]<-summary(Temp$SurvFit)[[8]][1,][-2]
+      if ( is.null(Prognostic))  HRlowPerm[i,]<-summary(Temp$SurvFit)[[8]][-2]
 
     }
     TempObs<-SurvPcaClass(Survival, Mdata, Censor, Reduce=FALSE,Select=15, Prognostic=Prognostic, Plots = FALSE,  Quantile = Quantile )
@@ -175,12 +175,12 @@ DistHR<-function(Survival,
     }
 
     Ana2<-MSpecificCoxPh( Survival,
-                             Mdata,
-                             Censor,
-                             Reduce=FALSE,
-                             Select=15,
-                             Prognostic=Prognostic,
-                             Quantile = Quantile)
+                          Mdata,
+                          Censor,
+                          Reduce=FALSE,
+                          Select=15,
+                          Prognostic=Prognostic,
+                          Quantile = Quantile)
 
     TempObs<-Majorityvotes(Ana2,Prognostic, Survival,Censor,J=1)
 
@@ -197,7 +197,7 @@ DistHR<-function(Survival,
       if (!is.null(Prognostic)) perPrognostic<-Prognostic[ind.w[i,],]
 
       try(Temp<-Lasoelacox(Survival=Survival[ind.s[i,]],Censor=Censor[ind.s[i,]],Mdata[,ind.met[i,]], Prognostic=perPrognostic, Plots = FALSE,
- Quantile = Quantile , Metlist=NULL, Standardize = TRUE,  Alpha=1,Fold = 4, nlambda = 100), silent = TRUE)
+                           Quantile = Quantile , Metlist=NULL, Standardize = TRUE,  Alpha=1,Fold = 4, nlambda = 100), silent = TRUE)
 
       if ((!is.na(Temp))[1]) {
         if (!is.null(Prognostic)) HRlowPerm[i,]<-summary(Temp$SurvFit)[[8]][1,][-2]

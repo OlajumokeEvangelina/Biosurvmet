@@ -11,7 +11,7 @@
 #' @param Prognostic A dataframe containing possible prognostic(s) factor and/or treatment effect to be used in the model.
 #' @param Plots A boolean parameter indicating if the plots should be shown. Default is FALSE
 #' @param Quantile The cut off value for the classifier, default is the median cutoff
-#' @return A object of class SurvPca is returned with the following values
+#' @return A object is returned with the following values
 #'   \item{Survfit}{The cox proportional regression result using the first PCA}
 #'   \item{Riskscores}{A vector of risk scores which is equal to the number of patents.}
 #'   \item{Riskgroup}{The classification of the subjects based on the PCA into low or high risk group}

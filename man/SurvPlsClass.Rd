@@ -25,7 +25,7 @@ SurvPlsClass(Survival, Mdata, Censor, Reduce = TRUE, Select = 150,
 \item{Quantile}{The cut off value for the classifier, default is the median cutoff}
 }
 \value{
-A object of class SurvPca is returned with the following values
+A object is returned with the following values
   \item{Survfit}{The cox proportional regression result using the first PCA}
   \item{Riskscores}{A vector of risk scores which is equal to the number of patents.}
   \item{Riskgroup}{The classification of the subjects based on the PCA into low or high risk group}

@@ -144,8 +144,7 @@ CVLasoelacox <- function (Survival,
     sen= Censor[cv.train[i,]]
     Data.Full2 <-Data.Full[cv.train[i,],]
 
-    Run.Time[i] <-system.time(Lasso.Cox.CV <- glmnet::cv.glmnet(x = as.matrix(Data.Full2),
-                            y = survival::Surv(as.vector(Stime),as.vector(sen) == 1),
+    Run.Time[i] <-system.time(Lasso.Cox.CV <- glmnet::cv.glmnet(x = as.matrix(Data.Full2),y = survival::Surv(as.vector(Stime),as.vector(sen) == 1),
                             family = 'cox',
                             alpha = Alpha,
                             nfolds= Fold,
@@ -175,20 +174,15 @@ CVLasoelacox <- function (Survival,
   if (is.null(Prognostic))
   {
     Selected.mets <- names(Coefficients.NonZero)
-  }
-
-  else
-  {
+  }else{
     Selected.mets <- setdiff(names(Coefficients.NonZero), colnames(Prognostic))
   }
 
-
+  n.g[i] <- length(Selected.mets)
 
   # What to do if no metabolite is selected?
   # Decrease lambda until a metabolite is selected
   # Going through the list of lambda values and repeat the above procedure
-
-  n.g[i] <- length(Selected.mets)
 
   Lambda <- Lasso.Cox.CV$lambda.min
   Lambda.Sequence <- Lasso.Cox.CV$lambda
@@ -226,17 +220,6 @@ CVLasoelacox <- function (Survival,
   met.mat[i,is.element(rownames(Mdata),Selected.mets)]<-1
   coef.mat[i,is.element(rownames(Mdata),Selected.mets)]<-Coefficients.NonZero[Selected.mets]
 
-  #lambda[i]<-lab
-  #met.mat[i,is.element(rownames(ReduMdata),gm)]<-1
-  #coef.mat[i,is.element(rownames(ReduMdata),gm)]<-betaFP[gm]
-
-
-
-  # Risk score for training set
-  #scores.train<- betaFP[gm]%*%ReduMdata[gm,cv.train[i,]]
-  # Risk score for Test set
-  #scores.test<-betaFP[gm]%*%ReduMdata[gm,cv.test[i,]]
-
   scores.train <- as.vector(Coefficients.NonZero[Selected.mets] %*% t(Data[cv.train[i,],Selected.mets]))
   scores.test <- as.vector(Coefficients.NonZero[Selected.mets] %*% t(Data[cv.test[i,],Selected.mets]))
 
@@ -245,7 +228,8 @@ CVLasoelacox <- function (Survival,
   ## train set ###########
   Sdata<-data.frame(Survival=Survival[cv.train[i,]],Censor=Censor[cv.train[i,]])
 
-  if (!is.null(Prognostic)) perPrognostic<-Prognostic[cv.train[i,],]
+  if (!is.null(Prognostic)) perPrognostic<-as.data.frame(Prognostic[cv.train[i,],])
+colnames(perPrognostic) <- colnames(Prognostic)
 
   Results1<-EstimateHR(Risk.Scores=scores.train, Data.Survival =Sdata, Prognostic = perPrognostic, Plots = FALSE, Quantile = Quantile)
 
@@ -255,7 +239,9 @@ CVLasoelacox <- function (Survival,
   #######################
   ## test set ###########
   Sdata<-data.frame(Survival=Survival[cv.test[i,]],Censor=Censor[cv.test[i,]])
-  if (!is.null(Prognostic)){perPrognostic<-Prognostic[cv.test[i,],]}
+
+  if (!is.null(Prognostic)) perPrognostic<-as.data.frame(Prognostic[cv.test[i,],])
+  colnames(perPrognostic) <- colnames(Prognostic)
 
   Results2<-EstimateHR(Risk.Scores =scores.test, Data.Survival = Sdata, Prognostic = perPrognostic, Plots = FALSE, Quantile = Quantile)
 

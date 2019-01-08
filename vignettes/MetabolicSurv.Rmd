@@ -23,5 +23,3 @@ Sensitivity analysis on the quantile measure used for the classification can be 
 
 *Keywords: Biosurvmet; Biomarkers; Classification; Predictive metabolite ; Survival*
 
-## BACKGROUND
-hhjhje

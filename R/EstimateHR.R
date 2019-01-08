@@ -53,8 +53,6 @@ EstimateHR<-function(Risk.Scores,Data.Survival,
 
   Data.Risk.Group = data.frame(Survival, Censor, Risk.Group)
 
-
-
   # Plot the observed Kaplan-Meier curves per group
   # Make a boxplot per group
   # Only if requested
