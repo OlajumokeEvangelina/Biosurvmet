@@ -33,6 +33,7 @@ This function does cross validation for the metabolite by metabolite analysis wh
 The function is a cross validation version of the function \code{\link[MetabolicSurv]{SIMet}}. This function firstly processes the cross validation for the metabolite by metabolite  analysis results, and then sequentially considers top k metabolites. The function recompute first PCA or PLS on train data and estimate risk scores on both test and train data only on the metabolite matrix with top k metabolites. Patients are then classified as having low or high risk based on the test data where the cutoff used is median of the risk score. The process is repeated for each top K metabolite sets.
 }
 \examples{
+\donttest{
 ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)
 
@@ -47,6 +48,7 @@ Prognostic=Data$Prognostic,Quantile = 0.5,Ncv=3)
 
 ## GET THE CLASS OF THE OBJECT
 class(Result2)     # An "cvsim" Class
+}
 }
 \seealso{
 \code{\link[MetabolicSurv]{MSpecificCoxPh}}, \code{\link[MetabolicSurv]{SIMet}}

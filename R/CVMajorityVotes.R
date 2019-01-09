@@ -21,6 +21,7 @@
 #' @author Ziv Shkedy
 #' @seealso \code{\link[MetabolicSurv]{Majorityvotes}}
 #' @examples
+#' \donttest{
 #' ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 #' Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)
 #'
@@ -30,12 +31,13 @@
 #' Select=15, Fold=3, Ncv=10)
 #'
 #' ## GET THE CLASS OF THE OBJECT
-#' class(Result)     # An "cvpp" Class
+#' class(Result)     # An "cvmv" Class
 #'
 #' ##  METHOD THAT CAN BE USED FOR THE RESULT
 #' show(Result)
 #' summary(Result)
 #' plot(Result)
+#' }
 #' @import survival
 #' @export CVMajorityvotes
 
@@ -117,11 +119,15 @@ CVMajorityvotes<-function(Survival,Censor, Prognostic=NULL, Mdata, Reduce=TRUE, 
           NameProg<-colnames(Prognostic)
           eval(parse(text=paste( "m0 <-survival::coxph(survival::Surv(Survival, Censor==1) ~ metit",paste("+",NameProg[1:nPrgFac],sep="",collapse =""),",data=cdata)" ,sep="")))
         } else {
-
-          stop(" Argument 'Prognostic' is NOT a data frame ")
+    stop(" Argument 'Prognostic' is NOT a data frame ")
         }
 
+      } else{
+        cdata <- data.frame(Survival=Survival[ind.test[j,]],Censor=Censor[ind.test[j,]],metit)
+        eval(parse(text=paste("m0 <-survival::coxph(survival::Surv(Survival, Censor==1) ~ metit",",data=cdata)" ,sep="")))
       }
+
+
       TrtandPC1<-summary(m0)[[7]][c("metit"),1]
       p2 <- TrtandPC1*metit
 

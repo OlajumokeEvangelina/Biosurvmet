@@ -24,6 +24,7 @@
 #' @seealso \code{\link[MetabolicSurv]{CVLasoelacox}},
 #' \code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[glmnet]{glmnet}}, \code{\link[MetabolicSurv]{Lasoelacox}}
 #' @examples
+#' \donttest{
 #' ## GENERATE SOME METABOLIC SURVIVAL DATA WITH PROGNOSTIC FACTORS
 #' Data<-MSData(nPatients=100,nMet=150,Prop=0.5)
 #'
@@ -39,6 +40,7 @@
 #' show(Eg)
 #' summary(Eg)
 #' plot(Eg, type =1)
+#' }
 #' @docType class
 
 setClass("fcv",representation(Runtime="vector",Fold="numeric", Ncv="numeric",Nicv="numeric",TopK="vector",

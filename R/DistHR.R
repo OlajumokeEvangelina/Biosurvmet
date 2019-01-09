@@ -28,13 +28,15 @@
 #' @author Ziv Shkedy
 #' @seealso \code{\link[survival]{coxph}}, \code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[MetabolicSurv]{SurvPcaClass}}, \code{\link[MetabolicSurv]{SurvPlsClass}}, \code{\link[MetabolicSurv]{Majorityvotes}}, \code{\link[MetabolicSurv]{Lasoelacox}}, \code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[MetabolicSurv]{Lasoelacox}}
 #' @examples
+#' \donttest{
 #' ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 #' Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)
 #'
 #' ## USING THE FUNCTION
 #' Example <- DistHR(Survival = Data$Survival,Mdata = t(Data$Mdata),
 #' Censor = Data$Censor,Reduce=FALSE,Select=15,Prognostic=Data$Prognostic,
-#' Quantile = 0.5, nperm=100, case=2, Validation=c("L1based"))
+#' Quantile = 0.5, nperm=10, case=2, Validation=c("L1based"))
+#' }
 #' @export DistHR
 
 DistHR<-function(Survival,

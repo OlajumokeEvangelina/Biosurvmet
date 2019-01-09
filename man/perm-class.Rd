@@ -45,6 +45,7 @@ median  and upper CI of the permuted data estimated HR while
 the red line is the estimated HR of the original data
 }
 \examples{
+\donttest{
 ## GENERATE SOME METABOLIC SURVIVAL DATA WITH PROGNOSTIC FACTORS
 Data<-MSData(nPatients=100,nMet=150,Prop=0.5)
 
@@ -60,6 +61,7 @@ class(Example)     # A "perm" Class
 show(Example)
 summary(Example)
 plot(Example)
+}
 }
 \seealso{
 \code{\link[MetabolicSurv]{DistHR}}, \code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[MetabolicSurv]{SurvPcaClass}}, \code{\link[MetabolicSurv]{SurvPlsClass}}, \code{\link[MetabolicSurv]{Majorityvotes}}, \code{\link[MetabolicSurv]{Lasoelacox}}, \code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[MetabolicSurv]{Lasoelacox}}

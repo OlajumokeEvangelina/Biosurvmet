@@ -43,6 +43,7 @@ The function performs cross validation for each metabolite depending the number 
 This function performs the cross validation for metabolite by metabolite analysis. The data will firstly be divided into data train dataset and test datset. Furthermore, a metabolite-specific model is fitted on train data and a classifier is built. In addition, the classifier is then evaluated on test dataset for each particular metabolite. The Process is repeated for all the full or reduced metabolites to obtaind the HR statistics of the low risk group. The following steps depends on the number of cross validation specified.
 }
 \examples{
+\donttest{
 ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)
 
@@ -58,6 +59,7 @@ class(Result)     # An "cvmm" Class
 show(Result)
 summary(Result)
 plot(Result)
+}
 }
 \seealso{
 \code{\link[survival]{coxph}},

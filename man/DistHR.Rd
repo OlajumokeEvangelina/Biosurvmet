@@ -49,13 +49,15 @@ This function generates the null distribution of the HR by permutation approach.
 This function generates the null distribution of the HR by permutation approach either using a large metabolite matrix or a reduced version by supervised pca approach. Several ways of permutation setting can be implemented. That is, the function can be used to generate null distributions for four different validation schemes which are PLS based, PCA based, Majority votes based and Lasso based. Note this function internally calls function  \code{\link[MetabolicSurv]{SurvPcaClass}}, \code{\link[MetabolicSurv]{SurvPlsClass}}, \code{\link[MetabolicSurv]{Majorityvotes}}, and \code{\link[MetabolicSurv]{Lasoelacox}}.
 }
 \examples{
+\donttest{
 ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)
 
 ## USING THE FUNCTION
 Example <- DistHR(Survival = Data$Survival,Mdata = t(Data$Mdata),
 Censor = Data$Censor,Reduce=FALSE,Select=15,Prognostic=Data$Prognostic,
-Quantile = 0.5, nperm=100, case=2, Validation=c("L1based"))
+Quantile = 0.5, nperm=10, case=2, Validation=c("L1based"))
+}
 }
 \seealso{
 \code{\link[survival]{coxph}}, \code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[MetabolicSurv]{SurvPcaClass}}, \code{\link[MetabolicSurv]{SurvPlsClass}}, \code{\link[MetabolicSurv]{Majorityvotes}}, \code{\link[MetabolicSurv]{Lasoelacox}}, \code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[MetabolicSurv]{Lasoelacox}}

@@ -52,6 +52,7 @@ Class of object returned by function \code{\link[MetabolicSurv]{CVLasoelacox}}.
 }}
 
 \examples{
+\donttest{
 ## GENERATE SOME METABOLIC SURVIVAL DATA WITH PROGNOSTIC FACTORS
 Data<-MSData(nPatients=100,nMet=150,Prop=0.5)
 
@@ -68,6 +69,7 @@ class(Eg)     # An "cvle" Class
 show(Eg)
 summary(Eg)
 plot(Eg, type =3)
+}
 }
 \seealso{
 \code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[glmnet]{glmnet}}, \code{\link[MetabolicSurv]{Lasoelacox}}

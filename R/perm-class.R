@@ -18,6 +18,7 @@
 #' @author Ziv Shkedy
 #' @seealso \code{\link[MetabolicSurv]{DistHR}}, \code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[MetabolicSurv]{SurvPcaClass}}, \code{\link[MetabolicSurv]{SurvPlsClass}}, \code{\link[MetabolicSurv]{Majorityvotes}}, \code{\link[MetabolicSurv]{Lasoelacox}}, \code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[MetabolicSurv]{Lasoelacox}}
 #' @examples
+#' \donttest{
 #' ## GENERATE SOME METABOLIC SURVIVAL DATA WITH PROGNOSTIC FACTORS
 #' Data<-MSData(nPatients=100,nMet=150,Prop=0.5)
 #'
@@ -33,6 +34,7 @@
 #' show(Example)
 #' summary(Example)
 #' plot(Example)
+#' }
 #' @note The first, third and last vertical line on the plot are the lower,
 #' median  and upper CI of the permuted data estimated HR while
 #' the red line is the estimated HR of the original data

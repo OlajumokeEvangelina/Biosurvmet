@@ -18,6 +18,7 @@
 #' @author Ziv Shkedy
 #' @seealso \code{\link[MetabolicSurv]{MSpecificCoxPh}}, \code{\link[MetabolicSurv]{SIMet}}
 #' @examples
+#' \donttest{
 #' ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 #' Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)
 #'
@@ -32,6 +33,7 @@
 #'
 #' ## GET THE CLASS OF THE OBJECT
 #' class(Result2)     # An "cvsim" Class
+#' }
 #' @export CVSim
 
 CVSim<-function(Object,Top=seq(5,100,by=5),Survival,Censor, Prognostic=NULL){

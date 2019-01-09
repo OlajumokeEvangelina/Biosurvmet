@@ -40,6 +40,7 @@ The Function fits cox proportional hazard model and does classification by seque
 This function sequentially increase the number of top K metabolites to be used in the PCA or PLS methods in order to obtain the risk score. This function internally calls \code{\link[MetabolicSurv]{MSpecificCoxPh}} to rank the metabolites based on HR for each metabolite. Therefore metabolites can be ordered based on increasing order of the HR for low risk group. Thereafter, the function takes few top K (15 is the default) to be used in the sequential analysis.
 }
 \examples{
+\donttest{
 ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)
 
@@ -53,6 +54,7 @@ Example1$Result
 
 ## FOR THE GRAPHICAL OUTPUT
 Example1$TopKplot
+}
 }
 \references{
 \insertRef{ye2}{MetabolicSurv}

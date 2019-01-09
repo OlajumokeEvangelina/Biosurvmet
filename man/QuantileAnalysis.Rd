@@ -37,6 +37,7 @@ The function performs sensitivity of the cut off quantile for obtaining the risk
 This function investigates how each analysis differs from the general median cutoff of 0.5, therefore to see the sensitive nature of the survival result different quantiles ranging from 10th percentile to 90th percentiles were used. The sensitive nature of the quantile is investigated under \code{\link[MetabolicSurv]{SurvPlsClass}}, \code{\link[MetabolicSurv]{SurvPcaClass}} or \code{\link[MetabolicSurv]{Lasoelacox}} while relate to the 3 different Dimension method to select from.
 }
 \examples{
+\donttest{
 ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)
 
@@ -54,6 +55,7 @@ Plots = TRUE,DimMethod="PLS",Alpha=1)
 Result = QuantileAnalysis(Data$Survival,t(Data$Mdata),
 Data$Censor,Reduce=FALSE, Select=150, Prognostic=Data$Prognostic,
 Plots = FALSE,DimMethod="SM",Alpha=1)
+}
 }
 \references{
 \insertRef{ye1}{MetabolicSurv}

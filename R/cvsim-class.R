@@ -20,6 +20,7 @@
 #' @author Ziv Shkedy
 #' @seealso \code{\link[MetabolicSurv]{CVPcaPls}}, \code{\link[MetabolicSurv]{SurvPcaClass}}, \code{\link[MetabolicSurv]{SurvPlsClass}}
 #' @examples
+#' \donttest{
 #' ## GENERATE SOME METABOLIC SURVIVAL DATA WITH PROGNOSTIC FACTORS
 #' Data<-MSData(nPatients=100,nMet=150,Prop=0.5)
 #'
@@ -39,6 +40,7 @@
 #' show(Result)
 #' summary(Result)
 #' plot(Result, type =2)
+#' }
 #' @importFrom methods setClass setGeneric setMethod setRefClass
 
 setClass("cvsim",representation(HRpca="array",HRpls="array",Nmets="numeric",Ncv="numeric",Top="numeric"),

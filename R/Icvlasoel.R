@@ -27,6 +27,7 @@
 #' @seealso \code{\link[MetabolicSurv]{CVLasoelacox}},
 #' \code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[glmnet]{glmnet}}, \code{\link[MetabolicSurv]{Lasoelacox}}
 #' @examples
+#' \donttest{
 #' ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 #' Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)
 #'
@@ -48,6 +49,7 @@
 #'
 #' ## The weight for the analysis
 #' Results@Weight
+#' }
 
 #' @export Icvlasoel
 #' @import tidyr

@@ -24,6 +24,7 @@
 #' @author Ziv Shkedy
 #' @seealso \code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[glmnet]{glmnet}}, \code{\link[MetabolicSurv]{Lasoelacox}}
 #' @examples
+#' \donttest{
 #' ## GENERATE SOME METABOLIC SURVIVAL DATA WITH PROGNOSTIC FACTORS
 #' Data<-MSData(nPatients=100,nMet=150,Prop=0.5)
 #'
@@ -40,6 +41,7 @@
 #' show(Eg)
 #' summary(Eg)
 #' plot(Eg, type =3)
+#' }
 #' @docType class
 
 setClass("cvle",representation(Coef.mat="matrix",Runtime="vector",lambda="vector",n="vector",Met.mat="matrix",HRTrain="matrix",HRTest="matrix",pld="vector",Mdata="matrix"), prototype=list(Coef.mat=matrix(1,1,1),Runtime=c(NA),lambda=c(NA), n=c(NA), Met.mat=matrix(1,1,1),HRTrain=matrix(1,1,1) , HRTest=matrix(1,1,1) , pld=c(NA),Mdata=matrix(1,1,1))

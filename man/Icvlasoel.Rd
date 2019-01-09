@@ -46,6 +46,7 @@ The function does cross validation for Lasso, Elastic net and Ridge regressions 
 The function does cross validation for Lasso, Elastic net and Ridge regressions models based on fixed or top selected metabolites from \code{\link[MetabolicSurv]{CVLasoelacox}} with classifier validated on a independent sample for the survial analysis and classification. The survival analysis is based on the selected metabolites in the presence or absene of prognostic factors. The classifier is built on the weights obtain from the inner cross validations results and it is tested on out-of-bag data. These weights can be fixed or can be updated at each outer iteration. If weights are not fixed then patients are classified using majority votes. Otherwise, weights obtained from the inner cross validations are summarized by mean weights and used in the classifier. Inner cross validations are performed by calling to function \code{\link[MetabolicSurv]{CVLasoelacox}}. Hazard ratio for low risk group is estimated using out-of-bag data.
 }
 \examples{
+\donttest{
 ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)
 
@@ -67,6 +68,7 @@ Results@HRTest
 
 ## The weight for the analysis
 Results@Weight
+}
 }
 \seealso{
 \code{\link[MetabolicSurv]{CVLasoelacox}},

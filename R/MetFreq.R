@@ -13,6 +13,7 @@
 #' @seealso \code{\link[MetabolicSurv]{cvmm}}, \code{\link[survival]{coxph}},
 #' \code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[MetabolicSurv]{MSpecificCoxPh}},\code{\link[MetabolicSurv]{CVMetSpecificCoxPh}}
 #' @examples
+#' \donttest{
 #' ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 #' Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)
 #'
@@ -26,6 +27,7 @@
 #'
 #' ## USING THE FUNCTION
 #' MetFreq(Result,TopK = 5,Minfreq = 20, N=5)
+#' }
 #' @export MetFreq
 
 MetFreq<-function(Object,TopK=20,Minfreq=5, N =10){

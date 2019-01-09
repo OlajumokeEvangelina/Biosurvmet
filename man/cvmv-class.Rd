@@ -42,6 +42,7 @@ Class of object returned by function \code{\link[MetabolicSurv]{CVMajorityvotes}
 }}
 
 \examples{
+\donttest{
 ## GENERATE SOME METABOLIC SURVIVAL DATA WITH PROGNOSTIC FACTORS
 Data<-MSData(nPatients=100,nMet=150,Prop=0.5)
 
@@ -57,6 +58,7 @@ class(Result)     # A "cvmv" Class
 show(Result)
 summary(Result)
 plot(Result)
+}
 }
 \seealso{
 \code{\link[MetabolicSurv]{Majorityvotes}}, \code{\link[MetabolicSurv]{CVPcaPls}}, \code{\link[MetabolicSurv]{SurvPcaClass}}, \code{\link[MetabolicSurv]{SurvPlsClass}}

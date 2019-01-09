@@ -19,6 +19,7 @@
 #' @author Ziv Shkedy
 #' @seealso \code{\link[MetabolicSurv]{Majorityvotes}}, \code{\link[MetabolicSurv]{CVPcaPls}}, \code{\link[MetabolicSurv]{SurvPcaClass}}, \code{\link[MetabolicSurv]{SurvPlsClass}}
 #' @examples
+#' \donttest{
 #' ## GENERATE SOME METABOLIC SURVIVAL DATA WITH PROGNOSTIC FACTORS
 #' Data<-MSData(nPatients=100,nMet=150,Prop=0.5)
 #'
@@ -34,6 +35,7 @@
 #' show(Result)
 #' summary(Result)
 #' plot(Result)
+#' }
 
 setClass("cvmv",representation(HRTrain="matrix",HRTest="matrix",Ncv="numeric",Mdata="matrix",Progfact="vector"),
          prototype=list(HRTrain=matrix(1,1,1),HRTest=matrix(1,1,1),Ncv=100,Mdata=matrix(1,1,1),Progfact=c(NA))
@@ -48,7 +50,7 @@ setMethod("show",signature="cvmv"
           , function(object){
             cat("Cross validation for Majority Votes Based Classification Analysis\n")
             cat("Number of cross valdiations used: ", object@Ncv, "\n")
-            if (!is.na(object@Progfact)) cat("Prognostic factors used: ",object@Progfact,"\n")
+            if(!is.null(object@Progfact)) cat("Prognostic factors used: ",object@Progfact,"\n")
           })
 
 

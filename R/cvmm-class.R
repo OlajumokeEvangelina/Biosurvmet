@@ -24,6 +24,7 @@
 #' @author Ziv Shkedy
 #' @seealso \code{\link[MetabolicSurv]{CVMetSpecificCoxPh}}
 #' @examples
+#' \donttest{
 #' ## GENERATE SOME METABOLIC SURVIVAL DATA WITH PROGNOSTIC FACTORS
 #' Data<-MSData(nPatients=100,nMet=150,Prop=0.5)
 #'
@@ -39,6 +40,7 @@
 #' show(Result)
 #' summary(Result)
 #' plot(Result)
+#' }
 
 setClass("cvmm",slots = representation(HRTrain="array",HRTest="array",train="matrix",test="matrix",n.mets="numeric",Ncv="numeric",Rdata="matrix"),
          prototype=list(HRTrain=array(NA,dim=c(1,1,1)),HRTest=array(NA,dim=c(1,1,1)),train=matrix(0,0,0), test=matrix(0,0,0),n.mets=1,Ncv=3,Rdata=matrix(0,0,0)))

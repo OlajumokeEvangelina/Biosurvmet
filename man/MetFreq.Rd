@@ -25,6 +25,7 @@ The function selects the top K metabolites from the metabolite by metabolite cro
 This function outputs the mostly selected metabolites during the metabolite specific cross validation. Selected Top metabolites are ranked based on estimated HR for low risk group. Therefore top metabolites should have minimum HR estimates. Number of top K metabolites needed should be prespecified. In addition, it visualizes the selected top metabolites based on the minimum frequency specified..
 }
 \examples{
+\donttest{
 ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)
 
@@ -38,6 +39,7 @@ class(Result)
 
 ## USING THE FUNCTION
 MetFreq(Result,TopK = 5,Minfreq = 20, N=5)
+}
 }
 \seealso{
 \code{\link[MetabolicSurv]{cvmm}}, \code{\link[survival]{coxph}},

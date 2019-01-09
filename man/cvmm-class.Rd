@@ -53,6 +53,7 @@ Any parameters of \code{\link[graphics]{plot.default}} may be passed on to this 
 }}
 
 \examples{
+\donttest{
 ## GENERATE SOME METABOLIC SURVIVAL DATA WITH PROGNOSTIC FACTORS
 Data<-MSData(nPatients=100,nMet=150,Prop=0.5)
 
@@ -68,6 +69,7 @@ class(Result)     # An "cvmm" Class
 show(Result)
 summary(Result)
 plot(Result)
+}
 }
 \seealso{
 \code{\link[MetabolicSurv]{CVMetSpecificCoxPh}}

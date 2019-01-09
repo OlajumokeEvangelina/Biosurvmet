@@ -23,6 +23,7 @@
 #' @references
 #' \insertRef{ye1}{MetabolicSurv}
 #' @examples
+#' \donttest{
 #' ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 #'Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)
 #'
@@ -40,6 +41,7 @@
 #'Result = QuantileAnalysis(Data$Survival,t(Data$Mdata),
 #'Data$Censor,Reduce=FALSE, Select=150, Prognostic=Data$Prognostic,
 #'Plots = FALSE,DimMethod="SM",Alpha=1)
+#'}
 
 #' @export QuantileAnalysis
 

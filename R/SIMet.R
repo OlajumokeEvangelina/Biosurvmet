@@ -24,6 +24,7 @@
 #'
 #' \insertRef{ye1}{MetabolicSurv}
 #' @examples
+#' \donttest{
 #' ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 #'Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)
 #'
@@ -37,6 +38,7 @@
 #'
 #' ## FOR THE GRAPHICAL OUTPUT
 #' Example1$TopKplot
+#' }
 #' @export SIMet
 
 

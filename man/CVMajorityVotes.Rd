@@ -39,6 +39,7 @@ This function does cross validation for the Majority votes based classification.
 This function does cross validation for the Majority votes based classification which is a cross validated approach to \code{\link[MetabolicSurv]{Majorityvotes}}.
 }
 \examples{
+\donttest{
 ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)
 
@@ -48,12 +49,13 @@ Prognostic=Data$Prognostic, Mdata=t(Data$Mdata), Reduce=FALSE,
 Select=15, Fold=3, Ncv=10)
 
 ## GET THE CLASS OF THE OBJECT
-class(Result)     # An "cvpp" Class
+class(Result)     # An "cvmv" Class
 
 ##  METHOD THAT CAN BE USED FOR THE RESULT
 show(Result)
 summary(Result)
 plot(Result)
+}
 }
 \seealso{
 \code{\link[MetabolicSurv]{Majorityvotes}}

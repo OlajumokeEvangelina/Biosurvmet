@@ -54,6 +54,7 @@ The function does cross validation for Lasso, Elastic net and Ridge regressions 
 The function performs the cross validations for Lasso, Elastic net and Ridge regressions models for Cox proportional hazard model. Metabolites are selected at each iteration and then use for the classifier. Which implies that predictive metabolites signature is varied from one cross validation to the other depending on selection. The underline idea is to investigate the Hazard Ratio for the train and test data based on the optimal lambda selected for the non-zero shrinkage coefficients, the nonzero selected metabolites will thus be used in the survival analysis and in calculation of the risk scores for each sets of data.
 }
 \examples{
+\donttest{
 ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)
 
@@ -74,6 +75,7 @@ Results@HRTrain
 
 ## SURVIVAL INFORMATION OF THE TEST DATASET
 Results@HRTest
+}
 }
 \seealso{
 \code{\link[survival]{coxph}},

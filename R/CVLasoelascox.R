@@ -31,6 +31,7 @@
 #' @seealso \code{\link[survival]{coxph}},
 #' \code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[glmnet]{glmnet}}, \code{\link[MetabolicSurv]{Lasoelacox}}
 #' @examples
+#' \donttest{
 #' ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 #' Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)
 #'
@@ -51,6 +52,7 @@
 #'
 #' ## SURVIVAL INFORMATION OF THE TEST DATASET
 #' Results@HRTest
+#' }
 
 #' @export CVLasoelacox
 #' @import superpc

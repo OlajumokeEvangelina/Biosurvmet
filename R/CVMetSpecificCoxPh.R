@@ -25,6 +25,7 @@
 #' @seealso \code{\link[survival]{coxph}},
 #' \code{\link[MetabolicSurv]{EstimateHR}}, \code{\link[MetabolicSurv]{MSpecificCoxPh}},
 #' @examples
+#' \donttest{
 #' ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
 #' Data = MSData(nPatients = 100, nMet = 150, Prop = 0.5)
 #'
@@ -40,6 +41,7 @@
 #' show(Result)
 #' summary(Result)
 #' plot(Result)
+#' }
 
 #' @export CVMetSpecificCoxPh
 
