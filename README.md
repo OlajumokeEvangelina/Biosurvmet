@@ -1,3 +1,4 @@
+[![Travis-CI Build Status](https://travis-ci.org/OlajumokeEvangelina/MetabolicSurv.svg?branch=master)](https://travis-ci.org/OlajumokeEvangelina/MetabolicSurv)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version-ago/MetabolicSurv)](https://cran.r-project.org/package=MetabolicSurv)
 [![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/MetabolicSurv)](https://cran.r-project.org/package=MetabolicSurv)
 
