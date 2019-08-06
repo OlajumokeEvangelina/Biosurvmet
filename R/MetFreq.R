@@ -10,7 +10,7 @@
 #' @author Olajumoke Evangelina Owokotomo, \email{olajumoke.owokotomo@@uhasselt.be}
 #' @author Ziv Shkedy
 #' @seealso \code{\link[MetabolicSurv]{cvmm}}, \code{\link[survival]{coxph}},
-#' \code{\link[MetabolicSurv]{EstimateHR}},\code{\link[MetabolicSurv]{CVMLasoelascox}}
+#' \code{\link[MetabolicSurv]{EstimateHR}},\code{\link[MetabolicSurv]{CVLasoelacox}}
 #' @examples
 #' \donttest{
 #' ## FIRSTLY SIMULATING A METABOLIC SURVIVAL DATA
@@ -27,11 +27,11 @@
 #' class(Result)
 #'
 #' ## USING THE FUNCTION
-#' FreqMet(Result,TopK = 5, N=5)
+#' MetFreq(Result,TopK = 5, N=5)
 #' }
-#' @export FreqMet
+#' @export MetFreq
 
-FreqMet<-function(Object,TopK=20,N=3){
+MetFreq<-function(Object,TopK=20,N=3){
 
   #Decrease=FALSE
   if (class(Object)!="cvle") stop("Invalid object class.")
