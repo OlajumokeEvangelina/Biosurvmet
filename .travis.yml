@@ -1,0 +1,6 @@
+# R for travis: see documentation at hhttps://docs.travis-ci.com/user/languages/r
+
+language: R
+cache: packages
+sudo: false
+r: bioc-release
